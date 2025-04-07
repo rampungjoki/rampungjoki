@@ -6,7 +6,7 @@
     <title>Tentang Kami - RampungJoki</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* === Gaya Umum === */
@@ -225,12 +225,12 @@
             color: var(--primary-color);
         }
 
-        /* Nilai Tambahan Card */
+        /* Nilai Tambahan Card Interaktif */
         .additional-card-section {
             padding: 40px 20px;
             text-align: center;
             background-color: var(--light-bg);
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             border-radius: 8px;
         }
 
@@ -239,35 +239,101 @@
             margin-bottom: 20px;
         }
 
-        .additional-card-section .card-grid {
+        .interactive-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
 
-        .info-card {
+        .interactive-card {
             background-color: var(--light-text);
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
-        .info-card i {
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .interactive-card i {
             font-size: 2rem;
             color: var(--accent-color);
             margin-bottom: 10px;
         }
 
-        .info-card h3 {
+        .interactive-card h3 {
             color: var(--primary-color);
             margin-bottom: 10px;
             font-size: 1.3rem;
         }
 
-        .info-card p {
+        .interactive-card p {
             color: var(--secondary-color);
             font-size: 0.95rem;
+        }
+
+        /* Social Media Section */
+        .social-media-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: rgba(240, 248, 255, 0.5); /* Alice Blue dengan opasitas */
+            border-radius: 8px;
+        }
+
+        .social-media-section p {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .social-name {
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #ddd;
         }
 
         /* Responsive Layout */
@@ -281,8 +347,17 @@
             .slider-button {
                 padding: 8px 12px;
             }
-            .additional-card-section .card-grid {
+            .interactive-card-grid {
                 grid-template-columns: 1fr;
+            }
+            .social-link {
+                margin: 0 15px;
+            }
+            .social-icon {
+                font-size: 1.8rem;
+            }
+            .social-name {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -348,101 +423,134 @@
 
         <section class="additional-card-section">
             <h2>Nilai Kami</h2>
-            <div class="card-grid">
-                <div class="info-card">
+            <div class="interactive-card-grid">
+                <div class="interactive-card">
                     <i class="fas fa-rocket"></i>
                     <h3>Cepat & Efisien</h3>
                     <p>Kami berkomitmen untuk memberikan layanan joki yang cepat dan efisien sesuai kebutuhan Anda.</p>
                 </div>
-                <div class="info-card">
+                <div class="interactive-card">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Aman & Terpercaya</h3>
                     <p>Keamanan dan kepercayaan Anda adalah prioritas utama kami dalam setiap transaksi.</p>
                 </div>
-                <div class="info-card">
+                <div class="interactive-card">
                     <i class="fas fa-handshake"></i>
                     <h3>Profesional & Berkualitas</h3>
                     <p>Tim joki kami terdiri dari para profesional yang ahli di bidangnya masing-masing.</p>
                 </div>
-                <div class="info-card">
+                <div class="interactive-card">
                     <i class="fas fa-heart"></i>
                     <h3>Berorientasi Pelanggan</h3>
                     <p>Kepuasan pelanggan adalah tujuan utama kami. Kami selalu siap melayani Anda.</p>
                 </div>
             </div>
         </section>
+
+        <section class="social-media-section">
+            <p>Yuk, ikuti keseruan dan informasi terbaru dari kami di media sosial:</p>
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@rampungjokiofficial" class="social-link" target="_blank" aria-label="TikTok RampungJoki">
+<i class="fab fa-tiktok social-icon"></i>
+<span class="social-name">@rampungjokiofficial</span>
+</a>
+<a href="https://www.instagram.com/rampungjoki.ofc" class="social-link" target="_blank" aria-label="Instagram RampungJoki">
+<i class="fab fa-instagram social-icon"></i>
+<span class="social-name">@rampungjoki.ofc</span>
+</a>
+</div>
+</section>
+</div>
+
+<footer>
+    <div style="text-align: center; font-size: 0.9em; color: var(--secondary-color);">
+        &copy; 2025 RampungJoki. All rights reserved.
     </div>
+</footer>
 
-    <footer>
-        <div style="text-align: center; padding: 20px; font-size: 0.9em; color: var(--secondary-color);">
-            &copy; 2025 RampungJoki. All rights reserved.
-        </div>
-    </footer>
+<script>
+    const teamSliderContainer = document.querySelector('.team-slider-container');
+    const teamSlider = document.querySelector('.team-slider');
+    const teamCards = document.querySelectorAll('.team-card');
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+    const interactiveCards = document.querySelectorAll('.interactive-card');
 
-    <script>
-        const teamSliderContainer = document.querySelector('.team-slider-container');
-        const teamSlider = document.querySelector('.team-slider');
-        const teamCards = document.querySelectorAll('.team-card');
-        const prevButton = document.querySelector('.prev-button');
-        const nextButton = document.querySelector('.next-button');
+    let counter = 0;
+    const cardWidth = teamCards[0].offsetWidth;
+    let intervalId;
+    const slideIntervalTime = 4000; // 4 detik
 
-        let counter = 0;
-        const cardWidth = teamCards[0].offsetWidth;
-        let intervalId;
-        const slideIntervalTime = 4000; // 4 detik
+    function slideTo(index) {
+        teamSlider.style.transform = `translateX(-${cardWidth * index}px)`;
+        counter = index;
+    }
 
-        function slideTo(index) {
-            teamSlider.style.transform = `translateX(-${cardWidth * index}px)`;
-            counter = index;
+    function nextSlide() {
+        counter++;
+        if (counter >= teamCards.length) {
+            counter = 0;
         }
+        slideTo(counter);
+    }
 
-        function nextSlide() {
-            counter++;
-            if (counter >= teamCards.length) {
-                counter = 0;
-            }
-            slideTo(counter);
+    function prevSlide() {
+        counter--;
+        if (counter < 0) {
+            counter = teamCards.length - 1;
         }
+        slideTo(counter);
+    }
 
-        function prevSlide() {
-            counter--;
-            if (counter < 0) {
-                counter = teamCards.length - 1;
-            }
-            slideTo(counter);
-        }
+    function startAutoSlide() {
+        intervalId = setInterval(nextSlide, slideIntervalTime);
+    }
 
-        function startAutoSlide() {
-            intervalId = setInterval(nextSlide, slideIntervalTime);
-        }
+    function stopAutoSlide() {
+        clearInterval(intervalId);
+    }
 
-        function stopAutoSlide() {
-            clearInterval(intervalId);
-        }
+    // Inisialisasi Slider Tim
+    slideTo(0);
+    startAutoSlide();
 
-        // Inisialisasi
-        slideTo(0);
+    // Kontrol Manual Slider Tim
+    prevButton.addEventListener('click', () => {
+        stopAutoSlide();
+        prevSlide();
         startAutoSlide();
+    });
 
-        // Kontrol manual
-        prevButton.addEventListener('click', () => {
-            stopAutoSlide();
-            prevSlide();
-            startAutoSlide();
+    nextButton.addEventListener('click', () => {
+        stopAutoSlide();
+        nextSlide();
+        startAutoSlide();
+    });
+
+    // Responsif Slider Tim
+    window.addEventListener('resize', () => {
+        const newCardWidth = teamCards[0].offsetWidth;
+        slideTo(counter);
+    });
+
+    // Interaksi Card Nilai Kami
+    interactiveCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-8px)';
+            card.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)';
         });
 
-        nextButton.addEventListener('click', () => {
-            stopAutoSlide();
-            nextSlide();
-            startAutoSlide();
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
         });
+    });
 
-        // Responsif terhadap perubahan ukuran layar
-        window.addEventListener('resize', () => {
-            cardWidth = teamCards[0].offsetWidth;
-            slideTo(counter);
-        });
-    </script>
-    <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
+    // Animasi masuk untuk body
+    document.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('fadein');
+    });
+</script>
+<script src="[https://kit.fontawesome.com/your_fontawesome_kit.js](https://kit.fontawesome.com/your_fontawesome_kit.js)" crossorigin="anonymous"></script>
 </body>
 </html>
