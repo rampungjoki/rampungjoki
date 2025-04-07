@@ -286,90 +286,40 @@
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Testimoni Section */
-        .testimoni {
+        /* Ulasan Section */
+        .ulasan-section {
             padding: 60px 20px;
             text-align: center;
             background-color: var(--light-bg);
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        .testimoni h2 {
+        .ulasan-section h2 {
             color: var(--primary-color);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        .testimoni-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
+        .ulasan-iframe-container {
+            max-width: 900px;
+            margin: 0 auto 30px;
             border-radius: 12px;
+            overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .slide-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            padding: 30px;
-            text-align: center;
-            background-color: var(--light-text);
-            border-radius: 8px;
-        }
-
-        .slide blockquote {
-            font-size: 1.1rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-            font-style: italic;
-            line-height: 1.7;
-        }
-
-        .slide p.author {
-            font-weight: bold;
-            color: var(--dark-text);
-            font-size: 0.9rem;
-        }
-
-        .prev-button, .next-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: var(--light-text);
+        .ulasan-iframe {
+            width: 100%;
+            height: 500px; /* Sesuaikan tinggi sesuai kebutuhan */
             border: none;
-            padding: 10px;
-            margin: 0 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 1;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
         }
 
-        .prev-button:hover, .next-button:hover {
-            opacity: 1;
-        }
-
-        .prev-button {
-            left: 10px;
-        }
-
-        .next-button {
-            right: 10px;
-        }
-
-        /* Beri Masukkan Button */
-        .beri-masukkan-container {
+        /* Beri Ulasan Section */
+        .beri-ulasan-container {
             text-align: center;
             margin-bottom: 40px;
         }
 
-        .beri-masukkan-button {
+        .beri-ulasan-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -386,10 +336,25 @@
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
         }
 
-        .beri-masukkan-button:hover {
+        .beri-ulasan-button:hover {
             background-color: #daa520; /* Darker gold */
             transform: translateY(-2px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .beri-ulasan-iframe-container {
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none; /* Secara default formulir ulasan tersembunyi */
+        }
+
+        .beri-ulasan-iframe {
+            width: 100%;
+            height: 600px; /* Sesuaikan tinggi form ulasan */
+            border: none;
         }
 
         /* Footer */
@@ -435,12 +400,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .testimoni {
+            .ulasan-section {
                 padding: 40px 20px;
-            }
-
-            .testimoni blockquote {
-                font-size: 1rem;
             }
 
             .layanan-item {
@@ -451,8 +412,18 @@
                 width: 80%;
             }
 
-            .beri-masukkan-button {
-                width: 80%;}
+            .beri-ulasan-button {
+                width: 80%;
+            }
+
+            .ulasan-iframe-container {
+                height: 400px; /* Sesuaikan tinggi iframe ulasan di mobile */
+            }
+
+            .beri-ulasan-iframe-container {
+                height: 700px; /* Sesuaikan tinggi iframe form ulasan di mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -502,39 +473,24 @@
             <a href="daftar.html" class="daftar-joki-button">Saya Ingin Bergabung Sebagai Joki</a>
         </section>
 
-        <section class="testimoni">
-            <h2>Apa Kata Mereka yang Telah Merasakan Manfaat Kami?</h2>
-            <div class="testimoni-slider">
-                <div class="slide-track">
-                    <div class="slide">
-                        <blockquote>"Joki game-nya GG banget! Rank Mythic impianku akhirnya tercapai. Pelayanannya juga super ramah."</blockquote>
-                        <p class="author">- Arya, Sang Conqueror</p>
-                    </div>
-                    <div class="slide">
-                        <blockquote>"Deadline tugas kuliah sudah di depan mata, untung ada RampungJoki! Tugas kalkulus yang bikin pusing langsung selesai dengan nilai A."</blockquote>
-                        <p class="author">- Bella, Si Pejuang IPK</p>
-                    </div>
-                    <div class="slide">
-                        <blockquote>"Butuh artikel SEO friendly untuk blog, hasilnya memuaskan! Tulisan joki-nya enak dibaca dan informatif."</blockquote>
-                        <p class="author">- Chandra, Pemilik Blog Sukses</p>
-                    </div>
-                    <div class="slide">
-                        <blockquote>"Pengen push rank tapi gak ada waktu? Joki di sini solusinya! Mainnya jago, komunikasinya juga enak."</blockquote>
-                        <p class="author">- Dewi, Si Tukang Mabar</p>
-                    </div>
-                    <div class="slide">
-                        <blockquote>"Tugas presentasi kelompok auto beres berkat bantuan joki RampungJoki. Nilai kelompok langsung meningkat!"</blockquote>
-                        <p class="author">- Eko, Ketua Kelompok Teladan</p>
-                    </div>
-                </div>
-                <button class="prev-button"><i class="fas fa-chevron-left"></i></button>
-                <button class="next-button"><i class="fas fa-chevron-right"></i></button>
+        <section class="ulasan-section">
+            <h2>Ulasan dari Pengguna Setia Kami</h2>
+            <div class="ulasan-iframe-container">
+                <iframe width="100%" height="500" src="https://lookerstudio.google.com/embed/reporting/07c12a5c-8431-45ac-a5b1-bba8daf5c073/page/4z5FF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
             </div>
         </section>
 
-        <section class="beri-masukkan-container">
-            <a href="#" class="beri-masukkan-button"><i class="fas fa-comment-dots"></i> Berikan Masukkan</a>
+        <section class="beri-ulasan-container">
+            <h2>Bagikan Pengalamanmu!</h2>
+            <a href="#" class="beri-ulasan-button toggle-ulasan-form"><i class="fas fa-comment-dots"></i> Berikan Ulasan</a>
         </section>
+
+        <div class="beri-ulasan-iframe-container" style="display: none;">
+            <iframe src="https://forms.gle/jLUPjtmhTWGAhd1U8" class="beri-ulasan-iframe" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div style="text-align: right; margin-top: 10px;">
+                <button class="beri-ulasan-button toggle-ulasan-form" style="font-size: 0.9rem; padding: 10px 20px;">Tutup Formulir</button>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -544,33 +500,13 @@
     </footer>
 
     <script>
-        const testimoniSlider = document.querySelector('.testimoni-slider');
-        const slideTrack = document.querySelector('.slide-track');
-        const slides = document.querySelectorAll('.slide');
-        const prevButton = document.querySelector('.prev-button');
-        const nextButton = document.querySelector('.next-button');
-        let counter = 0;
-        const slideWidth = slides[0].offsetWidth;
+        const toggleUlasanButtons = document.querySelectorAll('.toggle-ulasan-form');
+        const beriUlasanIframeContainer = document.querySelector('.beri-ulasan-iframe-container');
 
-        slideTrack.style.transform = `translateX(-${slideWidth * counter}px)`;
-
-        prevButton.addEventListener('click', () => {
-            if (counter > 0) {
-                counter--;
-                slideTrack.style.transform = `translateX(-${slideWidth * counter}px)`;
-            }
-        });
-
-        nextButton.addEventListener('click', () => {
-            if (counter < slides.length - 1) {
-                counter++;
-                slideTrack.style.transform = `translateX(-${slideWidth * counter}px)`;
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            const newSlideWidth = slides[0].offsetWidth;
-            slideTrack.style.transform = `translateX(-${newSlideWidth * counter}px)`;
+        toggleUlasanButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                beriUlasanIframeContainer.style.display = beriUlasanIframeContainer.style.display === 'none' ? 'block' : 'none';
+            });
         });
 
         // Animasi masuk untuk body
