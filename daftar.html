@@ -4,104 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Sebagai Joki - RampungJoki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* === Gaya Umum === */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
-        body, h1, h2, h3, p, ul, li {
+        body, h1, h2, h3, p, ul, li, a, button {
             margin: 0;
             padding: 0;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            font-size: 1rem;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
+            background-color: #f8f9fa; /* Light background */
+            color: #333; /* Dark text */
+            padding-bottom: 70px;
             min-height: 100vh;
+            position: relative;
+            animation: fadein 0.5s ease-out;
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
             max-width: 800px;
-            margin: 80px auto 50px; /* Tambah margin atas agar tidak tertutup navbar */
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding-top: 70px; /* Ruang untuk navbar sticky */
+            margin: 30px auto;
+            padding: 40px;
+            background-color: #fff; /* White container */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding-top: 70px;
         }
 
         h1 {
-            color: #375a7f;
+            color: #2E8B57; /* Sea Green */
             text-align: center;
             margin-bottom: 30px;
+            font-size: 2.5rem;
         }
 
-        p {
-            margin-bottom: 25px;
-            color: #666;
-            text-align: center;
-        }
-
-        .info-section {
-            background-color: #e9ecef;
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-            border-left: 5px solid #375a7f;
-        }
-
-        .info-section h2 {
-            color: #375a7f;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .info-section ul {
-            padding-left: 20px;
+        h2 {
+            color: #2E8B57; /* Sea Green */
+            margin-top: 30px;
             margin-bottom: 20px;
+            font-size: 1.8rem;
         }
 
-        .info-section li {
-            color: #555;
-            margin-bottom: 10px;
-        }
-
-        .apply-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background-color: #28a745;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            margin: 25px auto;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .apply-button:hover {
-            background-color: #1e7e34;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Navbar (Sama persis dengan tentang.html) */
+        /* Navbar */
         .navbar {
-            background-color: #375a7f; /* Biru tua profesional */
+            background-color: #375a7f;
             color: white;
             padding: 15px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: fixed; /* Tetap di atas saat di-scroll */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -156,120 +121,173 @@
             font-weight: bold;
         }
 
-        .navbar-toggler {
-            background: transparent;
-            border: none;
-            color: white;
+        /* Card Styling */
+        .info-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eee;
+        }
+
+        .info-card h3 {
+            color: #2E8B57; /* Sea Green */
+            margin-bottom: 15px;
             font-size: 1.5rem;
-            cursor: pointer;
-            display: none; /* Hidden by default on larger screens */
-            transition: opacity 0.3s ease;
         }
 
-        .navbar-toggler:hover {
-            opacity: 0.8;
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar-nav {
-                margin-top: 10px;
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .nav-item {
-                margin-left: 0;
-                margin-bottom: 10px;
-            }
-
-            .navbar-toggler {
-                display: block;
-                margin-left: auto;
-            }
+        .info-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f2f2f2;
+            color: #555;
         }
 
-        /* Footer (contoh sederhana) */
-        .footer {
-            background-color: #343a40;
-            color: #f8f9fa;
+        .info-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .info-card i {
+            color: #FFD700; /* Gold accent */
+            margin-right: 8px;
+        }
+
+        /* Daftar Button */
+        .daftar-button-container {
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .daftar-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            background-color: #2E8B57; /* Sea Green */
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+        }
+
+        .daftar-button:hover {
+            background-color: #1e7e34;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa;
             padding: 20px 0;
-            margin-top: auto; /* Push footer ke bawah */
-            font-size: 0.9rem;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                padding-top: 70px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .nav-item {
+                margin-left: 10px;
+            }
+            .nav-link {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .info-cards-container {
+                grid-template-columns: 1fr;
+            }
+            .info-card {
+                padding: 20px;
+            }
+            .info-card h3 {
+                font-size: 1.3rem;
+            }
+            .daftar-button {
+                font-size: 1.1rem;
+                padding: 12px 25px;
+            }
         }
     </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="navbar-container">
-                <a class="navbar-brand" href="index.html">RampungJoki</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="carijoki.html">Cari Joki</a></li>
-                    <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Kami</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="daftar.html">Daftar Sebagai Joki</a></li>
-                </ul>
-                <button class="navbar-toggler">☰</button>
-            </div>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html">RampungJoki</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="carijoki.html">Cari Joki</a></li>
+                <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Kami</a></li>
+                <li class="nav-item"><a class="nav-link active" href="daftar.html">Daftar Sebagai Joki</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
-        <h1>Bergabunglah Sebagai Joki di RampungJoki</h1>
-        <p>Waktumu berharga, jadilah bagian dari tim kami dan bantu orang lain sambil mendapatkan penghasilan!</p>
+        <h1>Bergabunglah Menjadi Joki Andal Kami</h1>
+        <p style="text-align: center; margin-bottom: 30px; color: #555;">Tertarik untuk menjadi bagian dari tim joki profesional kami? Simak informasi di bawah ini dan daftarkan diri Anda!</p>
 
-        <div class="info-section">
-            <h2>Mengapa Menjadi Joki di RampungJoki?</h2>
-            <ul>
-                <li>Fleksibilitas waktu kerja sesuai dengan ketersediaan Anda.</li>
-                <li>Peluang mendapatkan penghasilan tambahan yang menarik.</li>
-                <li>Terhubung dengan berbagai macam permintaan layanan.</li>
-                <li>Membangun reputasi dan portofolio Anda.</li>
-                <li>Dukungan dari tim RampungJoki.</li>
-            </ul>
+        <div class="info-cards-container">
+            <div class="info-card">
+                <h3>Mengapa Menjadi Joki di RampungJoki?</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Fleksibilitas Waktu Kerja</li>
+                    <li><i class="fas fa-coins"></i> Potensi Penghasilan Menarik</li>
+                    <li><i class="fas fa-users"></i> Komunitas Joki yang Solid</li>
+                    <li><i class="fas fa-graduation-cap"></i> Pengembangan Keahlian</li>
+                    <li><i class="fas fa-handshake"></i> Kesempatan Membantu Orang Lain</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>Persyaratan Umum Menjadi Joki:</h3>
+                <ul>
+                    <li><i class="fas fa-user-check"></i> Memiliki Keahlian yang Relevan</li>
+                    <li><i class="fas fa-clock"></i> Komitmen Terhadap Deadline</li>
+                    <li><i class="fas fa-comments"></i> Kemampuan Komunikasi yang Baik</li>
+                    <li><i class="fas fa-thumbs-up"></i> Bertanggung Jawab dan Jujur</li>
+                    <li><i class="fas fa-heart"></i> Berorientasi pada Kualitas</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="info-section">
-            <h2>Persyaratan Umum Menjadi Joki:</h2>
-            <ul>
-                <li>Memiliki keahlian atau pengalaman yang relevan dengan layanan yang ingin ditawarkan.</li>
-                <li>Bertanggung jawab, jujur, dan profesional dalam bekerja.</li>
-                <li>Mampu berkomunikasi dengan baik.</li>
-                <li>Memiliki perangkat dan koneksi internet yang memadai.</li>
-                <li>Bersedia mengikuti aturan dan ketentuan RampungJoki.</li>
-            </ul>
+        <div class="daftar-button-container">
+            <a href="https://formfacade.com/headless/103538950695046364359/home/form/1FAIpQLSc8GWiWMXhIbIiuNSuUNwxGpq_yMAeJhE73yUekRkdCUMh0Bg" class="daftar-button">Daftar Sebagai Joki</a>
         </div>
-
-        <a href="https://formfacade.com/headless/103538950695046364359/home/form/1FAIpQLSc8GWiWMXhIbIiuNSuUNwxGpq_yMAeJhE73yUekRkdCUMh0Bg" class="apply-button">Daftar Sekarang</a>
     </div>
 
-    <footer class="footer">
-        &copy; 2025 RampungJoki. All rights reserved.
+    <footer>
+        <div style="text-align: center; padding: 20px; font-size: 0.9em; color: #777;">
+            &copy; 2025 RampungJoki. All rights reserved.
+        </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navbarToggler = document.querySelector('.navbar-toggler');
-            const navbarNav = document.querySelector('.navbar-nav');
-
-            if (navbarToggler) {
-                navbarToggler.addEventListener('click', function() {
-                    navbarNav.classList.toggle('open');
-                });
-            }
-        });
-    </script>
     <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
 </body>
 </html>
