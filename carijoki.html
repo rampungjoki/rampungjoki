@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Joki - RampungJoki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === Gaya Umum === */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary-color: #007bff; /* Biru utama */
+            --secondary-color: #6c757d; /* Abu-abu sekunder */
+            --accent-color: #28a745; /* Hijau aksen */
+            --light-bg: #f8f9fa; /* Background terang */
+            --dark-text: #343a40; /* Teks gelap */
+            --light-text: #ffffff; /* Teks terang */
+            --border-color: #dee2e6; /* Warna border */
+
+            /* Warna Kategori Baru */
+            --game-bg: #e0f7fa; /* Biru muda lembut */
+            --game-text: #00838f; /* Biru kehijauan gelap */
+            --tugas-bg: #fff3e0; /* Krem lembut */
+            --tugas-text: #e65100; /* Oranye gelap */
+            --penulisan-bg: #f0f4c3; /* Kuning kehijauan lembut */
+            --penulisan-text: #827717; /* Hijau tua */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            margin: 0;
+            padding-bottom: 70px; /* Ruang untuk footer */
+            min-height: 100vh;
+            position: relative; /* Untuk memposisikan footer */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: var(--light-text);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding-top: 80px; /* Ruang untuk navbar sticky */
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #375a7f; /* Biru tua profesional */
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Tetap di atas saat di-scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar-brand {
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            opacity: 0.8;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #e0f7fa;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+
+        .navbar-toggler {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none; /* Hidden by default on larger screens */
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            opacity: 0.8;
+        }
+
+        /* Search Filters */
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            padding: 25px;
+            background-color: #e9ecef; /* Warna background filter */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            display: block;
+            width: 220px;
+            padding: 14px 24px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 30px auto;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+        }
+
+        .joki-list {
+            margin-top: 30px;
+        }
+
+        .joki-card {
+            background-color: var(--light-text);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .joki-card.game {
+            background-color: var(--game-bg);
+            border-color: var(--game-text);
+        }
+
+        .joki-card.game h3 {
+            color: var(--game-text);
+        }
+
+        .joki-card.game .joki-info p b {
+            color: var(--game-text);
+        }
+
+        .joki-card.tugas {
+            background-color: var(--tugas-bg);
+            border-color: var(--tugas-text);
+        }
+
+        .joki-card.tugas h3 {
+            color: var(--tugas-text);
+        }
+
+        .joki-card.tugas .joki-info p b {
+            color: var(--tugas-text);
+        }
+
+        .joki-card.penulisan {
+            background-color: var(--penulisan-bg);
+            border-color: var(--penulisan-text);
+        }
+
+        .joki-card.penulisan h3 {
+            color: var(--penulisan-text);
+        }
+
+        .joki-card.penulisan .joki-info p b {
+            color: var(--penulisan-text);
+        }
+
+        .joki-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .joki-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 25px;
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            font-size: 2.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid var(--light-bg);
+        }
+
+        .joki-info {
+            flex-grow: 1;
+        }
+
+        .joki-info h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 5px; /* Reduced margin */
+        }
+
+        .rating {
+            margin-bottom: 5px;
+        }
+
+        .rating .fas.fa-star {
+            margin-right: 2px;
+        }
+
+        .joki-info p {
+            color: var(--secondary-color);
+            margin-bottom: 5px; /* Reduced margin */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .joki-info p b {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .joki-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 150px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 12px 20px;
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .lihat-profil {
+            background-color: var(--primary-color);
+        }
+
+        .lihat-profil:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+        }
+
+        .hubungi-wa {
+            background-color: var(--accent-color);
+        }
+
+        .hubungi-wa:hover {
+            background-color: #1e7e34;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+        }
+
+        .no-results {
+            text-align: center;
+            color: #dc3545;
+            font-size: 1.2rem;
+            margin-top: 40px;
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Lebih tinggi dari navbar */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ more opacity */
+        }
+
+        .modal-content {
+            background-color: var(--light-text);
+            margin: 5% auto; /* Turunkan sedikit dari atas */
+            padding: 40px; /* Padding lebih besar */
+            border: 1px solid var(--border-color);
+            width: 80%; /* Tetap lebar 80% */
+            max-width: 700px; /* Lebar maksimum modal */
+            border-radius: 12px; /* Sudut lebih bulat */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+            position: relative;
+            animation: fadein 0.3s; /* Efek fade-in */
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .close-button {
+            color: var(--secondary-color);
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--dark-text);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 10px; /* Reduced margin */
+            border-bottom: 2px solid var(--border-color); /* Garis bawah judul */
+            padding-bottom: 10px; /* Reduced padding */
+        }
+
+        .modal-rating {
+            margin-bottom: 10px;
+        }
+
+        .modal-rating .fas.fa-star {
+            color: gold;
+            margin-right: 2px;
+        }
+
+        .modal-content h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .modal-content .detail-card p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: var(--dark-text);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .modal-content #modal-pesan-sekarang {
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .testimonials-modal {
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .testimonials-modal h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .testimonial-carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial-image {
+            min-width: 100%; /* Setiap gambar memenuhi lebar container */
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--light-text);
+            border: none;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .carousel-button:hover {
+            opacity: 1;
+        }
+
+        .carousel-button.prev {
+            left: 10px;
+        }
+
+        .carousel-button.next {
+            right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-bg);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--secondary-color);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav {
+                margin-top: 10px;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-item {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            .search-filters {
+                grid-template-columns: 1fr;
+            }
+
+            .joki-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .joki-avatar {
+                margin-bottom: 15px;
+                margin-right: 0;
+            }
+
+            .joki-contact {
+                margin-top: 15px;
+                flex-direction: row;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .carousel-button {
+                padding: 8px;
+                margin: 0 5px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html">RampungJoki</a>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link active" href="carijoki.html">Cari Joki</a></li>
+                <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Kami</a></li>
+                <li class="nav-item"><a class="nav-link" href="daftar.html">Daftar Sebagai Joki</a></li>
+            </ul>
+            <button class="navbar-toggler">☰</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Cari Joki</h1>
+
+        <div class="search-filters">
+            <div class="filter-group">
+                <label for="layanan">Jenis Layanan:</label>
+                <select id="layanan">
+                    <option value="">Semua Layanan</option>
+                    <option value="Game">Joki Game</option>
+                    <option value="Tugas">Joki Tugas</option>
+                    <option value="Penulisan">Joki Penulisan</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="pengalaman">Pengalaman:</label>
+                <select id="pengalaman">
+                    <option value="">Semua Pengalaman</option>
+                    <option value="pemula">Pemula</option>
+                    <option value="menengah">Menengah</option>
+                    <option value="ahli">Ahli</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="search-button">Cari Joki <i class="fas fa-search" style="color: white;"></i></button>
+
+        <div class="joki-list">
+            <h2>Hasil Pencarian Joki</h2>
+        </div>
+    </div>
+
+    <div id="jokiModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modal-nama">Nama Joki</h2>
+            <div class="modal-rating">
+                </div>
+            <h3><i class="fas fa-info-circle" style="color: var(--primary-color);"></i> Detail Lengkap</h3>
+            <div class="detail-card">
+                <p id="modal-layanan-isi"></p>
+            </div>
+            <a id="modal-pesan-sekarang" href="#" target="_blank" class="contact-button hubungi-wa"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>
+
+            <div class="testimonials-modal">
+                <h3><i class="fas fa-comments" style="color: var(--accent-color);"></i> Testimoni</h3>
+                <div class="testimonial-carousel-container">
+                    <div class="testimonial-carousel">
+                        <img src="placeholder_testimoni1.jpg" alt="Testimoni 1" class="testimonial-image">
+                        <img src="placeholder_testimoni2.jpg" alt="Testimoni 2" class="testimonial-image">
+                        <img src="placeholder_testimoni3.jpg" alt="Testimoni 3" class="testimonial-image">
+                        <img src="placeholder_testimoni4.jpg" alt="Testimoni 4" class="testimonial-image">
+                        <img src="placeholder_testimoni5.jpg" alt="Testimoni 5" class="testimonial-image">
+                    </div>
+                    <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div style="text-align: center; padding: 20px; font-size: 0.9em; color: var(--secondary-color);">
+            &copy; 2025 RampungJoki. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const dataJoki = [
+            {
+                id: 1,
+                nama: "SEBATSZ",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Rp 10.000 - Rp 50.000 tergantung tier",
+                pengalaman: "Ahli",
+                avatar: "sebatsz.jpeg",
+                wa: "6281292398570",
+                detail_layanan: "🎮 Pernah mengalahkan squad SIWA & ACURSIO di ranked mythic. Siap membantu push rank dengan cepat dan efisien.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ml_1.jpg", "testimoni_ml_2.png"]
+            },
+            {
+                id: 2,
+                nama: "Matadore Store ",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Epic 1 Star Rp 5.000",
+                pengalaman: "Menengah",
+                avatar: "matadore.jfif",
+                wa: "6285716046032",
+                detail_layanan: "✨ Joki di sini membuat hati kalian senang dengan kemenangan beruntun. Harga bersahabat, kualitas hebat!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ml_3.jpeg", "testimoni_ml_4.gif", "testimoni_ml_5.png"]
+            },
+            {
+                id: 3,
+                nama: "Trims.Project",
+                layanan: ["Tugas"],
+                skill: ["Skripsi", "Tugas", "Pengolahan Data"],
+                harga: "Start Form Rp 25000",
+                pengalaman: "Ahli",
+                avatar: "trims.jpeg",
+                wa: "6285775085507",
+                detail_layanan: `<div class="detail-info">
+                    <h3>📚 Layanan Penulisan Karya Ilmiah & Pengolahan Data Statistik</h3>
+                    <ul>
+                        <li>📊 Pengolahan Data Statistik (SPSS, SmartPLS)</li>
+                        <li>📝 Data Entry (Data Sekunder)</li>
+                        <li>🎓 Bantuan Skripsi (Bab 1-5, Full Skripsi, Revisi)</li>
+                        <li>📄 Daftar Isi, Gambar, Tabel, Lampiran Otomatis</li>
+                        <li>✨ Cepat, Terpercaya, dan Profesional. Harga mulai dari Rp 25.000 (fleksibel).</li>
+                    </ul>
+                </div>`,
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_skripsi_1.jpg", "testimoni_data_1.png", "testimoni_revisi_1.jpeg", "testimoni_full_1.gif"]
+            },
+            {
+                id: 4,
+                nama: "Tutor Tugas Kilat",
+                layanan: ["Tugas"],
+                skill: ["Matematika SMA", "Fisika SMA", "Kimia SMA"],
+                harga: "Rp 30.000/tugas",
+                pengalaman: "Menengah",
+                avatar: "joki_tugas.jpg",
+                wa: "6289876543210",
+                detail_layanan: `<div class="detail-info">
+                    <h3>📝 Bantuan Tugas Sekolah Kilat</h3>
+                    <p>💡 Mengerjakan tugas Matematika, Fisika, dan Kimia SMA dengan cepat dan akurat.</p>
+                    <p>⏱️ Deadline mepet? Jangan khawatir, kami siap membantu!</p>
+                    <p>💰 Harga terjangkau, hanya Rp 30.000 per tugas.</p>
+                </div>`,
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_math_1.png", "testimoni_physics_1.jpg", "testimoni_chemistry_1.jpeg", "testimoni_deadline_1.gif", "testimoni_rekom_1.png"]
+            },
+            {
+                id: 5,
+                nama: "SangJagoGaming",
+                layanan: ["Game"],
+                skill: ["PUBG Mobile", "Free Fire"],
+                harga: "Chicken Dinner / Booyah: Rp 5.000 - Rp 15.000",
+                pengalaman: "Ahli",
+                avatar: null,
+                wa: "6287712345678",
+                detail_layanan: "🔥 Jago di medan perang! Siap membantu meraih Chicken Dinner atau Booyah dengan taktik dan skill mumpuni.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_pubg_1.jpg", "testimoni_ff_1.png"]
+            },
+            {
+                id: 6,
+                nama: "NulisCepat",
+                layanan: ["Penulisan"],
+                skill: ["Artikel", "Esai", "Review"],
+                harga: "Mulai dari Rp 10.000 per halaman",
+                pengalaman: "Menengah",
+                avatar: "nuliscepat.png",
+                wa: "6285698765432",
+                detail_layanan: "✍️ Butuh tulisan berkualitas dengan deadline ketat? Saya siap membantu membuat artikel, esai, atau review yang menarik.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_artikel_1.jpg", "testimoni_esai_1.jpeg"]
+            },
+            {
+                id: 7,
+                nama: "BimbelOnline",
+                layanan: ["Tugas"],
+                skill: ["Bahasa Inggris SMA", "Sejarah SMA"],
+                harga: "Rp 25.000 per sesi tugas",
+                pengalaman: "Pemula",
+                avatar: null,
+                wa: "6283811223344",
+                detail_layanan: "📚 Bantu kerjakan tugas Bahasa Inggris dan Sejarah SMA. Penjelasan mudah dipahami!",
+                profil: "#",
+                rating: 3,
+                testimonials: ["testimoni_inggris_1.png"]
+            },
+            {
+                id: 8,
+                nama: "ProRankMLBB",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Mythic ke Glory: Nego",
+                pengalaman: "Ahli",
+                avatar: "prorank.jpg",
+                wa: "6281355667788",
+                detail_layanan: "👑 Push rank Mobile Legends sampai Mythical Glory? Serahkan pada ahlinya!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ml_6.jpg", "testimoni_ml_7.png", "testimoni_ml_8.jpeg"]
+            },
+            {
+                id: 9,
+                nama: "SahabatSkripsi",
+                layanan: ["Penulisan"],
+                skill: ["Skripsi (Bab 1-3)"],
+                harga: "Mulai dari Rp 150.000 per bab",
+                pengalaman: "Menengah",
+                avatar: "sahabatskripsi.jpeg",
+                wa: "6287899001122",
+                detail_layanan: "🎓 Kesulitan menyusun bab awal skripsi? Saya bantu merumuskan latar belakang, rumusan masalah, dan tinjauan pustaka.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_skripsi_2.jpg", "testimoni_skripsi_3.png"]
+            },
+            {
+                id: 10,
+                nama: "JokiTugasSDSMP",
+                layanan: ["Tugas"],
+                skill: ["Semua Mata Pelajaran SD & SMP"],
+                harga: "Rp 15.000 - Rp 25.000 per tugas",
+                pengalaman: "Pemula",
+                avatar: null,
+                wa: "6285233445566",
+                detail_layanan: "✏️ Bantu kerjakan semua mata pelajaran untuk siswa SD dan SMP. Harga terjangkau!",
+                profil: "#",
+                rating: 3,
+                testimonials: ["testimoni_sd_1.jpg"]
+            },
+            {
+                id: 11,
+                nama: "MasterFF",
+                layanan: ["Game"],
+                skill: ["Free Fire"],
+                harga: "Push Rank Heroic: Rp 20.000",
+                pengalaman: "Ahli",
+                avatar: "masterff.png",
+                wa: "6281977889900",
+                detail_layanan: "🔥 Rajanya Free Fire! Siap membawa akunmu ke rank Heroic dengan cepat.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ff_2.jpg", "testimoni_ff_3.jpeg"]
+            },
+            {
+                id: 12,
+                nama: "TranslatePro",
+                layanan: ["Penulisan"],
+                skill: ["Terjemahan Inggris-Indonesia", "Indonesia-Inggris"],
+                harga: "Mulai dari Rp 5.000 per halaman",
+                pengalaman: "Menengah",
+                avatar: null,
+                wa: "6283144556677",
+                detail_layanan: "🌐 Butuh terjemahan akurat dan cepat? Saya bantu menerjemahkan berbagai jenis dokumen.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_translate_1.png"]
+            },
+            {
+                id: 13,
+                nama: "AsistenTugas",
+                layanan: ["Tugas"],
+                skill: ["Presentasi PowerPoint", "Infografis"],
+                harga: "Mulai dari Rp 50.000 per desain",
+                pengalaman: "Menengah",
+                avatar: "asistentugas.jpg",
+                wa: "6289588990011",
+                detail_layanan: "📊 Bikin presentasi dan infografis menarik? Saya bantu desain yang profesional dan eye-catching.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_ppt_1.jpg", "testimoni_infografis_1.jpeg"]
+            },
+            {
+                id: 14,
+                nama: "TopGlobalPUBGM",
+                layanan: ["Game"],
+                skill: ["PUBG Mobile"],
+                harga: "Conqueror Push: Nego",
+                pengalaman: "Ahli",
+                avatar: "topglobal.jpeg",
+                wa: "6282266778899",
+                detail_layanan: "🏆 Target Conqueror di PUBG Mobile? Saya siap mengamankan posisi puncak untukmu!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_pubg_2.png", "testimoni_pubg_3.jpg", "testimoni_pubg_4.jpeg"]
+            },
+            {
+                id: 15,
+                nama: "ProofreaderHandal",
+                layanan: ["Penulisan"],
+                skill: ["Proofreading", "Editing"],
+                harga: "Mulai dari Rp 3.000 per halaman",
+                pengalaman: "Ahli",
+                avatar: null,
+                wa: "6285177889900",
+                detail_layanan: "🔎 Pastikan tulisanmu bebas typo dan tata bahasa sempurna! Saya bantu proofreading dan editing.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_proofread_1.png"]
+            },
+            {
+                id: 16,
+                nama: "JokiValorant",
+                layanan: ["Game"],
+                skill: ["Valorant"],
+                harga: "Per Rank Up: Rp 15.000 - Rp 30.000",
+                pengalaman: "Menengah",
+                avatar: "jokivalorant.jpg",
+                wa: "6287811223344",
+                detail_layanan: "🛡️ Butuh teman mabar sekaligus joki Valorant? Siap membantu kamu naik rank!",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_valorant_1.png", "testimoni_valorant_2.jpg"]
+            },
+            {
+                id: 17,
+                nama: "PenulisKreatif",
+                layanan: ["Penulisan"],
+                skill: ["Cerpen", "Puisi", "Naskah Drama"],
+                harga: "Nego tergantung proyek",
+                pengalaman: "Menengah",
+                avatar: "penuliskreatif.jpeg",
+                wa: "6285633445566",
+                detail_layanan: "📝 Ingin punya cerpen, puisi, atau naskah drama yang berkesan? Saya siap mewujudkan ide kreatifmu.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_cerpen_1.jpg", "testimoni_puisi_1.png"]
+            },
+            {
+                id: 18,
+                nama: "TutorPrivatSMA",
+                layanan: ["Tugas"],
+                skill: ["Matematika SMA", "Fisika SMA"],
+                harga: "Rp 40.000 per sesi tugas",
+                pengalaman: "Menengah",
+                avatar: null,
+                wa: "6282355667788",
+                detail_layanan: "🧑‍🏫 Bantu kerjakan tugas Matematika dan Fisika SMA. Dijelaskan sampai paham!",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_math_2.png", "testimoni_physics_2.jpg"]
+            },
+            {
+                id: 19,
+                nama: "ApexPredator",
+                layanan: ["Game"],
+                skill: ["Apex Legends"],
+                harga: "Per Tier Up: Nego",
+                pengalaman: "Ahli",
+                avatar: "apexpredator.png",
+                wa: "6281277889900",
+                detail_layanan: "🚀 Siap jadi wingman terbaikmu di Apex Legends dan membantu meraih Predator!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_apex_1.jpg", "testimoni_apex_2.png", "testimoni_apex_3.jpeg"]
+            },
+            {
+                id: 20,
+                nama: "DesainAkademik",
+                layanan: ["Tugas"],
+                skill: ["Poster Ilmiah", "Slide Presentasi"],
+                harga: "Mulai dari Rp 75.000 per desain",
+                pengalaman: "Menengah",
+                avatar: "desainakademik.jpeg",
+                wa: "6287899001122",
+                detail_layanan: "🎨 Butuh desain poster ilmiah atau slide presentasi yang profesional? Saya bantu visualisasikan ide-idemu.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_poster_1.jpg", "testimoni_slide_1.png"]
+            },
+            {
+                id: 21,
+                nama: "JokiRankedML",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Grandmaster ke Epic: Rp 15.000",
+                pengalaman: "Menengah",
+                avatar: null,
+                wa: "6285211223344",
+                detail_layanan: "🛡️ Push rank Mobile Legends dari GM ke Epic? Gas, kuy!",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_ml_9.png"]
+            },
+            {
+                id: 22,
+                nama: "WriterSerbaBisa",
+                layanan: ["Penulisan"],
+                skill: ["Blog Post", "Copywriting", "Content Writing"],
+                harga: "Mulai dari Rp 50.000 per artikel",
+                pengalaman: "Ahli",
+                avatar: "writerserbisa.jpg",
+                wa: "6281933445566",
+                detail_layanan: "✍️ Butuh konten menarik untuk blog, copywriting yang menjual, atau content writing yang informatif? Saya siap!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_blog_1.jpg", "testimoni_copy_1.jpeg", "testimoni_content_1.png"]
+            },
+            {
+                id: 23,
+                nama: "LesPrivatFisika",
+                layanan: ["Tugas"],
+                skill: ["Fisika SMP & SMA"],
+                harga: "Rp 35.000 per sesi tugas",
+                pengalaman: "Pemula",
+                avatar: null,
+                wa: "6283855667788",
+                detail_layanan: "💡 Bantu kerjakan tugas Fisika SMP dan SMA. Konsep dijelaskan dengan sederhana.",
+                profil: "#",
+                rating: 3,
+                testimonials: ["testimoni_physics_3.jpeg"]
+            },
+            {
+                id: 24,
+                nama: "MythicalGloryMLBB",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Epic ke Mythical Glory: Nego",
+                pengalaman: "Ahli",
+                avatar: "mythicalglory.jpeg",
+                wa: "6287799001122",
+                detail_layanan: "✨ Target Mythical Glory di Mobile Legends? Saya jamin bintangmu aman!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ml_10.jpg", "testimoni_ml_11.png", "testimoni_ml_12.jpeg"]
+            },
+            {
+                id: 25,
+                nama: "JokiGambar",
+                layanan: ["Tugas"],
+                skill: ["Menggambar", "Ilustrasi"],
+                harga: "Mulai dari Rp 30.000 per gambar",
+                pengalaman: "Menengah",
+                avatar: "jokigambar.png",
+                wa: "6285744556677",
+                detail_layanan: "🎨 Butuh ilustrasi menarik untuk tugas sekolah atau proyek pribadi? Saya siap membantu dengan berbagai gaya gambar.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_gambar_1.jpg", "testimoni_ilustrasi_1.png"]
+            },
+            {
+                id: 26,
+                nama: "SEOExpert",
+                layanan: ["Penulisan"],
+                skill: ["Artikel SEO", "Optimasi Konten"],
+                harga: "Mulai dari Rp 100.000 per artikel",
+                pengalaman: "Ahli",
+                avatar: null,
+                wa: "6281233445566",
+                detail_layanan: "🚀 Tingkatkan visibilitas website Anda dengan artikel SEO berkualitas dan konten yang dioptimalkan.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_seo_1.png"]
+            },
+            {
+                id: 27,
+                nama: "TutorKimiaKeren",
+                layanan: ["Tugas"],
+                skill: ["Kimia SMP & SMA"],
+                harga: "Rp 35.000 per sesi tugas",
+                pengalaman: "Pemula",
+                avatar: null,
+                wa: "6283877889900",
+                detail_layanan: "🧪 Bantu kerjakan tugas Kimia SMP dan SMA. Reaksi kimia jadi mudah dipahami!",
+                profil: "#",
+                rating: 3,
+                testimonials: ["testimoni_kimia_2.jpeg"]
+            },
+            {
+                id: 28,
+                nama: "GrandMasterFF",
+                layanan: ["Game"],
+                skill: ["Free Fire"],
+                harga: "Push Rank Grandmaster: Nego",
+                pengalaman: "Ahli",
+                avatar: "grandmasterff.jpg",
+                wa: "6285299001122",
+                detail_layanan: "🔥 Target Grandmaster di Free Fire? Saya punya strategi jitu untuk meraihnya!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ff_4.jpg", "testimoni_ff_5.png"]
+            },
+            {
+                id: 29,
+                nama: "PenulisOpini",
+                layanan: ["Penulisan"],
+                skill: ["Artikel Opini", "Analisis"],
+                harga: "Mulai dari Rp 75.000 per artikel",
+                pengalaman: "Menengah",
+                avatar: "penulisopini.jpeg",
+                wa: "6281955667788",
+                detail_layanan: "📰 Butuh artikel opini yang tajam dan analisis mendalam? Saya siap menulis untuk Anda.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_opini_1.jpg"]
+            },
+            {
+                id: 30,
+                nama: "JokiTugasKuliah",
+                layanan: ["Tugas"],
+                skill: ["Makalah", "Laporan", "Review Jurnal"],
+                harga: "Mulai dari Rp 50.000 per tugas",
+                pengalaman: "Menengah",
+                avatar: null,
+                wa: "6287833445566",
+                detail_layanan: "📚 Bantu kerjakan tugas kuliah seperti makalah, laporan, dan review jurnal dengan format yang benar.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_makalah_1.png", "testimoni_laporan_1.jpg"]
+            },
+            {
+                id: 31,
+                nama: "ConquerorPUBGMobile",
+                layanan: ["Game"],
+                skill: ["PUBG Mobile"],
+                harga: "Ace Dominator ke Conqueror: Nego",
+                pengalaman: "Ahli",
+                avatar: "conquerorpubgm.png",
+                wa: "6285277889900",
+                detail_layanan: "👑 Selangkah lagi ke Conqueror? Biar saya antar akunmu ke puncak!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_pubg_5.jpeg", "testimoni_pubg_6.png"]
+            },
+            {
+                id: 32,
+                nama: "EditorProfesional",
+                layanan: ["Penulisan"],
+                skill: ["Editing Naskah", "Koreksi Bahasa"],
+                harga: "Mulai dari Rp 7.000 per halaman",
+                pengalaman: "Ahli",
+                avatar: null,
+                wa: "6281255667788",
+                detail_layanan: "📝 Jadikan naskahmu sempurna dengan layanan editing dan koreksi bahasa profesional.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_edit_1.png"]
+            },
+            {
+                id: 33,
+                nama: "TutorEkonomi",
+                layanan: ["Tugas"],
+                skill: ["Ekonomi SMA & Kuliah Dasar"],
+                harga: "Rp 40.000 per sesi tugas",
+                pengalaman: "Pemula",
+                avatar: null,
+                wa: "6287811223344",
+                detail_layanan: "📊 Bantu kerjakan tugas Ekonomi. Konsep ekonomi jadi lebih mudah dimengerti.",
+                profil: "#",
+                rating: 3,
+                testimonials: ["testimoni_ekonomi_1.jpg"]
+            },
+            {
+                id: 34,
+                nama: "ImmortalValorant",
+                layanan: ["Game"],
+                skill: ["Valorant"],
+                harga: "Diamond ke Immortal: Nego",
+                pengalaman: "Ahli",
+                avatar: "immortalvalorant.jpeg",
+                wa: "6285633445566",
+                detail_layanan: "🛡️ Ingin mencapai Immortal di Valorant? Saya punya strategi dan skill yang dibutuhkan.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_valorant_3.png", "testimoni_valorant_4.jpg"]
+            },
+            {
+                id: 35,
+                nama: "GhostwriterHebat",
+                layanan: ["Penulisan"],
+                skill: ["Ghostwriting Buku", "Biografi"],
+                harga: "Nego tergantung proyek",
+                pengalaman: "Ahli",
+                avatar: null,
+                wa: "6282355667788",
+                detail_layanan: "✍️ Wujudkan impianmu menulis buku atau biografi dengan bantuan ghostwriter profesional.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ghostwrite_1.png"]
+            },
+            {
+                id: 36,
+                nama: "JokiCoding",
+                layanan: ["Tugas"],
+                skill: ["Pemrograman (Python, Java, C++)"],
+                harga: "Mulai dari Rp 75.000 per tugas",
+                pengalaman: "Menengah",
+                avatar: "jokicoding.png",
+                wa: "6281277889900",
+                detail_layanan: "💻 Kesulitan dengan tugas coding? Saya bantu mengerjakan berbagai bahasa pemrograman.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_coding_1.jpg"]
+            },
+            {
+                id: 37,
+                nama: "Top500Apex",
+                layanan: ["Game"],
+                skill: ["Apex Legends"],
+                harga: "Master ke Top 500: Nego",
+                pengalaman: "Ahli",
+                avatar: "top500apex.jpeg",
+                wa: "6287899001122",
+                detail_layanan: "🚀 Target Top 500 Apex Predator? Saya siap membawamu ke jajaran elit!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_apex_4.png", "testimoni_apex_5.jpg"]
+            },
+            {
+                id: 38,
+                nama: "PenulisLaporan",
+                layanan: ["Penulisan"],
+                skill: ["Laporan Keuangan", "Laporan Bisnis"],
+                harga: "Mulai dari Rp 150.000 per laporan",
+                pengalaman: "Menengah",
+                avatar: null,
+                wa: "6285211223344",
+                detail_layanan: "📊 Butuh laporan keuanganatau bisnis yang akurat dan profesional? Saya siap membantu.",
+                profil: "#",
+                rating: 4,
+                testimonials: ["testimoni_laporan_keuangan_1.png"]
+            },
+            {
+                id: 39,
+                nama: "TutorBiologi",
+                layanan: ["Tugas"],
+                skill: ["Biologi SMP & SMA"],
+                harga: "Rp 35.000 per sesi tugas",
+                pengalaman: "Pemula",
+                avatar: null,
+                wa: "6281933445566",
+                detail_layanan: "🧬 Bantu kerjakan tugas Biologi. Dunia makhluk hidup jadi lebih menarik!",
+                profil: "#",
+                rating: 3,
+                testimonials: ["testimoni_biologi_1.jpg"]
+            },
+            {
+                id: 40,
+                nama: "RadiantValorant",
+                layanan: ["Game"],
+                skill: ["Valorant"],
+                harga: "Immortal ke Radiant: Nego",
+                pengalaman: "Ahli",
+                avatar: "radiantvalorant.png",
+                wa: "6283855667788",
+                detail_layanan: "✨ Impian Radiant di Valorant bukan lagi khayalan! Saya siap mewujudkannya.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_valorant_5.png", "testimoni_valorant_6.jpg"]
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchButton = document.querySelector('.search-button');
+            const jokiListContainer = document.querySelector('.joki-list');
+            const modal = document.getElementById("jokiModal");
+            const closeModalButton = document.querySelector(".close-button");
+            const modalNama = document.getElementById("modal-nama");
+            const modalLayananIsi = document.getElementById("modal-layanan-isi");
+            const modalPesanSekarang = document.getElementById("modal-pesan-sekarang");
+
+            console.log("jokiListContainer:", jokiListContainer); // Cek apakah elemen ditemukan
+
+            function renderRating(rating) {
+                let stars = '';
+                for (let i = 0; i < rating; i++) {
+                    stars += '<span class="fas fa-star" style="color: gold;"></span>';
+                }
+                return stars;
+            }
+
+            function tampilkanHasil(joki) {
+                if (!jokiListContainer) {
+                    console.error("Elemen .joki-list tidak ditemukan!");
+                    return;
+                }
+                jokiListContainer.innerHTML = '<h2>Hasil Pencarian Joki</h2>';
+                console.log("Jumlah joki yang akan ditampilkan:", joki.length); // Cek jumlah joki yang diterima fungsi
+                if (joki.length === 0) {
+                    jokiListContainer.innerHTML += '<p class="no-results">Tidak ada joki yang ditemukan sesuai kriteria Anda.</p>';
+                    return;
+                }
+
+                joki.forEach(j => {
+                    const card = document.createElement('article');
+                    card.classList.add('joki-card');
+                    if (j.layanan.includes('Game')) {
+                        card.classList.add('game');
+                    } else if (j.layanan.includes('Tugas')) {
+                        card.classList.add('tugas');
+                    } else if (j.layanan.includes('Penulisan')) {
+                        card.classList.add('penulisan');
+                    }
+
+                    const avatarContent = j.avatar ? `<img src="${j.avatar}" alt="Avatar ${j.nama}" class="joki-avatar">` : `<div class="joki-avatar">${j.nama.charAt(0).toUpperCase()}</div>`;
+                    card.innerHTML = `
+                        ${avatarContent}
+                        <div class="joki-info">
+                            <h3>${j.nama}</h3>
+                            <div class="rating">
+                                ${renderRating(j.rating)}
+                            </div>
+                            <p><i class="fas fa-briefcase" style="color: var(--primary-color);"></i> <b>Layanan:</b> ${j.layanan.join(', ')}</p>
+                            <p><i class="fas fa-star" style="color: gold;"></i> <b>Keahlian:</b> ${j.skill.join(', ')}</p>
+                            <p><i class="fas fa-dollar-sign" style="color: green;"></i> <b>Harga:</b> ${j.harga}</p>
+                            <p><i class="fas fa-trophy" style="color: #c9b037;"></i> <b>Pengalaman:</b> ${j.pengalaman}</p>
+                        </div>
+                        <div class="joki-contact">
+                            <button class="contact-button lihat-profil" data-joki-id="${j.id}"><i class="fas fa-info-circle"></i> Detail Lengkap</button>
+                            <a href="https://wa.me/${j.wa}" target="_blank" class="contact-button hubungi-wa"><i class="fab fa-whatsapp"></i> Hubungi WA</a>
+                        </div>
+                    `;
+                    jokiListContainer.appendChild(card);
+                });
+
+                const lihatProfilButtons = document.querySelectorAll('.lihat-profil');
+                lihatProfilButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const jokiId = parseInt(this.dataset.jokiId);
+                        const selectedJoki = dataJoki.find(j => j.id === jokiId);
+                        if (selectedJoki) {
+                            modalNama.textContent = selectedJoki.nama;
+                            const modalRatingContainer = modal.querySelector('.modal-rating');
+                            modalRatingContainer.innerHTML = renderRating(selectedJoki.rating);
+                            modalLayananIsi.innerHTML = `<div class="detail-card">${selectedJoki.detail_layanan}</div>`;
+                            modalPesanSekarang.href = `https://wa.me/${selectedJoki.wa}`;
+                            modal.style.display = "block";
+
+                            const testimonialCarouselContainer = modal.querySelector('.testimonial-carousel');
+                            const prevButton = modal.querySelector('.carousel-button.prev');
+                            const nextButton = modal.querySelector('.carousel-button.next');
+                            testimonialCarouselContainer.innerHTML = '';
+
+                            if (selectedJoki.testimonials && selectedJoki.testimonials.length > 0) {
+                                selectedJoki.testimonials.forEach(imgSrc => {
+                                    const img = document.createElement('img');
+                                    img.src = imgSrc;
+                                    img.alt = "Testimoni";
+                                    img.classList.add('testimonial-image');
+                                    testimonialCarouselContainer.appendChild(img);
+                                });
+
+                                let counter = 0;
+                                const slides = testimonialCarouselContainer.querySelectorAll('.testimonial-image');
+                                const slideWidth = slides[0].offsetWidth;
+
+                                function scrollToSlide(index) {
+                                    testimonialCarouselContainer.style.transform = `translateX(-${index * slideWidth}px)`;
+                                }
+
+                                nextButton.addEventListener('click', () => {
+                                    counter++;
+                                    if (counter >= slides.length) {
+                                        counter = 0;
+                                    }
+                                    scrollToSlide(counter);
+                                });
+
+                                prevButton.addEventListener('click', () => {
+                                    counter--;
+                                    if (counter < 0) {
+                                        counter = slides.length - 1;
+                                    }
+                                    scrollToSlide(counter);
+                                });
+
+                                scrollToSlide(0);
+                                prevButton.style.display = slides.length > 1 ? 'block' : 'none';
+                                nextButton.style.display = slides.length > 1 ? 'block' : 'none';
+                            } else {
+                                testimonialCarouselContainer.innerHTML = '<p>Belum ada testimoni untuk joki ini.</p>';
+                                prevButton.style.display = 'none';
+                                nextButton.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            }
+
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    const layanan = document.getElementById('layanan').value;
+                    const pengalaman = document.getElementById('pengalaman').value;
+
+                    const hasilCari = dataJoki.filter(joki => {
+                        const cocokLayanan = !layanan || joki.layanan.includes(layanan);
+                        const cocokPengalaman = !pengalaman || joki.pengalaman.toLowerCase() === pengalaman.toLowerCase();
+                        return cocokLayanan && cocokPengalaman;
+                    });
+                    console.log("Hasil pencarian setelah filter:", hasilCari); // Cek hasil filter
+                    tampilkanHasil(hasilCari);
+                });
+            }
+
+            console.log("Data joki sebelum ditampilkan awal:", dataJoki); // Cek data sebelum ditampilkan
+            tampilkanHasil(dataJoki);
+
+            closeModalButton.addEventListener('click', function() {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

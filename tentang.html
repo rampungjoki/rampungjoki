@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - RampungJoki</title>
+    <style>
+        /* === Gaya Umum === */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 80px auto 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding-top: 70px; /* Ruang untuk navbar sticky */
+        }
+
+        h1, h2 {
+            color: #375a7f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .section {
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .team-container, .vmn-container, .cta-container, .social-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .team-member, .vmn-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            max-width: 300px;
+            width: 100%;
+            border-left: 5px solid transparent; /* Untuk efek border */
+        }
+
+        .team-member:hover, .vmn-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-member h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .team-member .jabatan {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .team-member .jobdesc {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .vmn-card h3 {
+            color: #375a7f;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vmn-card h3 i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .vmn-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .visi-card { border-left-color: #28a745; }
+        .misi-card { border-left-color: #007bff; }
+        .nilai-card { border-left-color: #ffc107; }
+        .team-card { border-left-color: #17a2b8; } /* Warna untuk card tim */
+
+        .contact-link, .cta-button {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            text-align: center;
+        }
+
+        .contact-link {
+            background-color: #25d366;
+            color: white;
+        }
+
+        .contact-link:hover {
+            background-color: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #375a7f;
+        }
+
+        .social-link i {
+            margin-right: 8px;
+        }
+
+        /* Navbar (Sama persis dengan carijoki.html) */
+        .navbar {
+            background-color: #375a7f; /* Biru tua profesional */
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Tetap di atas saat di-scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar-brand {
+            font-size: 1.7rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            opacity: 0.8;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #e0f7fa;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+        }
+
+        .navbar-toggler {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none; /* Hidden by default on larger screens */
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav {
+                margin-top: 10px;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-item {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            .navbar-toggler {
+                display: block;
+                margin-left: auto;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #343a40;
+            color: #f8f9fa;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a class="navbar-brand" href="index.html">RampungJoki</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="carijoki.html">Cari Joki</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="tentang.html">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="daftar.html">Daftar Sebagai Joki</a></li>
+                </ul>
+                <button class="navbar-toggler">☰</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Tentang Kami</h1>
+
+        <section class="section">
+            <h2><i class="fas fa-puzzle-piece" style="color: #375a7f;"></i> Visi, Misi, dan Nilai Kami</h2>
+            <div class="vmn-container">
+                <div class="vmn-card visi-card">
+                    <h3><i class="fas fa-eye" style="color: #28a745;"></i> Visi</h3>
+                    <p>Menjadi platform joki terdepan di Indonesia yang dikenal karena kualitas layanan, keamanan transaksi, dan kepuasan pengguna.</p>
+                </div>
+                <div class="vmn-card misi-card">
+                    <h3><i class="fas fa-rocket" style="color: #007bff;"></i> Misi</h3>
+                    <p>Menghubungkan individu yang membutuhkan bantuan dengan para ahli (joki) melalui platform yang aman, efisien, dan terpercaya.</p>
+                </div>
+                <div class="vmn-card nilai-card">
+                    <h3><i class="fas fa-heart" style="color: #ffc107;"></i> Nilai-Nilai</h3>
+                    <p>Kepercayaan, Kualitas, Efisiensi, Keamanan, Profesionalisme.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-users" style="color: #375a7f;"></i> Tim Kami</h2>
+            <p style="text-align: center; font-style: italic; color: #555; margin-bottom: 20px;">Kami bangga memiliki tim yang solid dan berdedikasi untuk memberikan layanan terbaik.</p>
+            <div class="team-container">
+                <div class="team-member team-card">
+                    <img src="faisal.jpeg" alt="Faisal - Owner">
+                    <h3>Faisal</h3>
+                    <p class="jabatan">Owner</p>
+                    <p class="jobdesc">Bertanggung jawab atas visi dan strategi perusahaan.</p>
+                </div>
+                <div class="team-member team-card">
+                    <img src="mustofa.jpeg" alt="Mustofa - General Manager">
+                    <h3>Mustofa</h3>
+                    <p class="jabatan">General Manager</p>
+                    <p class="jobdesc">Mengawasi operasional dan pengembangan bisnis.</p>
+                </div>
+                <div class="team-member team-card">
+                    <img src="rendy_placeholder.jpg" alt="Rendy - Customer Support Specialist">
+                    <h3>Rendy</h3>
+                    <p class="jabatan">Junior Product Manager</p>
+                    <p class="jobdesc">Membantu pengembangan fitur, riset pasar, feedback pengguna, dan perencanaan produk.</p>
+                </div>
+                <div class="team-member team-card">
+                    <img src="saiful_placeholder.jpg" alt="Saiful - Community Manager">
+                    <h3>Saiful</h3>
+                    <p class="jabatan">Community Manager</p>
+                    <p class="jobdesc">Membangun dan memelihara komunitas pengguna RampungJoki.</p>
+                </div>
+                <div class="team-member team-card">
+                    <img src="yove.jpeg" alt="Yove - Koordinator">
+                    <h3>Yove</h3>
+                    <p class="jabatan">Koordinator</p>
+                    <p class="jobdesc">Mengelola dan memastikan kelancaran operasional tim.</p>
+                </div>
+                <div class="team-member team-card">
+                    <img src="onggo.jpeg" alt="Onggo - Koordinator">
+                    <h3>Onggo</h3>
+                    <p class="jabatan">Koordinator</p>
+                    <p class="jobdesc">Membantu dalam pengelolaan dan koordinasi tim operasional.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-bullhorn" style="color: #375a7f;"></i> Ikuti Kami & Layanan Kami</h2>
+            <div class="cta-container">
+                <a href="carijoki.html" class="cta-button"><i class="fas fa-search" style="margin-right: 8px;"></i> Lihat Layanan Kami</a>
+                <a href="daftar.html" class="cta-button"><i class="fas fa-user-plus" style="margin-right: 8px;"></i> Bergabung Menjadi Joki</a>
+            </div>
+            <div class="social-container">
+                <a href="https://www.tiktok.com/@akun_tiktok_anda" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-tiktok"></i> TikTok
+                </a>
+                <a href="https://www.instagram.com/akun_instagram_anda" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-envelope" style="color: #375a7f;"></i> Hubungi Kami</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Ada pertanyaan atau ingin berdiskusi lebih lanjut?</p>
+            <p style="text-align: center;">
+                <a href="https://wa.me/6287874805035" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Hubungi Kami via WhatsApp
+                </a>
+            </p>
+        </section>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 RampungJoki. All rights reserved.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarNav = document.querySelector('.navbar-nav');
+
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    navbarNav.classList.toggle('open');
+                });
+            }
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
+</body>
+</html>
