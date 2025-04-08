@@ -35,10 +35,10 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             margin: 0;
-            padding-bottom: 70px;
             min-height: 100vh;
             position: relative;
             animation: fadein 0.5s ease-out;
+            padding-top: 70px; /* Tambahkan padding-top agar konten tidak tertutup navbar yang fixed */
         }
 
         @keyframes fadein {
@@ -53,7 +53,6 @@
             background-color: var(--light-text);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
-            padding-top: 80px;
         }
 
         h1, h2 {
@@ -121,6 +120,37 @@
 
         .nav-link.active {
             font-weight: bold;
+        }
+
+        /* Responsive Layout - Navbar */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column; /* Stack brand dan navigasi */
+                align-items: flex-start; /* Align items ke kiri */
+            }
+
+            .navbar-nav {
+                flex-direction: column; /* Susun item navigasi ke bawah */
+                width: 100%; /* Lebar penuh */
+                margin-top: 10px; /* Beri jarak dari brand */
+                align-items: stretch; /* Stretch item agar selebar navbar */
+            }
+
+            .nav-item {
+                margin-left: 0; /* Hilangkan margin kiri */
+                margin-bottom: 0; /* Hilangkan margin bawah */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Tambahkan border pemisah */
+            }
+
+            .nav-item:last-child {
+                border-bottom: none; /* Hilangkan border bawah item terakhir */
+            }
+
+            .nav-link {
+                padding: 10px 15px;
+                display: block; /* Jadikan link sebagai blok agar lebar penuh */
+                text-align: left; /* Rata kiri teks link */
+            }
         }
 
         /* Tim Kami Section */
@@ -317,6 +347,11 @@
         .social-icon {
             font-size: 2rem;
             margin-bottom: 5px;
+            color: var(--secondary-color); /* Warna ikon kembali ke abu-abu */
+        }
+
+        .social-icon:hover {
+            color: var(--primary-color); /* Efek hover kembali ke hijau */
         }
 
         .social-name {
@@ -330,35 +365,8 @@
             text-align: center;
             font-size: 0.9em;
             color: var(--secondary-color);
-            position: absolute;
-            bottom: 0;
             width: 100%;
             border-top: 1px solid #ddd;
-        }
-
-        /* Responsive Layout */
-        @media (max-width: 768px) {
-            .team-slider-container {
-                max-width: 95%;
-            }
-            .slider-controls {
-                padding: 0 5px;
-            }
-            .slider-button {
-                padding: 8px 12px;
-            }
-            .interactive-card-grid {
-                grid-template-columns: 1fr;
-            }
-            .social-link {
-                margin: 0 15px;
-            }
-            .social-icon {
-                font-size: 1.8rem;
-            }
-            .social-name {
-                font-size: 0.85rem;
-            }
         }
     </style>
 </head>
@@ -425,8 +433,7 @@
             <h2>Nilai Kami</h2>
             <div class="interactive-card-grid">
                 <div class="interactive-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Cepat & Efisien</h3>
+                    <i class="fas fa-rocket"></i><h3>Cepat & Efisien</h3>
                     <p>Kami berkomitmen untuk memberikan layanan joki yang cepat dan efisien sesuai kebutuhan Anda.</p>
                 </div>
                 <div class="interactive-card">
@@ -450,107 +457,107 @@
         <section class="social-media-section">
             <p>Yuk, ikuti keseruan dan informasi terbaru dari kami di media sosial:</p>
             <div class="social-icons">
-                <a href="https://www.tiktok.com/@rampungjokiofficial" class="social-link" target="_blank" aria-label="TikTok RampungJoki">
-<i class="fab fa-tiktok social-icon"></i>
-<span class="social-name">@rampungjokiofficial</span>
-</a>
-<a href="https://www.instagram.com/rampungjoki.ofc" class="social-link" target="_blank" aria-label="Instagram RampungJoki">
-<i class="fab fa-instagram social-icon"></i>
-<span class="social-name">@rampungjoki.ofc</span>
-</a>
-</div>
-</section>
-</div>
-
-<footer>
-    <div style="text-align: center; font-size: 0.9em; color: var(--secondary-color);">
-        &copy; 2025 RampungJoki. All rights reserved.
+                <a href="https://www://www.tiktok.com/@rampungjokiofficial" class="social-link" target="_blank" aria-label="TikTok RampungJoki">
+                    <i class="fab fa-tiktok social-icon"></i>
+                    <span class="social-name">@rampungjokiofficial</span>
+                </a>
+                <a href="https://www.instagram.com/rampungjoki.ofc" class="social-link" target="_blank" aria-label="Instagram RampungJoki">
+                    <i class="fab fa-instagram social-icon"></i>
+                    <span class="social-name">@rampungjoki.ofc</span>
+                </a>
+            </div>
+        </section>
     </div>
-</footer>
 
-<script>
-    const teamSliderContainer = document.querySelector('.team-slider-container');
-    const teamSlider = document.querySelector('.team-slider');
-    const teamCards = document.querySelectorAll('.team-card');
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
-    const interactiveCards = document.querySelectorAll('.interactive-card');
+    <footer>
+        <div style="text-align: center; font-size: 0.9em; color: var(--secondary-color);">
+            &copy; 2025 RampungJoki. All rights reserved.
+        </div>
+    </footer>
 
-    let counter = 0;
-    const cardWidth = teamCards[0].offsetWidth;
-    let intervalId;
-    const slideIntervalTime = 4000; // 4 detik
+    <script>
+        const teamSliderContainer = document.querySelector('.team-slider-container');
+        const teamSlider = document.querySelector('.team-slider');
+        const teamCards = document.querySelectorAll('.team-card');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const interactiveCards = document.querySelectorAll('.interactive-card');
 
-    function slideTo(index) {
-        teamSlider.style.transform = `translateX(-${cardWidth * index}px)`;
-        counter = index;
-    }
+        let counter = 0;
+        const cardWidth = teamCards[0].offsetWidth;
+        let intervalId;
+        const slideIntervalTime = 4000; // 4 detik
 
-    function nextSlide() {
-        counter++;
-        if (counter >= teamCards.length) {
-            counter = 0;
+        function slideTo(index) {
+            teamSlider.style.transform = `translateX(-${cardWidth * index}px)`;
+            counter = index;
         }
-        slideTo(counter);
-    }
 
-    function prevSlide() {
-        counter--;
-        if (counter < 0) {
-            counter = teamCards.length - 1;
+        function nextSlide() {
+            counter++;
+            if (counter >= teamCards.length) {
+                counter = 0;
+            }
+            slideTo(counter);
         }
-        slideTo(counter);
-    }
 
-    function startAutoSlide() {
-        intervalId = setInterval(nextSlide, slideIntervalTime);
-    }
+        function prevSlide() {
+            counter--;
+            if (counter < 0) {
+                counter = teamCards.length - 1;
+            }
+            slideTo(counter);
+        }
 
-    function stopAutoSlide() {
-        clearInterval(intervalId);
-    }
+        function startAutoSlide() {
+            intervalId = setInterval(nextSlide, slideIntervalTime);
+        }
 
-    // Inisialisasi Slider Tim
-    slideTo(0);
-    startAutoSlide();
+        function stopAutoSlide() {
+            clearInterval(intervalId);
+        }
 
-    // Kontrol Manual Slider Tim
-    prevButton.addEventListener('click', () => {
-        stopAutoSlide();
-        prevSlide();
+        // Inisialisasi Slider Tim
+        slideTo(0);
         startAutoSlide();
-    });
 
-    nextButton.addEventListener('click', () => {
-        stopAutoSlide();
-        nextSlide();
-        startAutoSlide();
-    });
-
-    // Responsif Slider Tim
-    window.addEventListener('resize', () => {
-        const newCardWidth = teamCards[0].offsetWidth;
-        slideTo(counter);
-    });
-
-    // Interaksi Card Nilai Kami
-    interactiveCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-8px)';
-            card.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)';
+        // Kontrol Manual Slider Tim
+        prevButton.addEventListener('click', () => {
+            stopAutoSlide();
+            prevSlide();
+            startAutoSlide();
         });
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+        nextButton.addEventListener('click', () => {
+            stopAutoSlide();
+            nextSlide();
+            startAutoSlide();
         });
-    });
 
-    // Animasi masuk untuk body
-    document.addEventListener('DOMContentLoaded', () => {
-        document.body.classList.add('fadein');
-    });
-</script>
-<script src="[https://kit.fontawesome.com/your_fontawesome_kit.js](https://kit.fontawesome.com/your_fontawesome_kit.js)" crossorigin="anonymous"></script>
+        // Responsif Slider Tim
+        window.addEventListener('resize', () => {
+            const newCardWidth = teamCards[0].offsetWidth;
+            slideTo(counter);
+        });
+
+        // Interaksi Card Nilai Kami
+        interactiveCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+                card.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Animasi masuk untuk body
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('fadein');
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
 </body>
 </html>
