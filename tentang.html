@@ -153,13 +153,15 @@
             }
         }
 
-        /* Tim Kami Section */
+        /* Tim Kami Section dengan Aksen Warna Latar */
         .team-section {
             padding: 40px 20px;
             text-align: center;
-            background-color: var(--light-bg);
+            background: linear-gradient(135deg, #e0f7fa, #f0fff0); /* Gradien lembut teal dan mint */
             margin-bottom: 30px;
             border-radius: 8px;
+            border-left: 5px solid #80cbc4; /* Teal yang lebih gelap sebagai aksen border */
+            border-right: 5px solid #a5d6a7; /* Hijau muda sebagai aksen border */
         }
 
         .team-section h2 {
@@ -173,7 +175,7 @@
             margin: 0 auto;
             overflow: hidden;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Efek shadow lebih dalam */
         }
 
         .team-slider {
@@ -185,6 +187,8 @@
             min-width: 100%;
             padding: 30px;
             text-align: center;
+            background-color: var(--light-text); /* Latar belakang card tetap putih */
+            border-radius: 8px; /* Tambahkan border-radius pada card */
         }
 
         .team-card i {
@@ -255,59 +259,61 @@
             color: var(--primary-color);
         }
 
-        /* Nilai Tambahan Card Interaktif */
+        /* Nilai Tambahan Card Interaktif - Gaya Lebih Modern (Disesuaikan) */
         .additional-card-section {
             padding: 40px 20px;
             text-align: center;
             background-color: var(--light-bg);
             margin-bottom: 40px;
-            border-radius: 8px;
+            border-radius: 8px; /* Kembali ke border-radius awal */
         }
 
         .additional-card-section h2 {
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Kembali ke margin-bottom awal */
         }
 
         .interactive-card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(4, minmax(150px, 1fr)); /* 4 kolom dengan lebar minimum lebih kecil */
+            gap: 15px; /* Gap antar card lebih kecil */
         }
 
         .interactive-card {
             background-color: var(--light-text);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; /* Kembali ke border-radius awal */
+            padding: 15px; /* Padding lebih kecil */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Kembali ke box-shadow awal */
             text-align: center;
             cursor: pointer;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: none; /* Hilangkan border tipis yang ditambahkan sebelumnya jika tidak diinginkan */
         }
 
         .interactive-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px); /* Kembali ke efek hover awal */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Kembali ke efek shadow hover awal */
         }
 
         .interactive-card i {
-            font-size: 2rem;
+            font-size: 2rem; /* Kembali ke ukuran ikon awal */
             color: var(--accent-color);
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Kembali ke margin-bottom awal */
         }
 
         .interactive-card h3 {
             color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+            margin-bottom: 10px; /* Kembali ke margin-bottom awal */
+            font-size: 1.1rem; /* Ukuran judul dikecilkan */
         }
 
         .interactive-card p {
             color: var(--secondary-color);
-            font-size: 0.95rem;
+            font-size: 0.9rem; /* Ukuran paragraf kembali ke awal atau sedikit lebih kecil */
+            line-height: 1.6; /* Line height kembali ke awal */
         }
 
-        /* Social Media Section */
+        /* Social Media Section dengan Logo Berwarna */
         .social-media-section {
             text-align: center;
             margin-bottom: 40px;
@@ -322,8 +328,7 @@
             font-size: 1.1rem;
         }
 
-        .social-icons {
-            margin-top: 10px;
+        .social-icons {margin-top: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -335,27 +340,47 @@
             align-items: center;
             margin: 0 20px;
             text-decoration: none;
-            color: var(--secondary-color);
             transition: color 0.3s ease, transform 0.2s ease;
         }
 
         .social-link:hover {
-            color: var(--primary-color);
             transform: translateY(-3px);
         }
 
         .social-icon {
             font-size: 2rem;
             margin-bottom: 5px;
-            color: var(--secondary-color); /* Warna ikon kembali ke abu-abu */
         }
 
-        .social-icon:hover {
-            color: var(--primary-color); /* Efek hover kembali ke hijau */
+        /* Gaya Logo Berwarna */
+        .fa-instagram {
+            color: #E1306C; /* Instagram gradient */
+        }
+
+        .fa-tiktok {
+            color: #000; /* TikTok hitam */
+            /* Anda bisa menambahkan efek gradien TikTok jika diinginkan:
+            background: linear-gradient(90deg, #000, #f00, #18f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            */
+        }
+
+        .social-link:hover .fa-instagram {
+            /* Warna hover bisa disamakan atau dibuat lebih terang */
+        }
+
+        .social-link:hover .fa-tiktok {
+            /* Warna hover bisa disamakan atau dibuat lebih terang */
         }
 
         .social-name {
             font-size: 0.9rem;
+            color: var(--secondary-color); /* Warna nama tetap */
+        }
+
+        .social-link:hover .social-name {
+            color: var(--primary-color); /* Warna nama saat hover */
         }
 
         /* Footer */
@@ -433,7 +458,8 @@
             <h2>Nilai Kami</h2>
             <div class="interactive-card-grid">
                 <div class="interactive-card">
-                    <i class="fas fa-rocket"></i><h3>Cepat & Efisien</h3>
+                    <i class="fas fa-rocket"></i>
+                    <h3>Cepat & Efisien</h3>
                     <p>Kami berkomitmen untuk memberikan layanan joki yang cepat dan efisien sesuai kebutuhan Anda.</p>
                 </div>
                 <div class="interactive-card">
@@ -457,7 +483,7 @@
         <section class="social-media-section">
             <p>Yuk, ikuti keseruan dan informasi terbaru dari kami di media sosial:</p>
             <div class="social-icons">
-                <a href="https://www://www.tiktok.com/@rampungjokiofficial" class="social-link" target="_blank" aria-label="TikTok RampungJoki">
+                <a href="https://www.tiktok.com/@rampungjokiofficial" class="social-link" target="_blank" aria-label="TikTok RampungJoki">
                     <i class="fab fa-tiktok social-icon"></i>
                     <span class="social-name">@rampungjokiofficial</span>
                 </a>
