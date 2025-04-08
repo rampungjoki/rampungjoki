@@ -61,7 +61,7 @@
         }
 
         /* Navbar */
-       .navbar {
+        .navbar {
             background-color: #2E8B57;
             color: white;
             padding: 15px 0;
@@ -135,6 +135,22 @@
             padding: 30px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
             border: 1px solid #eee;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .info-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card:nth-child(odd) {
+            background-color: #f9fbe7; /* Light Yellow */
+            border-left: 5px solid #cddc39; /* Lime Accent */
+        }
+
+        .info-card:nth-child(even) {
+            background-color: #e0f2f1; /* Light Teal */
+            border-left: 5px solid #4db6ac; /* Teal Accent */
         }
 
         .info-card h3 {
@@ -159,34 +175,186 @@
         }
 
         .info-card i {
-            color: #FFD700; /* Gold accent */
+            color: #FFD700; /* Gold Accent */
             margin-right: 8px;
         }
 
-        /* Daftar Button */
+        /* Daftar Button yang Lebih Menarik */
         .daftar-button-container {
             text-align: center;
             margin-bottom: 30px;
         }
 
         .daftar-button {
-            display: inline-block;
+            display: inline-flex; /* Menggunakan flex untuk mengatur ikon dan teks */
+            align-items: center; /* Membuat ikon dan teks sejajar vertikal */
+            justify-content: center; /* Membuat ikon dan teks berada di tengah tombol */
+            gap: 10px; /* Memberikan jarak antara ikon dan teks */
             padding: 15px 30px;
             font-size: 1.2rem;
             font-weight: 600;
             color: white;
-            background-color: #2E8B57; /* Sea Green */
+            background: linear-gradient(135deg, #2E8B57, #3CB371); /* Gradien warna Sea Green ke Medium Sea Green */
             border: none;
             border-radius: 10px;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden; /* Untuk efek border animasi */
+        }
+
+        .daftar-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.4s ease-in-out;
+            z-index: 1;
+        }
+
+        .daftar-button:hover::before {
+            left: 100%;
         }
 
         .daftar-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+            /* background-color: #3CB371; */ /* Efek gradien sudah cukup */
+            /* border-color: #228B22; */
+        }
+
+        .daftar-button i {
+            font-size: 1.4rem; /* Ukuran ikon lebih besar */
+            margin-right: 5px; /* Jarak antara ikon dan teks */
+            z-index: 2; /* Pastikan ikon berada di atas efek before */
+        }
+
+        /* Style untuk Pop-up Pengumuman */
+        .announcement-popup {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 102; /* Lebih tinggi dari navbar */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background-color: #f9f5f0; /* Warna latar seperti papan pengumuman */
+            margin: 15% auto; /* Adjust top margin as needed */
+            padding: 30px;
+            border: 5px solid #a0522d; /* Warna border seperti kayu */
+            border-radius: 10px;
+            width: 80%; /* Adjust width as needed */
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .popup-content h2 {
+            color: #a0522d; /* Warna judul seperti kayu gelap */
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .popup-content p {
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .popup-content .emphasize {
+            font-weight: bold;
+            color: #d32f2f; /* Warna merah untuk penekanan penting */
+        }
+
+        .close-popup {
+            color: #555;
+            float: right;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-popup:hover {
+            opacity: 1;
+            color: #000;
+        }
+
+        .popup-button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background-color: #2E8B57; /* Sea Green */
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .popup-button:hover {
             background-color: #1e7e34;
             transform: translateY(-2px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Layout untuk Pop-up */
+        @media (max-width: 768px) {
+            .popup-content {
+                width: 90%;
+                margin: 30% auto;
+                padding: 20px;
+            }
+
+            .popup-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .popup-content p {
+                font-size: 0.95rem;
+            }
+
+            .close-popup {
+                font-size: 2rem;
+                top: 5px;
+                right: 10px;
+            }
+
+            .popup-button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
         }
 
         /* Footer */
@@ -202,37 +370,34 @@
             border-top: 1px solid #ddd;
         }
 
-        /* Responsive Layout */
+        /* Responsive Layout - Navbar */
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                padding-top: 70px;
+            .navbar-container {
+                flex-direction: column; /* Stack brand dan navigasi */
+                align-items: flex-start; /* Align items ke kiri */
             }
-            h1 {
-                font-size: 2rem;
+
+            .navbar-nav {
+                flex-direction: column; /* Susun item navigasi ke bawah */
+                width: 100%; /* Lebar penuh */
+                margin-top: 10px; /* Beri jarak dari brand */
+                align-items: stretch; /* Stretch item agar selebar navbar */
             }
-            h2 {
-                font-size: 1.5rem;
-            }
+
             .nav-item {
-                margin-left: 10px;
+                margin-left: 0; /* Hilangkan margin kiri */
+                margin-bottom: 0; /* Hilangkan margin bawah */
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Tambahkan border pemisah */
             }
+
+            .nav-item:last-child {
+                border-bottom: none; /* Hilangkan border bawah item terakhir */
+            }
+
             .nav-link {
-                padding: 8px 12px;
-                font-size: 0.9rem;
-            }
-            .info-cards-container {
-                grid-template-columns: 1fr;
-            }
-            .info-card {
-                padding: 20px;
-            }
-            .info-card h3 {
-                font-size: 1.3rem;
-            }
-            .daftar-button {
-                font-size: 1.1rem;
-                padding: 12px 25px;
+                padding: 10px 15px;
+                display: block; /* Jadikan link sebagai blok agar lebar penuh */
+                text-align: left; /* Rata kiri teks link */
             }
         }
     </style>
@@ -249,6 +414,18 @@
             </ul>
         </div>
     </nav>
+
+    <div id="announcementPopup" class="announcement-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h2>📢 Pengumuman Spesial! 📢</h2>
+            <p>🚀 Kabar gembira untuk calon joki RampungJoki! 🚀</p>
+            <p>Sebagai bentuk apresiasi atas antusiasme Anda, **20 pendaftar pertama** akan mendapatkan biaya pendaftaran sepenuhnya **GRATIS**!</p>
+            <p class="emphasize">Jangan sia-siakan kesempatan emas ini untuk bergabung dengan tim joki andal kami tanpa biaya sepeseser pun!</p>
+            <p>Segera daftarkan diri Anda dan jadilah bagian dari perkembangan RampungJoki!</p>
+            <a href="https://formfacade.com/headless/103538950695046364359/home/form/1FAIpQLSc8GWiWMXhIbIiuNSuUNwxGpq_yMAeJhE73yUekRkdCUMh0Bg" class="popup-button">Daftar Sekarang!</a>
+        </div>
+    </div>
 
     <div class="container">
         <h1>Bergabunglah Menjadi Joki Andal Kami</h1>
@@ -278,7 +455,9 @@
         </div>
 
         <div class="daftar-button-container">
-            <a href="https://formfacade.com/headless/103538950695046364359/home/form/1FAIpQLSc8GWiWMXhIbIiuNSuUNwxGpq_yMAeJhE73yUekRkdCUMh0Bg" class="daftar-button">Daftar Sebagai Joki</a>
+            <a href="https://formfacade.com/headless/103538950695046364359/home/form/1FAIpQLSc8GWiWMXhIbIiuNSuUNwxGpq_yMAeJhE73yUekRkdCUMh0Bg" class="daftar-button">
+                <i class="fas fa-user-plus"></i> Daftar Sebagai Joki
+            </a>
         </div>
     </div>
 
@@ -288,6 +467,22 @@
         </div>
     </footer>
 
+    <script>
+        const announcementPopup = document.getElementById('announcementPopup');
+        const closePopup = document.querySelector('.close-popup');
+
+        // Tampilkan pop-up saat halaman dimuat
+        window.onload = function() {
+            announcementPopup.style.display = 'flex';
+        };
+
+        // Sembunyikan pop-up saat tombol close diklik
+        closePopup.addEventListener('click', () => {
+            announcementPopup.style.display = 'none';
+            // Anda bisa menyimpan preferensi pengguna (misalnya menggunakan localStorage)
+            // agar pop-up tidak muncul lagi pada kunjungan berikutnya.
+        });
+    </script>
     <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
 </body>
 </html>
