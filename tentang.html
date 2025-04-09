@@ -153,6 +153,62 @@
             }
         }
 
+        /* Visi Misi Section - Interaktif */
+        .vision-mission-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .vm-card {
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .vm-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .vm-card h3 {
+            color: var(--dark-text);
+            margin-bottom: 10px;
+        }
+
+        .vm-card p, .vm-card ul, .vm-card li {
+            color: var(--secondary-color);
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .vm-card ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        /* Responsive Visi Misi */
+        @media (max-width: 768px) {
+            .vision-mission-section {
+                grid-template-columns: 1fr;
+            }
+
+            .vm-card {
+                margin-bottom: 20px;
+            }
+        }
+
         /* Tim Kami Section dengan Aksen Warna Latar */
         .team-section {
             padding: 40px 20px;
@@ -397,8 +453,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="navbar-container">
-            <a class="navbar-brand" href="index.html">RampungJoki</a>
+        <div class="navbar-container"><a class="navbar-brand" href="index.html">RampungJoki</a>
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
                 <li class="nav-item"><a class="nav-link" href="carijoki.html">Cari Joki</a></li>
@@ -412,8 +467,52 @@
         <h1>Tentang RampungJoki</h1>
         <p style="text-align: center; margin-bottom: 30px; color: var(--secondary-color);">Kami adalah platform yang menghubungkan Anda dengan para joki profesional untuk berbagai kebutuhan Anda.</p>
 
+        <section class="vision-mission-section">
+            <div class="vm-card vision-card">
+                <i class="fas fa-eye"></i>
+                <h3>Visi Kami</h3>
+                <p>Menjadi platform terdepan yang menghubungkan individu dengan para ahli di berbagai bidang, memberdayakan setiap orang untuk mencapai tujuannya dengan efisien dan efektif.</p>
+            </div>
+            <div class="vm-card mission-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Misi Kami</h3>
+                <ul>
+                    <li>Menyediakan layanan joki yang berkualitas, terpercaya, dan beragam sesuai kebutuhan pengguna.</li>
+                    <li>Membangun komunitas profesional yang solid dan saling mendukung.</li>
+                    <li>Memastikan pengalaman pengguna yang aman, nyaman, dan memuaskan.</li>
+                    <li>Terus berinovasi dan mengembangkan platform untuk memenuhi tuntutan zaman.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="additional-card-section">
+            <h2>Nilai Kami</h2>
+            <div class="interactive-card-grid">
+                <div class="interactive-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Cepat & Efisien</h3>
+                    <p>Kami berkomitmen untuk memberikan layanan joki yang cepat dan efisien sesuai kebutuhan Anda.</p>
+                </div>
+                <div class="interactive-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Aman & Terpercaya</h3>
+                    <p>Keamanan dan kepercayaan Anda adalah prioritas utama kami dalam setiap transaksi.</p>
+                </div>
+                <div class="interactive-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Profesional & Berkualitas</h3>
+                    <p>Tim joki kami terdiri dari para profesional yang ahli di bidangnya masing-masing.</p>
+                </div>
+                <div class="interactive-card">
+                    <i class="fas fa-smile"></i>
+                    <h3>Berorientasi Pelanggan</h3>
+                    <p>Kepuasan pelanggan adalah tujuan utama kami. Kami selalu siap melayani Anda.</p>
+                </div>
+            </div>
+        </section>
+
         <section class="team-section">
-            <h2>Tim Andal Kami</h2>
+            <h2>Tim Kami</h2>
             <div class="team-slider-container">
                 <div class="team-slider">
                     <div class="team-card">
@@ -454,32 +553,6 @@
             <p>Kami juga ingin menyampaikan rasa terima kasih yang sebesar-besarnya kepada tim pendukung kami yang luar biasa: <span class="support-team-names">Iyus</span>, <span class="support-team-names">Onggo</span>, dan <span class="support-team-names">Yove</span>. Kontribusi dan dedikasi kalian sangat berarti bagi perkembangan RampungJoki.</p>
         </section>
 
-        <section class="additional-card-section">
-            <h2>Nilai Kami</h2>
-            <div class="interactive-card-grid">
-                <div class="interactive-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Cepat & Efisien</h3>
-                    <p>Kami berkomitmen untuk memberikan layanan joki yang cepat dan efisien sesuai kebutuhan Anda.</p>
-                </div>
-                <div class="interactive-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Aman & Terpercaya</h3>
-                    <p>Keamanan dan kepercayaan Anda adalah prioritas utama kami dalam setiap transaksi.</p>
-                </div>
-                <div class="interactive-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Profesional & Berkualitas</h3>
-                    <p>Tim joki kami terdiri dari para profesional yang ahli di bidangnya masing-masing.</p>
-                </div>
-                <div class="interactive-card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Berorientasi Pelanggan</h3>
-                    <p>Kepuasan pelanggan adalah tujuan utama kami. Kami selalu siap melayani Anda.</p>
-                </div>
-            </div>
-        </section>
-
         <section class="social-media-section">
             <p>Yuk, ikuti keseruan dan informasi terbaru dari kami di media sosial:</p>
             <div class="social-icons">
@@ -508,6 +581,7 @@
         const prevButton = document.querySelector('.prev-button');
         const nextButton = document.querySelector('.next-button');
         const interactiveCards = document.querySelectorAll('.interactive-card');
+        const vmCards = document.querySelectorAll('.vm-card');
 
         let counter = 0;
         const cardWidth = teamCards[0].offsetWidth;
@@ -576,6 +650,19 @@
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0)';
                 card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Interaksi Card Visi Misi
+        vmCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
             });
         });
 
