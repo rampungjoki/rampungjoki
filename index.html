@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
         /* === Gaya Umum === */
         *, *::before, *::after {
@@ -56,6 +58,7 @@
             min-height: 100vh;
             position: relative;
             animation: fadein 0.5s ease-out;
+            padding-top: 60px; /* Tambahkan padding-top agar konten tidak tertutup navbar fixed */
         }
 
         @keyframes fadein {
@@ -70,9 +73,6 @@
             background-color: var(--light-text);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
-            padding-top: 80px;
-            transform: scale(0.67); /* Skala awal untuk desktop */
-            transform-origin: top center;
         }
 
         h1, h2 {
@@ -369,44 +369,44 @@
         /* Daftar Sebagai Joki Section */
         .daftar-joki-section {
             text-align: center;
-            padding: 30px 20px; /* Reduced padding */
+            padding: 30px 20px;
             background-color: var(--daftar-bg);
-            margin-bottom: 20px; /* Reduced margin */
+            margin-bottom: 40px; /* Tambah margin bawah agar tidak terlalu dekat dengan section berikutnya */
             border-radius: 12px;
             box-shadow: 0 3px 9px rgba(0, 0, 0, 0.08);
             border-left: 5px solid var(--daftar-text);
             border-right: 5px solid var(--daftar-text);
-            position: relative; /* Untuk positioning container panduan */
+            position: relative;
         }
 
         .daftar-joki-section h2 {
             color: var(--daftar-text);
-            margin-bottom: 10px; /* Reduced margin */
+            margin-bottom: 15px;
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 2rem; /* Reduced font size */
+            font-size: 2.2rem; /* Sedikit diperbesar */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
         }
 
         .daftar-joki-section p {
             color: var(--secondary-color);
-            margin-bottom: 10px;font-size: 1rem; /* Reduced font size */
-            line-height: 1.6;
+            font-size: 1.1rem; /* Sedikit diperline-height: 1.6;
             font-weight: 500;
             font-style: italic;
+            margin-bottom: 20px; /* Tambah margin bawah untuk memberi ruang tombol */
         }
 
         .daftar-joki-button {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 12px 25px; /* Reduced padding */
-            font-size: 1rem; /* Reduced font size */
+            gap: 10px; /* Tambah jarak antara teks dan ikon */
+            padding: 15px 30px; /* Sedikit diperbesar */
+            font-size: 1.1rem; /* Sedikit diperbesar */
             font-weight: 700;
             color: var(--light-text);
             background-color: var(--daftar-text);
             border: none;
-            border-radius: 8px;
+            border-radius: 10px; /* Sedikit lebih bulat */
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
@@ -455,50 +455,42 @@
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
         }
 
-        /* Ulasan Section */
-        .ulasan-section {
-            padding: 40px 20px; /* Reduced padding */
+        /* Rating Para Penjoki Section */
+        .rating-penjoki-section {
+            padding: 40px 20px;
             text-align: center;
             background-color: var(--ulasan-bg);
             border-radius: 12px;
-            margin-bottom: 30px; /* Reduced margin */
+            margin-bottom: 30px;
             box-shadow: 0 3px 9px rgba(0, 0, 0, 0.08);
             border-top: 4px solid var(--primary-color);
             border-bottom: 4px solid var(--primary-color);
         }
 
-        .ulasan-section h2 {
+        .rating-penjoki-section h2 {
             color: var(--primary-color);
             margin-bottom: 20px;
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 2.4rem; /* Reduced font size */
+            font-size: 2.4rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
         }
 
-        .ulasan-section p {
-            color: var(--ulasan-text);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
-
-        .ulasan-iframe-container {
-            max-width: 95%; /* Adjusted max-width */
+        .rating-penjoki-iframe-container {
+            max-width: 95%;
             margin: 0 auto 25px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .ulasan-iframe {
+        .rating-penjoki-iframe {
             width: 100%;
-            height: 450px; /* Reduced height */
+            height: 450px;
             border: none;
         }
 
-        /* Beri Ulasan Section */
+        /* Beri Rating Jokimu Section */
         .beri-ulasan-container {
             text-align: center;
             margin-bottom: 40px; /* Reduced margin */
@@ -566,6 +558,81 @@
         .close-ulasan-button:hover {
             color: var(--primary-color);
             opacity: 1;
+        }
+
+        /* Testimonial Penjoki Slideshow - Updated Styles */
+        .testimonial-penjoki-section {
+            padding: 50px 20px; /* Tambah padding atas bawah */
+            text-align: center;
+            background-color: var(--light-bg);
+            border-radius: 12px;
+            margin-bottom: 40px; /* Tambah margin bawah */
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1); /* Efek shadow lebih halus */
+            border-top: 5px solid var(--primary-color); /* Garis atas yang lebih tebal */
+            border-bottom: 5px solid var(--primary-color); /* Garis bawah yang lebih tebal */
+        }
+
+        .testimonial-penjoki-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px; /* Tambah margin bawah judul */
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.6rem; /* Ukuran font judul lebih besar */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08); /* Efek shadow pada judul */
+        }
+
+        .testimonial-slider {
+            width: 85%; /* Lebar slider sedikit lebih besar */
+            margin: 0 auto;
+            position: relative; /* Untuk positioning tombol navigasi */
+        }
+
+        .testimonial-slide {
+            padding: 30px; /* Tambah padding dalam slide */
+            text-align: center;
+            background-color: #fff; /* Latar belakang slide putih */
+            border-radius: 10px;
+            box-shadow: 0 3px 9px rgba(0, 0, 0, 0.05); /* Shadow pada slide */
+        }
+
+        .testimonial-slide p {
+            color: var(--secondary-color);
+            font-size: 1.1rem; /* Ukuran font komentar lebih besar */
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-weight: 500; /* Sedikit lebih tebal */
+        }
+
+        .testimonial-slide .author {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+      
+
+        .testimonial-navigation button {
+            border: 2px solid var(--primary-color);
+            background-color: transparent;
+            color: var(--primary-color);
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .testimonial-navigation button:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        /* Sembunyikan Dots Navigasi */
+        .slick-dots {
+            display: none !important;
         }
 
         /* Footer */
@@ -683,41 +750,38 @@
 
             .daftar-joki-section {
                 padding: 25px 15px; /* Reduced padding */
-                margin-bottom: 15px; /* Reduced margin */
+                margin-bottom: 30px; /* Increased margin */
             }
 
             .daftar-joki-section h2 {
-                font-size: 1.8rem; /* Reduced font size */
-                margin-bottom: 8px;
+                font-size: 2rem; /* Adjusted font size */
+                margin-bottom: 10px;
             }
 
             .daftar-joki-section p {
-                font-size: 0.9rem; /* Reduced font size */
-                margin-bottom: 8px;
+                font-size: 1rem; /* Adjusted font size */
+                margin-bottom: 15px;
             }
 
             .daftar-joki-button {
-                font-size: 0.95rem;
-                padding: 10px 20px;
+                font-size: 1rem;
+                padding: 12px 25px;
+                width: 100%; /* Make button full width on mobile */
+                justify-content: center; /* Center text and icon */
             }
 
-            .ulasan-section {
-                padding: 30px 15px; /* Reduced padding */
-                margin-bottom: 20px; /* Reduced margin */
-            }
-
-            .ulasan-section h2 {
-                font-size: 2.2rem; /* Reduced font size */
+            .rating-penjoki-section {
+                padding: 30px 15px;
                 margin-bottom: 20px;
             }
 
-            .ulasan-section p {
-                font-size: 0.95rem; /* Reduced font size */
-                margin-bottom: 20px;
+            .rating-penjoki-section h2 {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
             }
 
-            .ulasan-iframe-container {
-                height: 350px; /* Reduced height */
+            .rating-penjoki-iframe-container {
+                height: 350px;
                 margin-bottom: 20px;
             }
 
@@ -740,9 +804,28 @@
                 height: 600px; /* Adjust height for mobile */
             }
 
-            footer {
-                padding: 15px 0; /* Reduced padding */
-                font-size: 0.75rem; /* Reduced font size */
+            .testimonial-penjoki-section {
+                padding: 30px 15px;
+                margin-bottom: 30px; /* Increased margin */
+            }
+
+            .testimonial-penjoki-section h2 {
+                font-size: 2.2rem;
+                margin-bottom: 20px;
+            }
+
+            .testimonial-slider {
+                width: 95%; /* Adjust width for mobile */
+            }
+
+            .testimonial-slide p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+
+            .testimonial-navigation button {padding: 10px 20px;
+                font-size: 0.9rem;
+                margin: 0 5px;
             }
         }
     </style>
@@ -796,28 +879,56 @@
         <section class="daftar-joki-section">
             <h2>Saatnya Bakatmu Jadi Sumber Penghasilan!</h2>
             <p>Punya keahlian di game, tugas, atau menulis? Bergabunglah dengan RampungJoki dan bantu ribuan orang sambil mendapatkan penghasilan yang menarik dan fleksibel!</p>
-            <a href="daftar.html" class="daftar-joki-button">Gabung Jadi Joki <i class="fas fa-user-plus"></i></a><div class="panduan-daftar-joki-container">
+            <a href="daftar.html" class="daftar-joki-button">Gabung Jadi Joki <i class="fas fa-user-plus"></i></a>
+            <div class="panduan-daftar-joki-container">
                 <p>Tertarik menjadi bagian dari tim joki profesional kami? Pelajari cara pendaftarannya:</p>
                 <button class="panduan-daftar-joki-button" onclick="openTutorial('tutorialDaftarJoki')">Lihat Panduan <i class="fas fa-question-circle"></i></button>
             </div>
         </section>
 
-        <section class="ulasan-section">
-            <h2>Pengalaman Mereka Setelah Menggunakan RampungJoki</h2>
-            <p>Lihat apa kata pengguna setia kami tentang kualitas layanan dan profesionalisme para joki RampungJoki:</p>
-            <div class="ulasan-iframe-container">
+        <section class="rating-penjoki-section">
+            <h2>Rating Para Penjoki</h2>
+            <p>Lihat bagaimana kualitas dan kepuasan layanan dari para joki profesional kami:</p>
+            <div class="rating-penjoki-iframe-container">
                 <iframe width="100%" height="450" src="https://lookerstudio.google.com/embed/reporting/07c12a5c-8431-45ac-a5b1-bba8daf5c073/page/4z5FF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
             </div>
         </section>
 
         <section class="beri-ulasan-container">
-            <h2>Bagikan Ceritamu!</h2>
-            <button class="beri-ulasan-button" id="beriUlasanButton"><i class="fas fa-comment-dots"></i> Berikan Ulasan</button>
+            <h2>Beri Rating Jokimu!</h2>
+            <button class="beri-ulasan-button" id="beriUlasanButton"><i class="fas fa-star-half-alt"></i> Berikan Rating</button>
             <div class="beri-ulasan-iframe-container" id="ulasanFormContainer">
-                <h3>Formulir Ulasan</h3>
+                <h3>Formulir Rating Joki</h3>
                 <iframe src="https://forms.gle/jLUPjtmhTWGAhd1U8" class="beri-ulasan-iframe" frameborder="0" style="border:0" allowfullscreen></iframe>
                 <button class="close-ulasan-button" onclick="closeUlasanForm()">&times;</button>
             </div>
+        </section>
+
+        <section class="testimonial-penjoki-section">
+            <h2>Komentar Terbaik dari Para Joki Andal Kami</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <p>"Senang bisa membantu banyak player meraih kemenangan. RampungJoki platform yang keren!"</p>
+                    <p class="author">- JokiGamePro</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"Membantu mahasiswa menyelesaikan tugas, serasa ikut berkontribusi pada masa depan mereka."</p>
+                    <p class="author">- MasterTugas</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"Menulis bukan hanya pekerjaan, tapi juga passion. Terima kasih RampungJoki telah mewadahi."</p>
+                    <p class="author">- PenaCendekia</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"Fleksibilitas waktu dan penghasilan yang menarik. Saya betah jadi joki di sini."</p>
+                    <p class="author">- JokiSerbaBisa</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"Komunitas joki yang solid dan saling mendukung. RampungJoki memang yang terbaik!"</p>
+                    <p class="author">- AhliNulisCepat</p>
+                </div>
+            </div>
+            
         </section>
 
         <div id="tutorialCariJoki" class="tutorial-popup">
@@ -854,7 +965,32 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
+        $(document).ready(function(){
+            $('.testimonial-slider').slick({
+                autoplay: true,
+                autoplaySpeed: 3000,
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                dots: false, // Sembunyikan dots
+               // prevArrow: $('.testimonial-navigation .slick-prev'), // Hubungkan tombol prev
+                //nextArrow: $('.testimonial-navigation .slick-next'), // Hubungkan tombol next
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: false // Sembunyikan panah di mobile jika perlu
+                        }
+                    }
+                ]
+            });
+        });
+
         const beriUlasanButtonElement = document.getElementById('beriUlasanButton');
         const ulasanFormContainer = document.getElementById('ulasanFormContainer');
 
