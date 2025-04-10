@@ -3,670 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cari Joki - RampungJoki</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Cari Jasa - Rampungin.id</title>
     <style>
-        /* === Gaya Umum === */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
-        body, h1, h2, h3, p, ul, li {
+        /* Reset CSS */
+        body, h1, h2, h3, p, ul, li, a, button, input, select, div, img {
             margin: 0;
             padding: 0;
-        }
-
-        :root {
-            --primary-color: #007bff; /* Biru utama */
-            --secondary-color: #6c757d; /* Abu-abu sekunder */
-            --accent-color: #28a745; /* Hijau aksen */
-            --light-bg: #f8f9fa; /* Background terang */
-            --dark-text: #343a40; /* Teks gelap */
-            --light-text: #ffffff; /* Teks terang */
-            --border-color: #dee2e6; /* Warna border */
-
-            /* Warna Kategori */
-            --game-bg: #e0f7fa; /* Biru muda lembut */
-            --game-text: #00838f; /* Biru kehijauan gelap */
-            --tugas-bg: #fff3e0; /* Krem lembut */
-            --tugas-text: #e65100; /* Oranye gelap */
-            --multimedia-bg: #dcedc8; /* Hijau muda sekali */
-            --multimedia-text: #33691e; /* Hijau tua sekali */
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            background-color: var(--light-bg);
-            color: var(--dark-text);
-            margin: 0;
-            padding-bottom: 70px; /* Ruang untuk footer */
-            min-height: 100vh;
-            position: relative; /* Untuk memposisikan footer */
+            line-height: 1.7;
+            background-color: #f4f6f8;
+            color: #333;
         }
 
         .container {
             max-width: 1200px;
-            margin: 30px auto;
-            padding: 30px;
-            background-color: var(--light-text);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            padding-top: 80px; /* Ruang untuk navbar sticky */
-            text-align: center; /* Center the initial buttons */
+            margin: 2rem auto;
+            padding: 20px;
         }
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 30px; /* Reduced margin for initial buttons */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            nav .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .hamburger-menu {
+                display: block; /* Tampilkan di tampilan ponsel */
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -300px; /* Sembunyikan di luar layar */
+                width: 250px;
+                height: 100%;
+                background-color: #fff;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                z-index: 1001;
+                transition: left 0.3s ease-in-out;
+                padding-top: 4rem; /* Beri ruang untuk status bar */
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start; /* Align items to the start */
+            }
+
+            .nav-links.open {
+                left: 0; /* Tampilkan sidebar saat class 'open' ditambahkan */
+            }
+
+            .close-menu {
+                display: block; /* Tampilkan di tampilan ponsel */
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                padding: 0 1.5rem;
+                margin-top: 1rem; /* Add some space below the close button */
+            }
+
+            .nav-links ul li {
+                margin-left: 0;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 1rem;
+            }
+
+            .nav-links ul li:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+
+            .nav-links ul li a {
+                color: #333;
+                font-weight: 600;
+            }
+
+            .nav-links ul li a:hover {
+                color: #007bff;
+            }
         }
 
-        /* Navbar */
-         .navbar {
-            background-color: #2E8B57;
-            color: white;
-            padding: 15px 0;
+        /* Navbar Styles */
+        nav {
+            background-color: #fff;
+            padding: 1.2rem 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        .navbar-container {
+        nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .navbar-brand {
-            font-size: 1.7rem;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-            transition: opacity 0.3s ease;
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #007bff; /* Primary Color */
         }
 
-        .navbar-brand:hover {
-            opacity: 0.8;
+        .hamburger-menu {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none; /* Sembunyikan secara default di desktop */
+            outline: none;
         }
 
-        .navbar-nav {
-            list-style: none;
+        .nav-links {
             display: flex;
             align-items: center;
         }
 
-        .nav-item {
-            margin-left: 20px;
+        .nav-links ul {
+            list-style: none;
+            display: flex;
+            margin-bottom: 0;
         }
 
-        .nav-link {
+        .nav-links ul li {
+            margin-left: 1.8rem;
+        }
+
+        .nav-links ul li a {
             text-decoration: none;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #555;
+            transition: color 0.3s ease;
+            font-weight: 500;
         }
 
-        .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #e0f7fa;
+        .nav-links ul li a:hover {
+            color: #007bff;
         }
 
-        .nav-link.active {
-            font-weight: bold;
-        }
-
-        .navbar-toggler {
-            background: transparent;
+        .close-menu {
+            background: none;
             border: none;
-            color: white;
+            color: #555;
             font-size: 1.5rem;
             cursor: pointer;
-            display: none; /* Hidden by default on larger screens */
-            transition: opacity 0.3s ease;
+            outline: none;
+            align-self: flex-end;
+            padding: 1rem;
+            margin-right: 0.5rem;
+            display: none; /* Sembunyikan secara default di desktop */
         }
 
-        .navbar-toggler:hover {
-            opacity: 0.8;
+        .close-menu:hover {
+            color: #dc3545; /* Danger color on hover */
         }
 
-        /* Initial Choice Buttons */
+        /* Main Content Styling */
+        .main-content {
+            padding-top: 80px;
+        }
+
+        /* Jasa Choice Section */
+        .jasa-choice-section {
+            text-align: center;
+            padding: 4rem 20px;
+            background-color: #f9f9f9;
+        }
+
+        .jasa-choice-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .jasa-choice-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
         .choice-buttons {
-            margin-bottom: 30px;
-            display: flex; /* Make buttons align horizontally */
-            justify-content: center; /* Center the buttons */
-            gap: 20px; /* Space between buttons */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
         .choice-button {
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--light-text);
-            border: none;
-            border-radius: 8px;
+            background-color: #fff;
+            border: 2px solid transparent;
+            padding: 1.5rem 2.5rem;
+            border-radius: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
             cursor: pointer;
-            margin: 10px 0; /* Adjust vertical margin */
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: inline-flex; /* Use inline-flex for icon alignment */
-            align-items: center;
-            gap: 10px;
-        }
-
-        .choice-button.tugas {
-            background-color: var(--tugas-text);
-        }
-
-        .choice-button.tugas:hover {
-            background-color: #d34600;
-            transform: translateY(-2px);
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
-        }
-
-        .choice-button.multimedia-main {
-            background-color: var(--multimedia-text);
-            position: relative; /* For positioning the dropdown */
-        }
-
-        .choice-button.multimedia-main:hover {
-            background-color: #265217;
-            transform: translateY(-2px);
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
-        }
-
-        .multimedia-sub-buttons {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--multimedia-text);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-            min-width: 100%; /* Make it at least as wide as the main button */
-        }
-
-        .multimedia-sub-buttons.show {
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: #333;
             display: flex;
-        }
-
-        .multimedia-sub-button {
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--light-text);
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            text-align: left; /* Align text to the left in sub-buttons */
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .multimedia-sub-button:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-            transform: translateX(5px);
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .choice-button.game {
-            background-color: var(--game-text);
+            border-color: #ff6f61;
+            color: #ff6f61;
         }
 
         .choice-button.game:hover {
-            background-color: #006971;
-            transform: translateY(-2px);
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+            background-color: #ff6f61;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
 
-        .choice-text {
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-            font-style: italic;
+        .choice-button.tugas {
+            border-color: #4dd0e1;
+            color: #4dd0e1;
+        }
+
+        .choice-button.tugas:hover {
+            background-color: #4dd0e1;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .choice-button.multimedia {
+            border-color: #aed581;
+            color: #aed581;
+        }
+
+        .choice-button.multimedia:hover {
+            background-color: #aed581;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .choice-button i {
+            margin-right: 0; /* Hilangkan margin default ikon */
+        }
+
+        /* Joki List Section */
+        .joki-list-section {
+            padding: 3rem 20px;
+        }
+
+        .joki-list-section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
             text-align: center;
-        }
-
-        /* Filter Section */
-        .filter-section {
-            display: none; /* Hidden by default */
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #e9ecef;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            text-align: left;
-        }
-
-        .filter-section h2 {
-            color: var(--primary-color);
-            text-align: left;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .filter-group {
-            margin-bottom: 15px;
-        }
-
-        .filter-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--secondary-color);
-            font-weight: 500;
-        }
-
-        .filter-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 1rem;
-            color: var(--dark-text);
-            background-color: var(--light-text);
-        }
-
-        .search-button {
-            background-color: var(--accent-color);
-            color: var(--light-text);
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .search-button:hover {
-            background-color: #1e7e34;
-            transform: translateY(-2px);
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
-        }
-
-        .back-button {
-            background-color: var(--secondary-color);
-            color: var(--light-text);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: none; /* Hidden by default */
-            text-align: center;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .back-button:hover {
-            background-color: #545b62;
-            transform: translateY(-2px);
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
         }
 
         .joki-list {
-            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .joki-card {
-            background-color: var(--light-text);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 0.3rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             display: flex;
-            align-items: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            flex-direction: column;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-top: 5px solid transparent; /* Placeholder for accent color */
         }
-.lihat-profil {
-    background-color: #007bff; /* Warna biru */
-    color: var(--light-text); /* Warna teks putih agar kontras */
-    border: none;
-    padding: 8px 15px;
-    border-radius: 6px;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    font-size: 0.9rem;
-}
 
-.lihat-profil:hover {
-    background-color: #0056b3; /* Warna biru lebih gelap saat dihover */
-    transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
         .joki-card.game {
-            background-color: var(--game-bg);
-            border-color: var(--game-text);
-        }
-
-        .joki-card.game h3 {
-            color: var(--game-text);
-        }
-
-        .joki-card.game .joki-info p b {
-            color: var(--game-text);
+            border-top-color: #ff6f61; /* Warna aksen game */
         }
 
         .joki-card.tugas {
-            background-color: var(--tugas-bg);
-            border-color: var(--tugas-text);
-        }
-
-        .joki-card.tugas h3 {
-            color: var(--tugas-text);
-        }
-
-        .joki-card.tugas .joki-info p b {
-            color: var(--tugas-text);
+            border-top-color: #4dd0e1; /* Warna aksen tugas */
         }
 
         .joki-card.multimedia {
-            background-color: var(--multimedia-bg);
-            border-color: var(--multimedia-text);
-        }
-
-        .joki-card.multimedia h3 {
-            color: var(--multimedia-text);
-        }
-
-        .joki-card.multimedia .joki-info p b {
-            color: var(--multimedia-text);
+            border-top-color: #aed581; /* Warna aksen multimedia */
         }
 
         .joki-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-0.5rem);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
 
         .joki-avatar {
-            width: 80px; /* Ukuran avatar diperkecil */
-            height: 80px; /* Ukuran avatar diperkecil */
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
-            background-color: var(--secondary-color);
-            color: var(--light-text);
-            font-size: 2rem;
-            font-weight: 600;
-            display: flex;justify-content: center;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            border: 2px solid var(--light-bg);
+            font-size: 1.5rem;
+            color: #555;
+            font-weight: bold;
         }
 
         .joki-avatar img {
-            display: block; /* Ensure image takes the full space of the container */
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Maintain aspect ratio and cover the area */
-            border-radius: 50%; /* Keep the circular shape */
-        }
-
-        .joki-info {
-            flex-grow: 1;
+            object-fit: cover;
         }
 
         .joki-info h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 5px; /* Reduced margin */
+            font-size: 1.2rem;
+            color: #007bff;
+            margin-bottom: 0.5rem;
         }
 
         .rating {
-            margin-bottom: 5px;
-        }
-
-        .rating .fas.fa-star {
-            margin-right: 2px;
+            color: gold;
+            margin-bottom: 0.75rem;
         }
 
         .joki-info p {
-            color: var(--secondary-color);
-            margin-bottom: 3px; /* Reduced margin */
-            display: flex;
-            align-items: center;
-            gap: 8px;
             font-size: 0.95rem;
-        }
-
-        .joki-info p b {
-            font-weight: 600;
-            color: var(--dark-text);
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
         }
 
         .joki-contact {
+            margin-top: 1rem;
             display: flex;
+            gap: 0.75rem;
             flex-direction: column;
-            gap: 8px;
-            min-width: 120px;
         }
 
         .contact-button {
-            display: inline-block;
-            padding: 8px 15px;
-            color: var(--light-text);
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.3rem;
             text-decoration: none;
-            border-radius: 6px;
-            text-align: center;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            font-weight: 500;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             font-size: 0.9rem;
-        }
-
-        .hubungi-wa {
-            background-color: var(--accent-color);
-        }
-
-        .hubungi-wa:hover {
-            background-color: #1e7e34;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-        }
-
-        .no-results {
             text-align: center;
-            color: #dc3545;
-            font-size: 1.2rem;
-            margin-top: 40px;
+            transition: background-color 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        /* Modal Popup */
+        .contact-button.hubungi-wa {
+            background-color: #25d366;
+            color: #fff;
+        }
+
+        .contact-button.hubungi-wa:hover {
+            background-color: #1e7e34;
+        }
+
+        .contact-button.lihat-profil {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .contact-button.lihat-profil:hover {
+            background-color: #0056b3;
+        }
+
+        .filter-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.3rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border-left: 5px solid transparent; /* Placeholder for accent color */
+        }
+
+       .filter-section.game {
+    border-left: 8px linear-gradient(to right, #ff6f61, #f57f17);
+}
+
+.filter-section.tugas {
+    border-left: 8px linear-gradient(to right, #4dd0e1, #26c6da);
+}
+
+.filter-section.multimedia {
+    border-left: 8px linear-gradient(to right, #aed581, #9ccc65);
+}
+
+   .filter-section h2 {
+    /* ... properti lain ... */
+    border-bottom: 3px solid #007bff; /* Contoh warna border bawah */
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem; /* Tambah jarak setelah border */
+}
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+    /* ... properti lain ... */
+    color: #007bff; /* Contoh warna label */
+    font-weight: 600; /* Membuat label lebih tebal */
+}
+
+      .filter-group select {
+    /* ... properti lain ... */
+    background-color: #f9f9f9;
+}
+
+        .back-button {
+            background-color: #6c757d; /* Warna tombol kembali */
+            color: #fff;
+            border: 1px solid #6c757d;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.3rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .back-button i {
+            margin-right: 0; /* Hilangkan margin default ikon */
+        }
+
+        .back-button::before {
+            content: "\f060"; /* Font Awesome chevron left icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            margin-right: 0.5rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Lebih tinggi dari navbar */
+            display: none;
+            position: fixed;
+            z-index: 1;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.7); /* Black w/ more opacity */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
         }
 
         .modal-content {
-            background-color: var(--light-text);
-            margin: 5% auto; /* Turunkan sedikit dari atas */
-            padding: 40px; /* Padding lebih besar */
-            border: 1px solid var(--border-color);
-            width: 80%; /* Tetap lebar 80% */
-            max-width: 700px; /* Lebar maksimum modal */
-            border-radius: 12px; /* Sudut lebih bulat */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 0.5rem;
             position: relative;
-            animation: fadein 0.3s; /* Efek fade-in */
-        }
-
-        @keyframes fadein {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .close-button {
-            color: var(--secondary-color);
-            float: right;
-            font-size: 2.5rem; /* Ukuran lebih besar */
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
             font-weight: bold;
-            transition: color 0.3s ease;
             cursor: pointer;
-            line-height: 1; /* Sesuaikan line-height */
         }
 
         .close-button:hover,
         .close-button:focus {
-            color: var(--dark-text);
+            color: black;
             text-decoration: none;
             cursor: pointer;
         }
 
-        #modal-nama {
-            color: var(--primary-color);
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        .modal-nama {font-size: 1.5rem;
+            color: #007bff;
+            margin-bottom: 0.5rem;
         }
 
         .modal-rating {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .modal-rating .fas.fa-star {
             color: gold;
-            margin-right: 3px;
+            margin-bottom: 1rem;
         }
 
-        .modal-content h3 {
-            color: var(--accent-color);
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
+        .modal-layanan h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        .detail-card {
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-            line-height: 1.7;
-            text-align: left;
+        .modal-layanan p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        .detail-card h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+        .modal-detail h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        .detail-card ul {
-            padding-left: 20px;
-            margin-bottom: 10px;
+        .modal-detail-layanan {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        .detail-card li {
-            margin-bottom: 5px;
-            list-style-type: disc;
+        .testimonial-section {
+            margin-top: 1rem;
         }
 
-        #modal-pesan-sekarang {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: var(--accent-color);
-            color: var(--light-text);
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        #modal-pesan-sekarang:hover {
-            background-color: #1e7e34;
-            transform: translateY(-2px);
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
-        }
-
-        .testimonials-modal {
-            margin-top: 30px;
-            padding: 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-        }
-
-        .testimonial-carousel-container {
-            position: relative;
-            overflow: hidden;
-            margin-top: 15px;
-            border-radius: 8px;
+        .testimonial-section h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
         }
 
         .testimonial-carousel {
+            overflow: hidden;
+            position: relative;
+            width: 80%; /* Lebih kecil */
+            margin: 0.5rem auto;
+            border-radius: 0.3rem;
+        }
+
+        .carousel-inner {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
 
-        .testimonial-image {
-            min-width: 100%; /* Setiap gambar memenuhi lebar container */
+        .carousel-item {
+            min-width: 100%;
+        }
+
+        .carousel-item img, .carousel-item video {
+            max-width: 100%;
             height: auto;
-            display: block;
-            border-radius: 8px;
-            object-fit: cover; /* Ensure images cover the area nicely */
+            border-radius: 0.3rem;
+            max-height: 300px; /* Batasi ketinggian gambar/video */
+            object-fit: contain; /* Agar gambar/video tidak terdistorsi */
         }
 
         .carousel-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: var(--light-text);
+            background: none;
             border: none;
-            padding: 10px;
-            margin: 0 10px;
-            border-radius: 50%;
+            font-size: 1.5rem;
+            color: #555;
             cursor: pointer;
-            z-index: 1;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .carousel-button:hover {
-            opacity: 1;
+            outline: none;
         }
 
         .carousel-button.prev {
@@ -677,196 +598,178 @@
             right: 10px;
         }
 
+        .detail-info {
+            margin-top: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+		#filterSearchButton {
+    background-color: #007bff; /* Warna biru utama */
+    color: #fff; /* Teks putih */
+    border: none; /* Hilangkan border default */
+    padding: 0.75rem 1.5rem; /* Padding atas-bawah dan kiri-kanan */
+    border-radius: 0.3rem; /* Sudut membulat */
+    font-size: 1rem; /* Ukuran font */
+    cursor: pointer; /* Mengubah kursor menjadi pointer saat dihover */
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transisi untuk efek hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan tipis */
+    outline: none; /* Hilangkan outline default saat fokus */
+    margin-top: 1rem; /* Beri jarak dari elemen filter di atasnya */
+    width: fit-content; /* Lebar sesuai konten */
+    justify-self: start; /* Posisikan ke kiri (jika di dalam grid) */
+}
+
+#filterSearchButton:hover {
+    background-color: #0056b3; /* Warna biru lebih gelap saat dihover */
+    transform: translateY(-0.1rem); /* Sedikit naik saat dihover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Bayangan lebih tebal saat dihover */
+}
+
+#filterSearchButton:active {
+    transform: translateY(0); /* Kembali ke posisi semula saat ditekan */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan seperti semula saat ditekan */
+}
+
         /* Footer */
         footer {
-            background-color: var(--light-bg);
-            padding: 20px 0;
+            background-color: #2c3e50;
+            color: #fff;
             text-align: center;
-            font-size: 0.9em;
-            color: var(--secondary-color);
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            border-top: 1px solid var(--border-color);
+            padding: 2.5rem 20px;
+            font-size: 0.9rem;
         }
 
-        /* Responsive Layout */
-        @media (max-width: 768px) {
-            .navbar-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar-nav {
-                margin-top: 10px;
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .nav-item {
-                margin-left: 0;
-                margin-bottom: 10px;
-            }
-
-            .filter-section {
-                padding: 15px;
-            }
-
-            .joki-card {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .joki-avatar {
-                margin-bottom: 15px;
-                margin-right: 0;
-            }
-
-            .joki-contact {
-                margin-top: 15px;
-                flex-direction: row;
-                gap: 10px;
-            }
-
-            .choice-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .choice-button {
-                width: 80%;
-                margin: 10px 0;
-            }
-
-            .multimedia-sub-buttons {
-                position: static;
-                width: 80%;
-                margin-top: 10px;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-
-            .multimedia-sub-button {
-                text-align: center;
-                padding: 10px 20px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .carousel-button {
-                padding: 8px;
-                margin: 0 5px;
-                font-size: 0.8em;
-            }
-
-            .choice-buttons {
-                gap: 10px;
-            }
-
-            .choice-button {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
+        footer p {
+            margin-bottom: 0;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a class="navbar-brand" href="index.html">RampungJoki</a>
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link active" href="carijoki.html">Cari Joki</a></li>
-                <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang Kami</a></li>
-                <li class="nav-item"><a class="nav-link" href="daftar.html">Daftar Sebagai Joki</a></li>
-            </ul>
-            <button class="navbar-toggler">☰</button>
+    <nav>
+        <div class="container">
+            <div class="logo">Rampungin.id</div>
+            <button class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <button class="close-menu">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="carijasa.html">Cari Jasa</a></li>
+                    <li><a href="daftar.html">Daftar Jadi Penyedia Jasa</a></li>
+					<li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="kontak.html">Kontak Pengaduan</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="container">
-        <h1>Cari Joki Impianmu!</h1>
-        <p class="choice-text">Bingung mau cari joki untuk apa? Pilih salah satu layanan di bawah ini untuk menemukan joki terbaik sesuai kebutuhanmu:</p>
-        <div class="choice-buttons">
-            <button class="choice-button tugas" data-layanan="Tugas">
-                <i class="fas fa-tasks"></i> Butuh Bantuan Tugas?
-            </button>
-            <div style="position: relative;">
-                <button class="choice-button multimedia-main" data-layanan="Multimedia">
-                    <i class="fas fa-photo-video"></i> Butuh Jasa Multimedia?
-                </button>
+    <div class="main-content">
+        <section class="jasa-choice-section">
+            <div class="container">
+                <h1>Cari Jasa yang Anda Butuhkan</h1>
+                <p>Pilih kategori jasa yang Anda cari untuk menemukan penyedia terbaik.</p>
+                <div class="choice-buttons">
+                    <a href="#" class="choice-button game"><i class="fas fa-gamepad"></i> Jasa Game</a>
+                    <a href="#" class="choice-button tugas"><i class="fas fa-tasks"></i> Jasa Tugas</a>
+                    <a href="#" class="choice-button multimedia"><i class="fas fa-icons"></i> Jasa Multimedia</a>
+                </div>
             </div>
-            <button class="choice-button game" data-layanan="Game">
-                <i class="fas fa-gamepad"></i> Cari Joki Game Andal?
-            </button>
-        </div>
+        </section>
 
-        <button class="back-button" style="display: none;"><i class="fas fa-arrow-left"></i> Kembali</button>
-
-        <div class="filter-section">
-            <h2>Filter Joki</h2>
-            <div class="filter-group" id="skill-filter-group">
-                <label for="skill">Skill:</label>
-                <select id="skill">
-                    <option value="">Semua Skill</option>
-                </select>
+        <section class="joki-list-section hidden" id="jokiListSection">
+            <div class="container">
+                <h2>Penyedia Jasa <span id="layananTitle"></span> Terbaik</h2>
+                <div class="filter-section" id="filterSection">
+                    <h2>Filter Jasa</h2>
+                    <div class="filter-grid" id="filterGrid">
+                        </div>
+                    <button id="filterSearchButton">Cari</button>
+                </div>
+                <button class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Pilihan Jasa</button>
+                <div class="joki-list" id="jokiList">
+                    </div>
             </div>
-            <div class="filter-group" id="pengalaman-filter-group">
-                <label for="pengalaman">Pengalaman:</label>
-                <select id="pengalaman">
-                    <option value="">Semua Pengalaman</option>
-                    <option value="pemula">Pemula</option>
-                    <option value="menengah">Menengah</option>
-                    <option value="ahli">Ahli</option>
-                    <option value="legenda">Legenda</option>
-                </select>
-            </div>
-            <button class="search-button">Cari Joki <i class="fas fa-search"></i></button>
-        </div>
-
-        <div class="joki-list">
-            <h2>Hasil Pencarian Joki</h2>
-        </div>
+        </section>
     </div>
 
     <div id="jokiModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h2 id="modal-nama">Nama Joki</h2>
-            <div class="modal-rating">
+            <h2 id="modalNama" class="modal-nama"></h2>
+            <div id="modalRatingDiv" class="modal-rating">
+                </div>
+            <div class="modal-layanan">
+                <h3>Layanan:</h3>
+                <p id="modalLayananIsi"></p>
             </div>
-            <h3><i class="fas fa-info-circle"></i> Detail Lengkap</h3>
-            <div class="detail-card">
-                <p id="modal-layanan-isi"></p>
+            <div class="modal-detail">
+                <h3>Detail Layanan:</h3>
+                <p id="modalDetailLayanan"></p>
             </div>
-            <a id="modal-pesan-sekarang" href="#" target="_blank" class="contact-button hubungi-wa"><i class="fab fa-whatsapp"></i> Pesan Sekarang</a>
-
-            <div class="testimonials-modal">
-                <h3><i class="fas fa-comments"></i> Testimoni</h3>
-                <div class="testimonial-carousel-container">
-                    <div class="testimonial-carousel">
-                        <img src="placeholder_testimoni1.jpg" alt="Testimoni 1" class="testimonial-image">
-                        <img src="placeholder_testimoni2.jpg" alt="Testimoni 2" class="testimonial-image">
-                        <img src="placeholder_testimoni3.jpg" alt="Testimoni 3" class="testimonial-image">
-                        <img src="placeholder_testimoni4.jpg" alt="Testimoni 4" class="testimonial-image">
-                        <img src="placeholder_testimoni5.jpg" alt="Testimoni 5" class="testimonial-image">
-                    </div>
-                    <button class="carousel-button prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-button next"><i class="fas fa-chevron-right"></i></button>
+            <div class="testimonial-section">
+                <h3>Testimoni:</h3>
+                <div id="testimonialCarousel" class="testimonial-carousel">
+                    <div id="carouselInner" class="carousel-inner">
+                        </div>
+                    <button class="carousel-button prev" id="prevButton"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-button next" id="nextButton"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
+            <div class="detail-info">
+                </div>
+            <a id="modalPesanSekarang" href="#" class="contact-button hubungi-wa"><i class="fab fa-whatsapp"></i> Hubungi WA</a>
         </div>
     </div>
 
     <footer>
-        <div style="text-align: center; padding: 20px; font-size: 0.9em; color: var(--secondary-color);">
-            &copy; 2025 RampungJoki. All rights reserved.
+        <div class="container">
+            <p>&copy; 2023 Rampungin.id. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        const jasaChoiceSection = document.querySelector('.jasa-choice-section');
+        const jokiListSection = document.getElementById('jokiListSection');
+        const jokiListDiv = document.getElementById('jokiList');
+        const layananTitle = document.getElementById('layananTitle');
+        const filterSection = document.getElementById('filterSection');
+        const filterGrid = document.getElementById('filterGrid');
+        const filterSearchButton = document.getElementById('filterSearchButton');
+        const backButton = document.querySelector('.back-button');
+        const jokiModal = document.getElementById('jokiModal');
+        const closeModalButton = document.querySelector('.close-button');
+        const modalNama = document.getElementById('modalNama');
+        const modalRatingDiv = document.getElementById('modalRatingDiv');
+        const modalLayananIsi = document.getElementById('modalLayananIsi');
+        const modalDetailLayanan = document.getElementById('modalDetailLayanan');
+        const modalPesanSekarang = document.getElementById('modalPesanSekarang');
+        const testimonialCarousel = document.getElementById('testimonialCarousel');
+        const carouselInner = document.getElementById('carouselInner');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        let testimonialIndex = 0;
+
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const closeMenuButton = document.querySelector('.close-menu');
+
+        hamburgerMenu.addEventListener('click', () => {
+            navLinks.classList.add('open');
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+        });
+
         const dataJoki = [
-           {
+             {
                 id: 1,
                 nama: "SEBATSZ",
                 layanan: ["Game"],
@@ -1001,58 +904,77 @@
     rating: 5,
     testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
 },
-			
+            {
+                id: 10,
+                nama: "Video Maker Pro",
+                layanan: ["Multimedia"],
+                skill: ["Editing Video Pendek", "Video Promosi"],
+                harga: "Mulai dari Rp 150.000 per video",
+                pengalaman: "Ahli",
+                avatar: "videomaker.jpg",
+                wa: "6289876543210",
+                detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
+            }
         ];
 
-        const jokiListDiv = document.querySelector('.joki-list');
-        const choiceButtonsDiv = document.querySelector('.choice-buttons');
-        const filterSection = document.querySelector('.filter-section');
-        const backButton = document.querySelector('.back-button');
-        const mainTitle = document.querySelector('h1');
-        const choiceText = document.querySelector('.choice-text');
-        const skillSelect = document.getElementById('skill');
-        const pengalamanSelect = document.getElementById('pengalaman');
-        const searchButton = document.querySelector('.search-button');
-        const modal = document.getElementById('jokiModal');
-        const closeModalButton = document.querySelector('.close-button');
-        const modalNama = document.getElementById('modal-nama');
-        const modalRatingDiv = document.querySelector('.modal-rating');
-        const modalLayananIsi = document.getElementById('modal-layanan-isi');
-        const modalPesanSekarang = document.getElementById('modal-pesan-sekarang');
-        const testimonialCarousel = document.querySelector('.testimonial-carousel');
-        const prevButton = document.querySelector('.carousel-button.prev');
-        const nextButton = document.querySelector('.carousel-button.next');
-        let testimonialIndex = 0;
-        let currentLayanan = '';
-        const multimediaMainButton = document.querySelector('.multimedia-main');
-        const choiceButtonsContainer = document.querySelector('.choice-buttons');
+        let filteredJoki = [];
+
+        document.querySelectorAll('.choice-button').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const layanan = this.textContent.split(' ')[2]; // Get "Game", "Tugas", or "Multimedia"
+                layananTitle.textContent = layanan;
+                filteredJoki = dataJoki.filter(j => j.layanan.includes(layanan));
+                jokiListDiv.innerHTML = '';
+                filteredJoki.forEach(displayJoki);
+                jasaChoiceSection.classList.add('hidden');
+                jokiListSection.classList.remove('hidden');
+                filterSection.classList.remove('hidden');
+                filterGrid.innerHTML = '';
+                createFilters(layanan);
+            });
+        });
+
+        backButton.addEventListener('click', () => {
+            jasaChoiceSection.classList.remove('hidden');
+            jokiListSection.classList.add('hidden');
+        });
 
         function generateRatingStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
             let stars = '';
-            for (let i = 0; i < 5; i++) {
-                if (i < rating) {
-                    stars += '<i class="fas fa-star" style="color: gold;"></i>';
-                } else {
-                    stars += '<i class="fas fa-star" style="color: #ccc;"></i>';
-                }
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
             }
             return stars;
         }
 
-        function displayJoki(joki) {
+        function displayJoki(joki){
             const card = document.createElement('div');
-            card.classList.add('joki-card', joki.layanan[0].toLowerCase());
+            card.classList.add('joki-card');
+            if (joki.layanan.includes('Game')) card.classList.add('game');
+            else if (joki.layanan.includes('Tugas')) card.classList.add('tugas');
+            else if (joki.layanan.includes('Multimedia')) card.classList.add('multimedia');
+            else if (joki.layanan.includes('Penulisan')) card.classList.add('tugas'); // Sementara samakan dengan tugas
 
             const avatarDiv = document.createElement('div');
             avatarDiv.classList.add('joki-avatar');
-            if (joki.avatar) {
-                const img = document.createElement('img');
-                img.src = joki.avatar;
-                img.alt = `Avatar ${joki.nama}`;
-                avatarDiv.appendChild(img);
-            } else {
-                const initials = joki.nama.split(' ').map(name => name[0]).join('').toUpperCase().slice(0, 2);
-                avatarDiv.textContent = initials;
+            avatarDiv.style.backgroundImage = joki.avatar ? `url('${joki.avatar}')` : '';
+            avatarDiv.style.backgroundSize = 'cover';
+            avatarDiv.style.backgroundPosition = 'center';
+            if (!joki.avatar) {
+                avatarDiv.textContent = joki.nama.charAt(0).toUpperCase();
             }
 
             const infoDiv = document.createElement('div');
@@ -1063,32 +985,31 @@
             ratingDiv.classList.add('rating');
             ratingDiv.innerHTML = generateRatingStars(joki.rating);
             const layananP = document.createElement('p');
-            layananP.innerHTML = `<b>Layanan:</b> ${joki.layanan.join(', ')}`;
-            const skillP = document.createElement('p');
-            skillP.innerHTML = `<b>Skill:</b> ${joki.skill.join(', ')}`;
+            layananP.textContent = `Layanan: ${joki.layanan.join(', ')}`;
             const hargaP = document.createElement('p');
-            hargaP.innerHTML = `<b>Harga:</b> ${joki.harga}`;
+            hargaP.textContent = `Harga: ${joki.harga}`;
 
             infoDiv.appendChild(namaH3);
             infoDiv.appendChild(ratingDiv);
             infoDiv.appendChild(layananP);
-            infoDiv.appendChild(skillP);
             infoDiv.appendChild(hargaP);
 
             const contactDiv = document.createElement('div');
             contactDiv.classList.add('joki-contact');
-            const waLink = document.createElement('a');
-            waLink.href = `https://wa.me/${joki.wa}`;
-            waLink.textContent = 'Hubungi WA';
-            waLink.target = '_blank';
-            waLink.classList.add('contact-button', 'hubungi-wa');
-            const detailButton = document.createElement('button');
-            detailButton.textContent = 'Lihat Detail';
+            const detailButton = document.createElement('a');
+            detailButton.href = '#';
             detailButton.classList.add('contact-button', 'lihat-profil');
+            detailButton.innerHTML = '<i class="fas fa-info-circle"></i> Lihat Detail';
             detailButton.addEventListener('click', () => openModal(joki));
 
-            contactDiv.appendChild(waLink);
+            const waButton = document.createElement('a');
+            waButton.href = `https://wa.me/${joki.wa}`;
+            waButton.target = '_blank';
+            waButton.classList.add('contact-button', 'hubungi-wa');
+            waButton.innerHTML = '<i class="fab fa-whatsapp"></i> Hubungi WA';
+
             contactDiv.appendChild(detailButton);
+            contactDiv.appendChild(waButton);
 
             card.appendChild(avatarDiv);
             card.appendChild(infoDiv);
@@ -1097,205 +1018,179 @@
             jokiListDiv.appendChild(card);
         }
 
-        function filterJoki(layananFilter = '', skillFilter = '', pengalamanFilter = '') {
-            jokiListDiv.innerHTML = '<h2>Hasil Pencarian Joki</h2>';
-            const filtered = dataJoki.filter(joki => {
-                const layananMatch = layananFilter === '' || joki.layanan.includes(layananFilter);
-                const skillMatch = skillFilter === '' || joki.skill.some(s => s.toLowerCase().includes(skillFilter.toLowerCase()));
-                const pengalamanMatch = pengalamanFilter === '' || joki.pengalaman.toLowerCase() === pengalamanFilter.toLowerCase();
-                return layananMatch && skillMatch && pengalamanMatch;
-            });
-
-            if (filtered.length === 0) {
-                jokiListDiv.innerHTML = '<p class="no-results">Tidak ada joki yang sesuai dengan kriteria Anda.</p>';
-            } else {
-                filtered.forEach(displayJoki);
-            }
-        }
-
-        function populateFilters(layanan) {
-            skillSelect.innerHTML = '<option value="">Semua Skill</option>';
-            const relevantSkills = [...new Set(dataJoki
-                .filter(joki => joki.layanan.includes(layanan))
-                .flatMap(joki => joki.skill))];
-            relevantSkills.forEach(skill => {
-                const option = document.createElement('option');
-                option.value = skill.toLowerCase();
-                option.textContent = skill;
-                skillSelect.appendChild(option);
-            });
-
-            pengalamanSelect.innerHTML = '<option value="">Semua Pengalaman</option>';
-            const relevantExperiences = [...new Set(dataJoki
-                .filter(joki => joki.layanan.includes(layanan))
-                .map(joki => joki.pengalaman))];
-            relevantExperiences.forEach(exp => {
-                const option = document.createElement('option');
-                option.value = exp.toLowerCase();
-                option.textContent = exp;
-                pengalamanSelect.appendChild(option);
-            });
-        }
-
-        choiceButtonsDiv.addEventListener('click', function(event) {
-            if (event.target.classList.contains('choice-button') && !event.target.classList.contains('multimedia-sub-button')) {
-                currentLayanan = event.target.getAttribute('data-layanan');
-                mainTitle.textContent = `Cari Joki ${currentLayanan}`;
-                choiceButtonsDiv.style.display = 'none';
-                choiceText.style.display = 'none';
-                filterSection.style.display = 'block';
-                backButton.style.display = 'block';
-                jokiListDiv.style.display = 'block';
-                populateFilters(currentLayanan);
-                filterJoki(currentLayanan);
-            }
-        });
-
-        backButton.addEventListener('click', function() {
-            mainTitle.textContent = 'Cari Joki Impianmu!';
-            choiceButtonsDiv.style.display = 'flex';
-            choiceText.style.display = 'block';
-            filterSection.style.display = 'none';
-            backButton.style.display = 'none';
-            jokiListDiv.innerHTML = '<h2>Hasil Pencarian Joki</h2>';
-            jokiListDiv.style.display = 'none';
-            currentLayanan = '';
-        });
-
-        searchButton.addEventListener('click', function() {
-            filterJoki(currentLayanan, skillSelect.value, pengalamanSelect.value);
-        });
-
-        skillSelect.addEventListener('change', function() {
-            filterJoki(currentLayanan, this.value, pengalamanSelect.value);
-        });
-
-        pengalamanSelect.addEventListener('change', function() {
-            filterJoki(currentLayanan, skillSelect.value, this.value);
-        });
-
         function openModal(joki) {
             modalNama.textContent = joki.nama;
             modalRatingDiv.innerHTML = generateRatingStars(joki.rating);
-            modalLayananIsi.innerHTML = joki.detail_layanan;
+            modalLayananIsi.textContent = joki.layanan.join(', ');
+            modalDetailLayanan.innerHTML = typeof joki.detail_layanan === 'string' ? joki.detail_layanan : joki.detail_layanan.innerHTML;
             modalPesanSekarang.href = `https://wa.me/${joki.wa}`;
-            modal.style.display = "block";
 
-            testimonialIndex = 0;
-            testimonialCarousel.innerHTML = '';
+            carouselInner.innerHTML = '';
             if (joki.testimonials && joki.testimonials.length > 0) {
-                joki.testimonials.forEach(testimoni => {
-                    const img = document.createElement('img');
-                    img.src = testimoni;
-                    img.alt = `Testimoni dari ${joki.nama}`;
-                    img.classList.add('testimonial-image');
-                    testimonialCarousel.appendChild(img);
+                joki.testimonials.forEach(imgSrc => {
+                    const isVideo = imgSrc.toLowerCase().endsWith('.mp4');
+                    const item = document.createElement(isVideo ? 'video' : 'img');
+                    item.classList.add('carousel-item');
+                    item.src = `${imgSrc}`;
+                    if (isVideo) {
+                        item.controls = true;
+                    }
+                    carouselInner.appendChild(item);
                 });
-                updateCarousel();
+                testimonialCarousel.style.display = 'block';
+                showTestimonial(0);
             } else {
-                const noTestimonial = document.createElement('p');
-                noTestimonial.textContent = "Belum ada testimoni.";
-                testimonialCarousel.appendChild(noTestimonial);
-                prevButton.style.display = 'none';
-                nextButton.style.display = 'none';
+                testimonialCarousel.style.display = 'none';
+            }
+
+            jokiModal.style.display = 'block';
+        }
+
+        closeModalButton.addEventListener('click', () => {
+            jokiModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == jokiModal) {
+                jokiModal.style.display = 'none';
+            }
+        });
+
+        function createFilters(layanan) {
+            filterGrid.innerHTML = ''; // Clear previous filters
+            const skills = getUniqueSkills(layanan);
+            const pengalamanOptions = getUniquePengalaman(layanan);
+
+            // Filter 1: Berdasarkan Skill
+            if (skills.length > 0) {
+                const filterGroupSkill = document.createElement('div');
+                filterGroupSkill.classList.add('filter-group');
+                const labelSkill = document.createElement('label');
+                labelSkill.textContent = 'Skill';
+                const selectSkill = document.createElement('select');
+                const defaultOptionSkill = document.createElement('option');
+                defaultOptionSkill.value = '';
+                defaultOptionSkill.textContent = 'Semua Skill';
+                selectSkill.appendChild(defaultOptionSkill);
+
+                skills.forEach(skill => {
+                    const option = document.createElement('option');
+                    option.value = skill;
+                    option.textContent = skill;
+                    selectSkill.appendChild(option);
+                });
+                filterGroupSkill.appendChild(labelSkill);
+                filterGroupSkill.appendChild(selectSkill);
+                filterGrid.appendChild(filterGroupSkill);
+            }
+
+            // Filter 2: Berdasarkan Pengalaman
+            if (pengalamanOptions.length > 0) {
+                const filterGroupPengalaman = document.createElement('div');
+                filterGroupPengalaman.classList.add('filter-group');
+                const labelPengalaman = document.createElement('label');
+                labelPengalaman.textContent = 'Pengalaman';
+                const selectPengalaman = document.createElement('select');
+                const defaultOptionPengalaman = document.createElement('option');
+                defaultOptionPengalaman.value = '';
+                defaultOptionPengalaman.textContent = 'Semua Pengalaman';
+                selectPengalaman.appendChild(defaultOptionPengalaman);
+
+                pengalamanOptions.forEach(pengalaman => {
+                    const option = document.createElement('option');
+                    option.value = pengalaman;
+                    option.textContent = pengalaman;
+                    selectPengalaman.appendChild(option);
+                });
+                filterGroupPengalaman.appendChild(labelPengalaman);
+                filterGroupPengalaman.appendChild(selectPengalaman);
+                filterGrid.appendChild(filterGroupPengalaman);
             }
         }
 
-        closeModalButton.addEventListener('click', function() {
-            modal.style.display = "none";
+        function getUniqueSkills(layanan) {
+            const skills = new Set();
+            filteredJoki.forEach(joki => {
+                if (joki.layanan.includes(layanan) && joki.skill) {
+                    joki.skill.forEach(s => skills.add(s));
+                }
+            });
+            return Array.from(skills).sort();
+        }
+
+        function getUniquePengalaman(layanan) {
+            const pengalamanSet = new Set();
+            filteredJoki.forEach(joki => {
+                if (joki.layanan.includes(layanan) && joki.pengalaman) {
+                    pengalamanSet.add(joki.pengalaman);
+                }
+            });
+            return Array.from(pengalamanSet).sort();
+        }
+
+        filterSearchButton.addEventListener('click', () => {
+            const filters = Array.from(filterGrid.querySelectorAll('select'));
+            const activeFilters = {};
+            filters.forEach(select => {
+                if (select.value) {
+                    const label = select.previousElementSibling.textContent.toLowerCase();
+                    activeFilters[label] = select.value;
+                }
+            });
+
+            const layanan = layananTitle.textContent;
+            const filteredResults = dataJoki.filter(joki => {
+                if (!joki.layanan.includes(layanan)) {
+                    return false;
+                }
+                for (const filterName in activeFilters) {
+                    const filterValue = activeFilters[filterName];
+                    if (filterName === 'skill') {
+                        if (!joki.skill || !joki.skill.includes(filterValue)) {
+                            return false;
+                        }
+                    } else if (filterName === 'pengalaman') {
+                        if (joki.pengalaman && joki.pengalaman.toLowerCase() !== filterValue.toLowerCase()) {
+                            return false;
+                        } else if (!joki.pengalaman && filterValue !== '') {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            });
+
+            jokiListDiv.innerHTML = '';
+            filteredResults.forEach(displayJoki);
         });
 
-        window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        });
+        function showTestimonial(index) {
+            const items = carouselInner.querySelectorAll('.carousel-item');
+            if (items.length === 0) return;
 
-        function updateCarousel() {
-            const totalTestimonials = testimonialCarousel.children.length;
-            if (totalTestimonials > 0) {
-                testimonialCarousel.style.transform = `translateX(-${testimonialIndex * 100}%)`;
-                prevButton.style.display = testimonialIndex > 0 ? 'block' : 'none';
-                nextButton.style.display = testimonialIndex < totalTestimonials - 1 ? 'block' : 'none';
+            if (index >= items.length) {
+                testimonialIndex = 0;
+            } else if (index < 0) {
+                testimonialIndex = items.length - 1;
             } else {
-                prevButton.style.display = 'none';
-                nextButton.style.display = 'none';
+                testimonialIndex = index;
             }
+
+            items.forEach((item, i) => {
+                item.style.display = i === testimonialIndex ? 'block' : 'none';
+            });
         }
 
         prevButton.addEventListener('click', () => {
-            if (testimonialCarousel.children.length > 0 && testimonialIndex > 0) {
-                testimonialIndex--;
-                updateCarousel();
-            }
+            showTestimonial(testimonialIndex - 1);
         });
 
         nextButton.addEventListener('click', () => {
-            if (testimonialCarousel.children.length > 0 && testimonialIndex < testimonialCarousel.children.length - 1) {
-                testimonialIndex++;
-                updateCarousel();
-            }
+            showTestimonial(testimonialIndex + 1);
         });
 
-        jokiListDiv.style.display = 'none'; // Hide joki list initially
-        filterSection.style.display = 'none'; // Hide filter section initially
-
-        // Tambahkan sub-tombol multimedia
-        const multimediaSubButtonsDiv = document.createElement('div');
-        multimediaSubButtonsDiv.classList.add('multimedia-sub-buttons');
-
-        const subLayanan1 = 'Desain Grafis';
-        const subButton1 = document.createElement('button');
-        subButton1.classList.add('multimedia-sub-button');
-        subButton1.textContent = subLayanan1;
-        subButton1.setAttribute('data-layanan', subLayanan1);
-        subButton1.addEventListener('click', function(event) {
-            currentLayanan = event.target.getAttribute('data-layanan');
-            mainTitle.textContent = `Cari Joki ${currentLayanan}`;
-            choiceButtonsDiv.style.display = 'none';
-            choiceText.style.display = 'none';
-            filterSection.style.display = 'block';
-            backButton.style.display = 'block';
-            jokiListDiv.style.display = 'block';
-            populateFilters(currentLayanan);
-            filterJoki(currentLayanan);
-        });
-        multimediaSubButtonsDiv.appendChild(subButton1);
-
-        const subLayanan2 = 'Editing Video';
-        const subButton2 = document.createElement('button');
-        subButton2.classList.add('multimedia-sub-button');
-        subButton2.textContent = subLayanan2;
-        subButton2.setAttribute('data-layanan', subLayanan2);
-        subButton2.addEventListener('click', function(event) {
-            currentLayanan = event.target.getAttribute('data-layanan');
-            mainTitle.textContent = `Cari Joki ${currentLayanan}`;
-            choiceButtonsDiv.style.display = 'none';
-            choiceText.style.display = 'none';
-            filterSection.style.display = 'block';
-            backButton.style.display = 'block';
-            jokiListDiv.style.display = 'block';
-            populateFilters(currentLayanan);
-            filterJoki(currentLayanan);
-        });
-        multimediaSubButtonsDiv.appendChild(subButton2);
-
-        multimediaMainButton.parentNode.insertBefore(multimediaSubButtonsDiv, multimediaMainButton.nextSibling);
-
-        // Event listener untuk menampilkan/menyembunyikan sub-tombol (opsional, bisa dibuat hover saja dengan CSS)
-        multimediaMainButton.addEventListener('click', function() {
-            multimediaSubButtonsDiv.classList.toggle('show');
-        });
-
-        // Tutup dropdown jika klik di luar
-        window.addEventListener('click', function(event) {
-            if (!event.target.matches('.multimedia-main') && !event.target.matches('.multimedia-sub-button')) {
-                if (multimediaSubButtonsDiv.classList.contains('show')) {
-                    multimediaSubButtonsDiv.classList.remove('show');
-                }
-            }
-        });
+        // Initial load (you might want to show a default list or nothing here)
+        // dataJoki.forEach(displayJoki);
     </script>
-    <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
 </body>
 </html>
