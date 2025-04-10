@@ -90,6 +90,23 @@
             color: #007bff;
         }
 
+        .close-menu {
+            background: none;
+            border: none;
+            color: #555;
+            font-size: 1.5rem;
+            cursor: pointer;
+            outline: none;
+            align-self: flex-end;
+            padding: 1rem;
+            margin-right: 0.5rem;
+            display: none; /* Sembunyikan secara default di desktop */
+        }
+
+        .close-menu:hover {
+            color: #dc3545; /* Danger color on hover */
+        }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
             nav .container {
@@ -113,15 +130,23 @@
                 z-index: 1001;
                 transition: left 0.3s ease-in-out;
                 padding-top: 4rem; /* Beri ruang untuk status bar */
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start; /* Align items to the start */
             }
 
             .nav-links.open {
                 left: 0; /* Tampilkan sidebar saat class 'open' ditambahkan */
             }
 
+            .close-menu {
+                display: block; /* Tampilkan di tampilan ponsel */
+            }
+
             .nav-links ul {
                 flex-direction: column;
                 padding: 0 1.5rem;
+                margin-top: 1rem; /* Add some space below the close button */
             }
 
             .nav-links ul li {
@@ -446,7 +471,7 @@
         }
 
         .faq-card {
-            background-color: #fff;
+            background-color:#fff;
             padding: 1.5rem;
             border-radius: 0.3rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -466,7 +491,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }.faq-answer {
+        }
+
+        .faq-answer {
             color: #555;
             line-height: 1.6;
             max-height: 0;
@@ -832,6 +859,9 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links">
+                <button class="close-menu">
+                    <i class="fas fa-times"></i>
+                </button>
                 <ul>
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="carijasa.html">Cari Jasa</a></li>
@@ -890,7 +920,7 @@
             <h2 class="services-title">Siap Membantu Anda Meraih Impian:</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3><i class="fas fa-gamepad" style="color: #ff6f61; margin-right: 0.5em;"></i>Optimasi Gaming</h3>
+                    <h3><i class="fas fa-gamepad" style="color: #ff6f61; margin-right:0.5em;"></i>Optimasi Gaming</h3>
                     <p>Tingkatkan performa game Anda dengan bantuan joki profesional untuk push rank, farming, dan lainnya.</p>
                     <a href="carijasa.html?kategori=gaming" class="service-cta"><i class="fas fa-rocket"></i>Cari Joki</a>
                 </div>
@@ -1060,9 +1090,14 @@
     <script>
         const hamburgerMenu = document.querySelector('.hamburger-menu');
         const navLinks = document.querySelector('.nav-links');
+        const closeMenuButton = document.querySelector('.close-menu');
 
         hamburgerMenu.addEventListener('click', () => {
             navLinks.classList.toggle('open');
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            navLinks.classList.remove('open');
         });
 
         // Optional: Close sidebar when a link is clicked (if you want this behavior)
