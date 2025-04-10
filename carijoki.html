@@ -28,13 +28,13 @@
             --light-text: #ffffff; /* Teks terang */
             --border-color: #dee2e6; /* Warna border */
 
-            /* Warna Kategori Baru */
+            /* Warna Kategori */
             --game-bg: #e0f7fa; /* Biru muda lembut */
             --game-text: #00838f; /* Biru kehijauan gelap */
             --tugas-bg: #fff3e0; /* Krem lembut */
             --tugas-text: #e65100; /* Oranye gelap */
-            --penulisan-bg: #f0f4c3; /* Kuning kehijauan lembut */
-            --penulisan-text: #827717; /* Hijau tua */
+            --multimedia-bg: #dcedc8; /* Hijau muda sekali */
+            --multimedia-text: #33691e; /* Hijau tua sekali */
         }
 
         body {
@@ -176,14 +176,49 @@
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
         }
 
-        .choice-button.penulisan {
-            background-color: var(--penulisan-text);
+        .choice-button.multimedia-main {
+            background-color: var(--multimedia-text);
+            position: relative; /* For positioning the dropdown */
         }
 
-        .choice-button.penulisan:hover {
-            background-color: #6b6212;
+        .choice-button.multimedia-main:hover {
+            background-color: #265217;
             transform: translateY(-2px);
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+        }
+
+        .multimedia-sub-buttons {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--multimedia-text);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            min-width: 100%; /* Make it at least as wide as the main button */
+        }
+
+        .multimedia-sub-buttons.show {
+            display: flex;
+        }
+
+        .multimedia-sub-button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--light-text);
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            text-align: left; /* Align text to the left in sub-buttons */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .multimedia-sub-button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
         }
 
         .choice-button.game {
@@ -350,17 +385,17 @@
             color: var(--tugas-text);
         }
 
-        .joki-card.penulisan {
-            background-color: var(--penulisan-bg);
-            border-color: var(--penulisan-text);
+        .joki-card.multimedia {
+            background-color: var(--multimedia-bg);
+            border-color: var(--multimedia-text);
         }
 
-        .joki-card.penulisan h3 {
-            color: var(--penulisan-text);
+        .joki-card.multimedia h3 {
+            color: var(--multimedia-text);
         }
 
-        .joki-card.penulisan .joki-info p b {
-            color: var(--penulisan-text);
+        .joki-card.multimedia .joki-info p b {
+            color: var(--multimedia-text);
         }
 
         .joki-card:hover {
@@ -378,8 +413,7 @@
             color: var(--light-text);
             font-size: 2rem;
             font-weight: 600;
-            display: flex;
-            justify-content: center;
+            display: flex;justify-content: center;
             align-items: center;
             border: 2px solid var(--light-bg);
         }
@@ -693,6 +727,29 @@
                 flex-direction: row;
                 gap: 10px;
             }
+
+            .choice-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .choice-button {
+                width: 80%;
+                margin: 10px 0;
+            }
+
+            .multimedia-sub-buttons {
+                position: static;
+                width: 80%;
+                margin-top: 10px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .multimedia-sub-button {
+                text-align: center;
+                padding: 10px 20px;
+            }
         }
 
         @media (max-width: 600px) {
@@ -734,9 +791,11 @@
             <button class="choice-button tugas" data-layanan="Tugas">
                 <i class="fas fa-tasks"></i> Butuh Bantuan Tugas?
             </button>
-            <button class="choice-button penulisan" data-layanan="Penulisan">
-                <i class="fas fa-pencil-alt"></i> Perlu Jasa Penulisan?
-            </button>
+            <div style="position: relative;">
+                <button class="choice-button multimedia-main" data-layanan="Multimedia">
+                    <i class="fas fa-photo-video"></i> Butuh Jasa Multimedia?
+                </button>
+            </div>
             <button class="choice-button game" data-layanan="Game">
                 <i class="fas fa-gamepad"></i> Cari Joki Game Andal?
             </button>
@@ -750,7 +809,7 @@
                 <label for="skill">Skill:</label>
                 <select id="skill">
                     <option value="">Semua Skill</option>
-                    </select>
+                </select>
             </div>
             <div class="filter-group" id="pengalaman-filter-group">
                 <label for="pengalaman">Pengalaman:</label>
@@ -775,7 +834,7 @@
             <span class="close-button">&times;</span>
             <h2 id="modal-nama">Nama Joki</h2>
             <div class="modal-rating">
-                </div>
+            </div>
             <h3><i class="fas fa-info-circle"></i> Detail Lengkap</h3>
             <div class="detail-card">
                 <p id="modal-layanan-isi"></p>
@@ -807,7 +866,7 @@
 
     <script>
         const dataJoki = [
-            {
+           {
                 id: 1,
                 nama: "SEBATSZ",
                 layanan: ["Game"],
@@ -914,55 +973,82 @@
                 rating: 5,
                 testimonials: ["testimoni_nonfiksi_1.png"]
             },
+			{
+    id: 8,
+    nama: "Desain Kreatif Studio",
+    layanan: ["Multimedia"],
+    skill: ["Desain Logo", "Desain Poster"],
+    harga: "Mulai dari Rp 100.000 per desain",
+    pengalaman: "Menengah",
+    avatar: "desainkreatif.png",
+    wa: "6281234567890",
+    detail_layanan: "🎨 Jasa desain logo dan poster profesional untuk branding bisnis Anda.",
+    profil: "#",
+    rating: 4,
+    testimonials: ["testimoni_desain1.jpg"]
+},
+{
+    id: 9, 
+    nama: "Video Maker Pro",
+    layanan: ["Multimedia"],
+    skill: ["Editing Video Pendek", "Video Promosi"],
+    harga: "Mulai dari Rp 150.000 per video",
+    pengalaman: "Ahli",
+    avatar: "videomaker.jpg",
+    wa: "6289876543210",
+    detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
+    profil: "#",
+    rating: 5,
+    testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
+},
 			
         ];
 
         const jokiListDiv = document.querySelector('.joki-list');
+        const choiceButtonsDiv = document.querySelector('.choice-buttons');
         const filterSection = document.querySelector('.filter-section');
-        const skillFilterGroup = document.getElementById('skill-filter-group');
+        const backButton = document.querySelector('.back-button');
+        const mainTitle = document.querySelector('h1');
+        const choiceText = document.querySelector('.choice-text');
         const skillSelect = document.getElementById('skill');
-        const pengalamanFilterGroup = document.getElementById('pengalaman-filter-group');
         const pengalamanSelect = document.getElementById('pengalaman');
         const searchButton = document.querySelector('.search-button');
-        const choiceButtonsDiv = document.querySelector('.choice-buttons');
-        const choiceText = document.querySelector('.choice-text');
-        const backButton = document.querySelector('.back-button');
-        const container = document.querySelector('.container');
-        const mainTitle = document.querySelector('h1');
-
-        const modal = document.getElementById("jokiModal");
-        const modalNama = document.getElementById("modal-nama");
-        const modalRatingDiv = document.querySelector(".modal-rating");
-        const modalLayananIsi = document.getElementById("modal-layanan-isi");
-        const modalPesanSekarang = document.getElementById("modal-pesan-sekarang");
-        const closeModalButton = document.querySelector(".close-button");
+        const modal = document.getElementById('jokiModal');
+        const closeModalButton = document.querySelector('.close-button');
+        const modalNama = document.getElementById('modal-nama');
+        const modalRatingDiv = document.querySelector('.modal-rating');
+        const modalLayananIsi = document.getElementById('modal-layanan-isi');
+        const modalPesanSekarang = document.getElementById('modal-pesan-sekarang');
         const testimonialCarousel = document.querySelector('.testimonial-carousel');
         const prevButton = document.querySelector('.carousel-button.prev');
         const nextButton = document.querySelector('.carousel-button.next');
         let testimonialIndex = 0;
         let currentLayanan = '';
+        const multimediaMainButton = document.querySelector('.multimedia-main');
+        const choiceButtonsContainer = document.querySelector('.choice-buttons');
 
         function generateRatingStars(rating) {
             let stars = '';
             for (let i = 0; i < 5; i++) {
-                stars += `<i class="fas fa-star" style="color: ${i < rating ? 'gold' : '#ccc'}"></i>`;
+                if (i < rating) {
+                    stars += '<i class="fas fa-star" style="color: gold;"></i>';
+                } else {
+                    stars += '<i class="fas fa-star" style="color: #ccc;"></i>';
+                }
             }
             return stars;
         }
 
         function displayJoki(joki) {
             const card = document.createElement('div');
-            card.classList.add('joki-card');
-            if (joki.layanan.includes('Game')) card.classList.add('game');
-            if (joki.layanan.includes('Tugas')) card.classList.add('tugas');
-            if (joki.layanan.includes('Penulisan')) card.classList.add('penulisan');
+            card.classList.add('joki-card', joki.layanan[0].toLowerCase());
 
             const avatarDiv = document.createElement('div');
             avatarDiv.classList.add('joki-avatar');
             if (joki.avatar) {
                 const img = document.createElement('img');
                 img.src = joki.avatar;
-                img.alt = joki.nama;
+                img.alt = `Avatar ${joki.nama}`;
                 avatarDiv.appendChild(img);
             } else {
                 const initials = joki.nama.split(' ').map(name => name[0]).join('').toUpperCase().slice(0, 2);
@@ -1052,7 +1138,7 @@
         }
 
         choiceButtonsDiv.addEventListener('click', function(event) {
-            if (event.target.classList.contains('choice-button')) {
+            if (event.target.classList.contains('choice-button') && !event.target.classList.contains('multimedia-sub-button')) {
                 currentLayanan = event.target.getAttribute('data-layanan');
                 mainTitle.textContent = `Cari Joki ${currentLayanan}`;
                 choiceButtonsDiv.style.display = 'none';
@@ -1153,6 +1239,62 @@
 
         jokiListDiv.style.display = 'none'; // Hide joki list initially
         filterSection.style.display = 'none'; // Hide filter section initially
+
+        // Tambahkan sub-tombol multimedia
+        const multimediaSubButtonsDiv = document.createElement('div');
+        multimediaSubButtonsDiv.classList.add('multimedia-sub-buttons');
+
+        const subLayanan1 = 'Desain Grafis';
+        const subButton1 = document.createElement('button');
+        subButton1.classList.add('multimedia-sub-button');
+        subButton1.textContent = subLayanan1;
+        subButton1.setAttribute('data-layanan', subLayanan1);
+        subButton1.addEventListener('click', function(event) {
+            currentLayanan = event.target.getAttribute('data-layanan');
+            mainTitle.textContent = `Cari Joki ${currentLayanan}`;
+            choiceButtonsDiv.style.display = 'none';
+            choiceText.style.display = 'none';
+            filterSection.style.display = 'block';
+            backButton.style.display = 'block';
+            jokiListDiv.style.display = 'block';
+            populateFilters(currentLayanan);
+            filterJoki(currentLayanan);
+        });
+        multimediaSubButtonsDiv.appendChild(subButton1);
+
+        const subLayanan2 = 'Editing Video';
+        const subButton2 = document.createElement('button');
+        subButton2.classList.add('multimedia-sub-button');
+        subButton2.textContent = subLayanan2;
+        subButton2.setAttribute('data-layanan', subLayanan2);
+        subButton2.addEventListener('click', function(event) {
+            currentLayanan = event.target.getAttribute('data-layanan');
+            mainTitle.textContent = `Cari Joki ${currentLayanan}`;
+            choiceButtonsDiv.style.display = 'none';
+            choiceText.style.display = 'none';
+            filterSection.style.display = 'block';
+            backButton.style.display = 'block';
+            jokiListDiv.style.display = 'block';
+            populateFilters(currentLayanan);
+            filterJoki(currentLayanan);
+        });
+        multimediaSubButtonsDiv.appendChild(subButton2);
+
+        multimediaMainButton.parentNode.insertBefore(multimediaSubButtonsDiv, multimediaMainButton.nextSibling);
+
+        // Event listener untuk menampilkan/menyembunyikan sub-tombol (opsional, bisa dibuat hover saja dengan CSS)
+        multimediaMainButton.addEventListener('click', function() {
+            multimediaSubButtonsDiv.classList.toggle('show');
+        });
+
+        // Tutup dropdown jika klik di luar
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.multimedia-main') && !event.target.matches('.multimedia-sub-button')) {
+                if (multimediaSubButtonsDiv.classList.contains('show')) {
+                    multimediaSubButtonsDiv.classList.remove('show');
+                }
+            }
+        });
     </script>
     <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
 </body>
