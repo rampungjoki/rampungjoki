@@ -366,57 +366,135 @@
             opacity: 1;
         }
 
-        /* Daftar Sebagai Joki Section */
-        .daftar-joki-section {
-            text-align: center;
-            padding: 30px 20px;
-            background-color: var(--daftar-bg);
-            margin-bottom: 40px; /* Tambah margin bawah agar tidak terlalu dekat dengan section berikutnya */
-            border-radius: 12px;
-            box-shadow: 0 3px 9px rgba(0, 0, 0, 0.08);
-            border-left: 5px solid var(--daftar-text);
-            border-right: 5px solid var(--daftar-text);
-            position: relative;
-        }
+       
+/* Daftar Sebagai Joki Section */
+.daftar-joki-section {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--daftar-bg);
+    margin-bottom: 40px; /* Tambah margin bawah agar tidak terlalu dekat dengan section berikutnya */
+    border-radius: 12px;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid var(--daftar-text);
+    border-right: 5px solid var(--daftar-text);
+    position: relative;
+}
 
-        .daftar-joki-section h2 {
-            color: var(--daftar-text);
-            margin-bottom: 15px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 2.2rem; /* Sedikit diperbesar */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-        }
+.daftar-joki-section h2 {
+    color: var(--daftar-text);
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.2rem; /* Sedikit diperbesar */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
 
-        .daftar-joki-section p {
-            color: var(--secondary-color);
-            font-size: 1.1rem; /* Sedikit diperline-height: 1.6;
-            font-weight: 500;
-            font-style: italic;
-            margin-bottom: 20px; /* Tambah margin bawah untuk memberi ruang tombol */
-        }
+.daftar-joki-section p {
+    color: var(--secondary-color);
+    font-size: 1.1rem; /* Sedikit diperbesar */
+    line-height: 1.6;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 20px; /* Tambah margin bawah untuk memberi ruang tombol */
+}
 
-        .daftar-joki-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px; /* Tambah jarak antara teks dan ikon */
-            padding: 15px 30px; /* Sedikit diperbesar */
-            font-size: 1.1rem; /* Sedikit diperbesar */
-            font-weight: 700;
-            color: var(--light-text);
-            background-color: var(--daftar-text);
-            border: none;
-            border-radius: 10px; /* Sedikit lebih bulat */
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
-        }
+.daftar-joki-button {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--light-text);
+    background-color: var(--daftar-text);
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
 
-        .daftar-joki-button:hover {
-            background-color: #1976d2; /* Darker Dodger Blue */
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
+.daftar-joki-button:hover {
+    background-color: #187bcd; /* Lebih gelap sedikit */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.panduan-daftar-joki-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--daftar-text);
+    background-color: var(--daftar-bg);
+    border: 1px solid var(--daftar-text);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.panduan-daftar-joki-button:hover {
+    background-color: #e0f2f7; /* Lebih terang sedikit */
+    color: #1565c0; /* Lebih gelap sedikit */
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+}
+
+/* Gaya Card Modern */
+.daftar-joki-section.modern-card {
+    background-color: var(--light-text); /* Latar belakang putih untuk card */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1); /* Efek bayangan modern */
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center; /* Pusatkan konten di dalam card */
+}
+
+.modern-card-body {
+    /* Tidak perlu gaya khusus saat ini, bisa ditambahkan nanti */
+}
+
+.modern-card-body h2 {
+    color: var(--primary-color); /* Gunakan warna primer untuk judul */
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.modern-card-body p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.modern-card-actions {
+    display: flex;
+    flex-direction: column; /* Atur elemen menjadi kolom */
+    align-items: center; /* Pusatkan elemen secara horizontal */
+}
+
+.modern-card-actions .daftar-joki-button {
+    margin-bottom: 15px; /* Beri jarak antara tombol dan teks berikutnya */
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.modern-card-actions p.mt-10 {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+}
+
+.modern-card-actions .panduan-daftar-joki-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
 
         /* Panduan Pengguna Daftar Joki */
         .panduan-daftar-joki-container {
@@ -864,11 +942,11 @@
                     <h3>Bantuan Tugas: Bebaskan Dirimu dari Deadline!</h3>
                     <p>Tugas sekolah atau kuliah bikin pusing? Serahkan pada joki tugas kami dan nikmati waktu luangmu tanpa khawatir nilai!</p>
                 </a>
-                <a href="carijoki.html?layanan=Penulisan" class="layanan-item">
-                    <i class="fas fa-pencil-alt"></i>
-                    <h3>Jasa Penulisan: Kata-Kata yang Memukau!</h3>
-                    <p>Butuh artikel menarik, esai berkualitas, atau konten website yang menjual? Joki penulis profesional kami siap menghasilkan karya terbaik!</p>
-                </a>
+               <a href="carijoki.html" class="layanan-item" onclick="openTutorial('tutorialCariJoki')">
+    <i class="fas fa-photo-video" style="color: var(--penulisan-accent);"></i>
+    <h3>Jasa Multimedia: Visualisasikan Ide Kreatifmu!</h3>
+    <p>Bantuan editing video dan foto, desain undangan digital, presentasi menarik, dan solusi multimedia lainnya.</p>
+</a>
             </div>
             <div class="panduan-cari-joki-container">
                 <p>Ingin tahu bagaimana cara mudah memesan joki impianmu? Pelajari langkah-langkahnya:</p>
@@ -876,15 +954,17 @@
             </div>
         </section>
 
-        <section class="daftar-joki-section">
-            <h2>Saatnya Bakatmu Jadi Sumber Penghasilan!</h2>
-            <p>Punya keahlian di game, tugas, atau menulis? Bergabunglah dengan RampungJoki dan bantu ribuan orang sambil mendapatkan penghasilan yang menarik dan fleksibel!</p>
-            <a href="daftar.html" class="daftar-joki-button">Gabung Jadi Joki <i class="fas fa-user-plus"></i></a>
-            <div class="panduan-daftar-joki-container">
-                <p>Tertarik menjadi bagian dari tim joki profesional kami? Pelajari cara pendaftarannya:</p>
-                <button class="panduan-daftar-joki-button" onclick="openTutorial('tutorialDaftarJoki')">Lihat Panduan <i class="fas fa-question-circle"></i></button>
-            </div>
-        </section>
+       <section id="daftar" class="daftar-joki-section modern-card">
+    <div class="modern-card-body">
+        <h2>Saatnya Bakatmu Jadi Sumber Penghasilan!</h2>
+        <p>Punya keahlian di game, tugas, atau multimedia? Bergabunglah dengan RampungJoki dan bantu ribuan orang sambil mendapatkan penghasilan yang menarik dan fleksibel!</p>
+        <div class="modern-card-actions">
+            <a href="#" class="daftar-joki-button">Gabung Jadi Joki <i class="fas fa-handshake"></i></a>
+            <p class="mt-10">Tertarik menjadi bagian dari tim joki profesional kami? Pelajari cara pendaftarannya:</p>
+            <button type="button" class="panduan-daftar-joki-button" onclick="openTutorial('tutorialDaftarJoki')">Lihat Panduan <i class="fas fa-question-circle"></i></button>
+        </div>
+    </div>
+</section>
 
         <section class="rating-penjoki-section">
             <h2>Rating Para Penjoki</h2>
