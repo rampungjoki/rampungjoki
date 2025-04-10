@@ -62,7 +62,7 @@
             }
 
             .close-menu {
-                display: block; /* Tampilkan di tampilan ponsel */
+                display: none; /* Tampilkan di tampilan ponsel */
             }
 
             .nav-links ul {
@@ -92,6 +92,17 @@
             .nav-links ul li a:hover {
                 color: #007bff;
             }
+			 .choice-buttons {
+        flex-direction: column; /* Ubah menjadi satu kolom */
+        align-items: stretch; /* Tombol membentang selebar container */
+        gap: 1rem; /* Kurangi jarak antar tombol */
+        margin-bottom: 2rem; /* Kurangi margin bawah */
+    }
+
+    .choice-button {
+        padding: 1rem 1.5rem; /* Kurangi padding tombol */
+        font-size: 1rem; /* Kurangi ukuran font tombol */
+    }
         }
 
         /* Navbar Styles */
@@ -196,30 +207,30 @@
             margin-bottom: 2rem;
         }
 
-        .choice-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
+       .choice-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
 
-        .choice-button {
-            background-color: #fff;
-            border: 2px solid transparent;
-            padding: 1.5rem 2.5rem;
-            border-radius: 0.5rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+.choice-button {
+    background-color: #fff;
+    border: 2px solid transparent;
+    padding: 1.5rem 2.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
 
         .choice-button.game {
             border-color: #ff6f61;
@@ -757,16 +768,16 @@
         let testimonialIndex = 0;
 
         const hamburgerMenu = document.querySelector('.hamburger-menu');
-        const navLinks = document.querySelector('.nav-links');
-        const closeMenuButton = document.querySelector('.close-menu');
+const navLinks = document.querySelector('.nav-links');
+const closeMenuButton = document.querySelector('.close-menu');
 
-        hamburgerMenu.addEventListener('click', () => {
-            navLinks.classList.add('open');
-        });
+hamburgerMenu.addEventListener('click', () => {
+    navLinks.classList.add('open');
+});
 
-        closeMenuButton.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-        });
+closeMenuButton.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+});
 
         const dataJoki = [
              {
