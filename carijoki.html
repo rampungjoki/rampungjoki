@@ -103,12 +103,65 @@
         padding: 1rem 1.5rem; /* Kurangi padding tombol */
         font-size: 1rem; /* Kurangi ukuran font tombol */
     }
+	 .modal-content {
+        margin-top: 5rem; /* Tambah margin atas agar tidak menutupi navbar (tinggi navbar + sedikit ruang) */
+        width: 95%; /* Lebar modal lebih kecil agar ada ruang di sisi */
+        margin-left: auto;
+        margin-right: auto;
+        /* max-height: 80vh; */ /* Anda bisa batasi tinggi modal jika perlu */
+        overflow-y: auto; /* Tambahkan scroll jika konten modal terlalu panjang */
+        border-radius: 0.8rem; /* Sudut modal lebih membulat */
+    }
+
+    .close-button {
+        font-size: 1.8rem; /* Ukuran tombol close lebih kecil */
+        top: 0.5rem;
+        right: 1rem;
+    }
+
+    .modal-nama {
+        font-size: 1.3rem; /* Ukuran judul modal lebih kecil */
+        margin-bottom: 0.3rem;
+    }
+
+    .modal-rating {
+        margin-bottom: 0.5rem;
+    }
+
+    .modal-layanan h3,
+    .modal-detail h3,
+    .testimonial-section h3 {
+        font-size: 1rem; /* Ukuran subjudul modal lebih kecil */
+        margin-top: 0.8rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .modal-layanan p,
+    .modal-detail-layanan {
+        font-size: 0.9rem; /* Ukuran teks modal lebih kecil */
+        line-height: 1.5;
+        margin-bottom: 0.8rem;
+    }
+
+    .testimonial-carousel {
+        width: 90%; /* Lebar carousel testimoni lebih kecil */
+        margin: 0.3rem auto;
+    }
+
+    .carousel-button {
+        font-size: 1.2rem; /* Ukuran tombol carousel lebih kecil */
+    }
+
+    .contact-button {
+        font-size: 0.9rem; /* Ukuran tombol kontak lebih kecil */
+        padding: 0.6rem 1rem;
+    }
         }
 
         /* Navbar Styles */
         nav {
             background-color: #fff;
-            padding: 1.2rem 20px;
+            padding: 0.8rem 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
@@ -117,17 +170,20 @@
             z-index: 1000;
         }
 
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+       nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: nilai-lama; */ /* Jika ada, kurangi nilainya */
+}
 
-        nav .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #007bff; /* Primary Color */
-        }
+       nav .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #007bff; /* Primary Color */
+    /* margin-top: nilai-lama; */ /* Kurangi jika ada */
+    /* margin-bottom: nilai-lama; */ /* Kurangi jika ada */
+}
 
         .hamburger-menu {
             background: none;
@@ -154,12 +210,14 @@
             margin-left: 1.8rem;
         }
 
-        .nav-links ul li a {
-            text-decoration: none;
-            color: #555;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
+       .nav-links ul li a {
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s ease;
+    font-weight: 300;
+    /* padding-top: nilai-lama; */ /* Kurangi jika ada */
+    /* padding-bottom: nilai-lama; */ /* Kurangi jika ada */
+}
 
         .nav-links ul li a:hover {
             color: #007bff;
