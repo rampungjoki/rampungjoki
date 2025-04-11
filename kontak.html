@@ -6,7 +6,7 @@
     <title>Kontak Pengaduan - Rampungin.id</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* === Gaya Umum === */
@@ -20,9 +20,13 @@
         }
 
         :root {
-            --primary-color: #007bff; /* Blue */
-            --secondary-color: #6c757d; /* Gray */
-            --accent-color: #28a745; /* Green */
+            --primary-color: #007bff; /* Blue (tetap sebagai warna primer) */
+            --secondary-color: #6c757d; /* Gray (dikembalikan untuk font navbar) */
+            --accent-color-game: #dc3545; /* Merah untuk Game */
+            --accent-color-tugas: #4CAF50; /* Hijau Elegant untuk Tugas */
+            --accent-color-multimedia: #8e44ad; /* Ungu untuk Multimedia */
+            --accent-color-lain: #007bff; /* Biru Elegant untuk Lain-lain */
+            --accent-color-lain-gold: #FFD700; /* Gold untuk Lain-lain */
             --light-bg: #f8f9fa;
             --dark-text: #343a40; /* Dark Gray */
             --light-text: #fff;
@@ -56,14 +60,32 @@
             border-radius: 12px;
         }
 
-        h1, h2, h3 {
+        h1 {
             color: var(--primary-color);
             text-align: center;
             margin-bottom: 20px;
         }
 
         h2 {
+            color: var(--dark-text);
+            text-align: center;
             margin-top: 30px;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 50px;
+            background-color: var(--accent-color-game); /* Default color */
         }
 
         .contact-section {
@@ -81,7 +103,7 @@
             text-align: center;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer;
-            border-left: 5px solid var(--accent-color); /* Menambahkan aksen warna di kiri */
+            border-left: 5px solid var(--accent-color-game); /* Default color */
         }
 
         .contact-card:hover {
@@ -93,6 +115,11 @@
             font-size: 3rem;
             color: var(--secondary-color);
             margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover .profile-icon {
+            color: var(--accent-color-game); /* Default hover color */
         }
 
         .contact-card h3 {
@@ -110,7 +137,7 @@
         .chat-button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: var(--accent-color);
+            background-color: var(--accent-color-game); /* Default color */
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
@@ -118,7 +145,7 @@
         }
 
         .chat-button:hover {
-            background-color: #218838;
+            background-color: #d35400; /* Lebih gelap */
         }
 
         .additional-info {
@@ -134,13 +161,18 @@
             padding: 20px;
             text-align: center;
             margin-top: 20px;
-            border-left: 5px solid var(--primary-color); /* Aksen warna berbeda */
+            border-left: 5px solid var(--accent-color-lain-gold); /* Warna Gold */
         }
 
         .additional-contact-card .profile-icon {
             font-size: 3rem;
             color: var(--secondary-color);
             margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .additional-contact-card:hover .profile-icon {
+            color: var(--accent-color-lain-gold); /* Warna Gold saat hover */
         }
 
         .additional-contact-card h3 {
@@ -151,8 +183,8 @@
 
         .additional-contact-card p {
             color: var(--secondary-color);
-            margin-bottom: 10px;
             font-size: 0.95rem;
+            margin-bottom: 10px;
         }
 
         /* Navbar Styles (reuse) */
@@ -185,7 +217,7 @@
         .hamburger-menu {
             background: none;
             border: none;
-            color: var(--secondary-color);
+            color: var(--secondary-color); /* Kembali ke warna abu-abu */
             font-size: 1.5rem;
             cursor: pointer;
             display: none;
@@ -209,7 +241,7 @@
 
         .nav-links ul li a {
             text-decoration: none;
-            color: var(--secondary-color);
+            color: var(--secondary-color); /* Kembali ke warna abu-abu */
             transition: color 0.3s ease;
             font-weight: 500;
         }
@@ -221,7 +253,7 @@
         .close-menu {
             background: none;
             border: none;
-            color: var(--secondary-color);
+            color: var(--secondary-color); /* Kembali ke warna abu-abu */
             font-size: 1.5rem;
             cursor: pointer;
             outline: none;
@@ -341,76 +373,67 @@
         <h1>Hubungi Tim Dukungan Rampungin.id</h1>
         <p style="text-align: center; color: var(--secondary-color); margin-bottom: 30px;">Kami berkomitmen untuk memberikan layanan terbaik. Jika Anda memiliki pertanyaan, kendala teknis, atau masukan yang berkaitan dengan layanan kami, jangan ragu untuk menghubungi tim dukungan sesuai dengan divisi terkait di bawah ini:</p>
 
-        <h2>Tim Dukungan Divisi Game</h2>
-        <section class="contact-section">
-            <div class="contact-card">
+        <h2 style="--accent-color-heading: var(--accent-color-game);">Tim Dukungan Divisi Game</h2>
+        <section class="contact-section" style="--accent-color-border: var(--accent-color-game);">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-game);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Yove</h3>
-                
-                <a href="https://wa.me/6281292398570" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/6281292398570" class="chat-button" target="_blank" style="background-color: var(--accent-color-game);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
-            <div class="contact-card">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-game);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Onggo</h3>
-               
-                <a href="https://wa.me/6285716046032" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/6285716046032" class="chat-button" target="_blank" style="background-color: var(--accent-color-game);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
-            <div class="contact-card">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-game);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Iyus</h3>
-                
-                <a href="https://wa.me/6285963136577" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/6285963136577" class="chat-button" target="_blank" style="background-color: var(--accent-color-game);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
         </section>
 
-        <h2>Tim Dukungan Divisi Tugas</h2>
-        <section class="contact-section">
-            <div class="contact-card">
+        <h2 style="--accent-color-heading: var(--accent-color-tugas);">Tim Dukungan Divisi Tugas</h2>
+        <section class="contact-section" style="--accent-color-border: var(--accent-color-tugas);">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-tugas);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Mustofa</h3>
-               
-                <a href="https://wa.me/6287771369160" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/6287771369160" class="chat-button" target="_blank" style="background-color: var(--accent-color-tugas);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
-            <div class="contact-card">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-tugas);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Rendy</h3>
-                
-                <a href="https://wa.me/62895333225190" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/62895333225190" class="chat-button" target="_blank" style="background-color: var(--accent-color-tugas);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
-            <div class="contact-card">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-tugas);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Haerul</h3>
-               
-                <a href="https://wa.me/6285773329976" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.wa.me/6285773329976" class="chat-button" target="_blank" style="background-color: var(--accent-color-tugas);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
         </section>
 
-        <h2>Tim Dukungan Divisi Multimedia</h2>
-        <section class="contact-section">
-            <div class="contact-card">
+        <h2 style="--accent-color-heading: var(--accent-color-multimedia);">Tim Dukungan Divisi Multimedia</h2>
+        <section class="contact-section" style="--accent-color-border: var(--accent-color-multimedia);">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-multimedia);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Saeful</h3>
-                
-                <a href="https://wa.me/6285771013552" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/6285771013552" class="chat-button" target="_blank" style="background-color: var(--accent-color-multimedia);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
-            <div class="contact-card">
+            <div class="contact-card" style="--accent-color-hover: var(--accent-color-multimedia);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Reza</h3>
-                
-                <a href="https://wa.me/6281243045320" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/6281243045320" class="chat-button" target="_blank" style="background-color: var(--accent-color-multimedia);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
         </section>
 
-        <div class="additional-info">
-            <h2>Kontak di Luar Layanan Jasa</h2>
-            <div class="additional-contact-card">
+        <h2 style="--accent-color-heading: var(--accent-color-lain-gold);">Kontak di Luar Layanan Jasa</h2>
+        <section class="contact-section" style="--accent-color-border: var(--accent-color-lain-gold);">
+            <div class="contact-card additional-contact-card" style="--accent-color-hover: var(--accent-color-lain-gold);">
                 <i class="fas fa-user-circle profile-icon"></i>
                 <h3>Faisal</h3>
-               
-                <a href="https://wa.me/6287874805035" class="chat-button" target="_blank">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
+                <p style="color: var(--secondary-color); font-size: 0.9rem; margin-bottom: 15px;">Untuk pertanyaan atau masukan yang tidak terkait langsung dengan layanan jasa, silakan menghubungi kontak di bawah ini.</p>
+                <a href="https://wa.me/6287874805035" class="chat-button" target="_blank" style="background-color: var(--accent-color-lain-gold);">Hubungi via WhatsApp <i class="fab fa-whatsapp"></i></a>
             </div>
-            <p style="margin-top: 10px;">Untuk pertanyaan atau masukan yang tidak terkait langsung dengan layanan jasa, silakan menghubungi kontak di atas.</p>
-        </div>
+        </section>
     </div>
 
     <footer>
@@ -421,6 +444,9 @@
         const hamburgerMenu = document.querySelector('.hamburger-menu');
         const closeMenu = document.querySelector('.close-menu');
         const navLinks = document.querySelector('.nav-links');
+        const contactSections = document.querySelectorAll('.contact-section');
+        const contactCardIcons = document.querySelectorAll('.contact-card .profile-icon');
+        const contactCardTitles = document.querySelectorAll('h2');
 
         hamburgerMenu.addEventListener('click', () => {
             navLinks.classList.add('open');
@@ -438,6 +464,43 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('fadein');
+
+            // Set accent colors based on heading
+            contactCardTitles.forEach(title => {
+                const accentColor = getComputedStyle(title).getPropertyValue('--accent-color-heading');
+                const section = title.nextElementSibling;
+                if (section && section.classList.contains('contact-section')) {
+                    section.style.setProperty('--accent-color-border', accentColor);
+                    section.querySelectorAll('.contact-card').forEach(card => {
+                        card.style.setProperty('--accent-color-hover', accentColor);
+                        card.querySelector('.chat-button').style.backgroundColor = accentColor;
+                        card.querySelector('.profile-icon').style.color = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color'); // Reset default icon color
+                        card.addEventListener('mouseenter', () => {
+                            card.querySelector('.profile-icon').style.color = accentColor;
+                        });
+                        card.addEventListener('mouseleave', () => {
+                            card.querySelector('.profile-icon').style.color = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
+                        });
+                    });
+                } else if (title.textContent.includes('Luar Layanan Jasa')) {
+                    const accentColorLainGold = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-lain-gold');
+                    const sectionLain = title.nextElementSibling;
+                    if (sectionLain && sectionLain.classList.contains('contact-section')) {
+                        sectionLain.style.setProperty('--accent-color-border', accentColorLainGold);
+                        sectionLain.querySelectorAll('.contact-card').forEach(card => {
+                            card.style.setProperty('--accent-color-hover', accentColorLainGold);
+                            card.querySelector('.chat-button').style.backgroundColor = accentColorLainGold;
+                            card.querySelector('.profile-icon').style.color = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color'); // Reset default icon color
+                            card.addEventListener('mouseenter', () => {
+                                card.querySelector('.profile-icon').style.color = accentColorLainGold;
+                            });
+                            card.addEventListener('mouseleave', () => {
+                                card.querySelector('.profile-icon').style.color = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color');
+                            });
+                        });
+                    }
+                }
+            });
         });
     </script>
     <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
