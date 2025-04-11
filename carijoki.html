@@ -92,6 +92,7 @@
             .nav-links ul li a:hover {
                 color: #007bff;
             }
+			}
 			 .choice-buttons {
         flex-direction: column; /* Ubah menjadi satu kolom */
         align-items: stretch; /* Tombol membentang selebar container */
@@ -161,7 +162,7 @@
         /* Navbar Styles */
         nav {
             background-color: #fff;
-            padding: 0.8rem 20px;
+            padding: 0.5rem 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
@@ -215,6 +216,8 @@
     color: #555;
     transition: color 0.3s ease;
     font-weight: 300;
+	 padding-top: 0.4rem; /* Contoh padding baru */
+    padding-bottom: 0.4rem; /* Contoh padding baru */
     /* padding-top: nilai-lama; */ /* Kurangi jika ada */
     /* padding-bottom: nilai-lama; */ /* Kurangi jika ada */
 }
@@ -821,7 +824,8 @@
         const nextButton = document.getElementById('nextButton');
         let testimonialIndex = 0;
 
-       const hamburgerMenu = document.querySelector('.hamburger-menu');
+      
+	  const hamburgerMenu = document.querySelector('.hamburger-menu');
 const navLinks = document.querySelector('.nav-links');
 const closeMenuButton = document.querySelector('.close-menu');
 
