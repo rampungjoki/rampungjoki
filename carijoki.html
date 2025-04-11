@@ -1016,25 +1016,26 @@
         const nextButton = document.getElementById('nextButton');
         let testimonialIndex = 0;
 
-     const hamburgerMenu = document.querySelector('.hamburger-menu');
-const navLinks = document.querySelector('.nav-links');
-const closeMenu = document.querySelector('.close-menu');
+      
+const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const closeMenuButton = document.querySelector('.close-menu');
 
-if (hamburgerMenu) {
-    hamburgerMenu.addEventListener('click', () => {
-        navLinks.classList.add('open');
-    });
-}
+        console.log('hamburgerMenu:', hamburgerMenu);
+        console.log('navLinks:', navLinks);
+        console.log('closeMenuButton:', closeMenuButton);
 
-if (closeMenu) {
-    closeMenu.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-    });
-}
-console.log('hamburgerMenu:', hamburgerMenu);
-console.log('navLinks:', navLinks);
-console.log('closeMenuButton:', closeMenuButton);
+        if (hamburgerMenu) {
+            hamburgerMenu.addEventListener('click', () => {
+                navLinks.classList.add('open');
+            });
+        }
 
+        if (closeMenuButton) {
+            closeMenuButton.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        }
 hamburgerMenu.addEventListener('click', () => {
     navLinks.classList.add('open');
 });
