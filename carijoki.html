@@ -29,99 +29,179 @@
             padding: 20px;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            nav .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+     /* Mobile Styles */
+@media (max-width: 768px) {
+    body {
+        margin-top: 56px; /* Beri ruang untuk navbar fixed */
+    }
 
-            .hamburger-menu {
-                display: block; /* Tampilkan di tampilan ponsel */
-            }
-	
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -300px; /* Sembunyikan di luar layar */
-                width: 250px;
-                height: 100%;
-                background-color: #fff;
-                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-                z-index: 1001;
-                transition: left 0.3s ease-in-out;
-                padding-top: 4rem; /* Beri ruang untuk status bar */
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start; /* Align items to the start */
-            }
+    nav {
+        background-color: #fff;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
 
-            .nav-links.open {
-                left: 0; /* Tampilkan sidebar saat class 'open' ditambahkan */
-            }
+    nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        max-width: none;
+        margin: 0;
+        width: 100%;
+    }
 
-            .close-menu {
-                display: block; /* Tampilkan di tampilan ponsel */
-            }
+    nav .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #007bff;
+    }
 
-            .nav-links ul {
-                flex-direction: column;
-                padding: 0 1.5rem;
-                margin-top: 1rem; /* Add some space below the close button */
-            }
+    .hamburger-menu {
+        background: none;
+        border: none;
+        color: #555;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: block; /* Tampilkan di tampilan ponsel */
+        outline: none;
+    }
 
-            .nav-links ul li {
-                margin-left: 0;
-                margin-bottom: 1rem;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 1rem;
-            }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Sembunyikan di luar layar */
+        width: 250px;
+        height: 100%;
+        background-color: #fff;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        transition: left 0.3s ease-in-out;
+        padding-top: 5rem; /* Beri ruang untuk logo dan mungkin status bar */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
+    }
 
-            .nav-links ul li:last-child {
-                border-bottom: none;
-                padding-bottom: 0;
-                margin-bottom: 0;
-            }
+    .nav-links.open {
+        left: 0; /* Tampilkan sidebar saat class 'open' ditambahkan */
+    }
 
-            .nav-links ul li a {
-                color: #333;
-                font-weight: 600;
-            }
+    .close-menu {
+        background: none;
+        border: none;
+        color: #555;
+        font-size: 1.5rem;
+        cursor: pointer;
+        outline: none;
+        align-self: flex-end;
+        padding: 1rem;
+        margin-right: 0.5rem;
+        display: block; /* Tampilkan di tampilan ponsel */
+    }
 
-            .nav-links ul li a:hover {
-                color: #007bff;
-            }
-			}
-			 .choice-buttons {
+    .nav-links ul {
+        flex-direction: column;
+        padding: 0 1.5rem;
+        margin-top: 1rem; /* Add some space below the close button */
+        width: 100%;
+    }
+
+    .nav-links ul li {
+        margin-left: 0;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 1rem;
+        width: 100%;
+    }
+
+    .nav-links ul li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .nav-links ul li a {
+        text-decoration: none;
+        color: #333;
+        transition: color 0.3s ease;
+        font-weight: 600;
+        padding: 0.5rem 0;
+        display: block; /* Make the whole li clickable */
+    }
+
+    .nav-links ul li a:hover {
+        color: #007bff;
+    }
+
+    .choice-buttons {
+        display: flex;
         flex-direction: column; /* Ubah menjadi satu kolom */
         align-items: stretch; /* Tombol membentang selebar container */
         gap: 1rem; /* Kurangi jarak antar tombol */
         margin-bottom: 2rem; /* Kurangi margin bawah */
     }
 
+    /* Target tombol ketiga di awal */
+    .choice-buttons > *:nth-child(3) {
+        /* Membuat tombol ketiga memanjang ke bawah */
+        width: 100%;
+    }
+
     .choice-button {
         padding: 1rem 1.5rem; /* Kurangi padding tombol */
         font-size: 1rem; /* Kurangi ukuran font tombol */
+        display: block; /* Membuat tombol memanjang secara default di mobile */
+        width: 100%; /* Membuat tombol memenuhi lebar container */
     }
-	 .modal-content {
-        margin-top: 5rem; /* Tambah margin atas agar tidak menutupi navbar (tinggi navbar + sedikit ruang) */
-        width: 95%; /* Lebar modal lebih kecil agar ada ruang di sisi */
-        margin-left: auto;
-        margin-right: auto;
-        /* max-height: 80vh; */ /* Anda bisa batasi tinggi modal jika perlu */
-        overflow-y: auto; /* Tambahkan scroll jika konten modal terlalu panjang */
-        border-radius: 0.8rem; /* Sudut modal lebih membulat */
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Tetap di posisinya meskipun di-scroll */
+        z-index: 1002; /* Pastikan modal di atas navbar samping */
+        left: 0;
+        top: 0;
+        width: 100%; /* Lebar penuh viewport */
+        height: 100%; /* Tinggi penuh viewport */
+        overflow: auto; /* Aktifkan scroll jika konten panjang */
+        background-color: rgba(0,0,0,0.4); /* Latar belakang semi-transparan */
+    }
+
+    .modal.open {
+        display: block;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 0; /* Hilangkan margin default */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%; /* Lebar penuh modal */
+        height: 100%; /* Tinggi penuh modal */
+        border-radius: 0; /* Hilangkan sudut bulat */
+        position: relative;
+        overflow-y: auto; /* Aktifkan scroll jika konten modal panjang */
     }
 
     .close-button {
-        font-size: 1.8rem; /* Ukuran tombol close lebih kecil */
-        top: 0.5rem;
+        color: #aaa;
+        position: absolute;
+        top: 1rem;
         right: 1rem;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 1003; /* Pastikan tombol close di atas modal-content */
     }
 
+    /* Styling modal lainnya tetap sama */
     .modal-nama {
-        font-size: 1.3rem; /* Ukuran judul modal lebih kecil */
+        font-size: 1.3rem;
         margin-bottom: 0.3rem;
     }
 
@@ -132,32 +212,144 @@
     .modal-layanan h3,
     .modal-detail h3,
     .testimonial-section h3 {
-        font-size: 1rem; /* Ukuran subjudul modal lebih kecil */
+        font-size: 1rem;
         margin-top: 0.8rem;
         margin-bottom: 0.3rem;
     }
 
     .modal-layanan p,
     .modal-detail-layanan {
-        font-size: 0.9rem; /* Ukuran teks modal lebih kecil */
+        font-size: 0.9rem;
         line-height: 1.5;
         margin-bottom: 0.8rem;
     }
 
     .testimonial-carousel {
-        width: 90%; /* Lebar carousel testimoni lebih kecil */
+        width: 90%;
         margin: 0.3rem auto;
     }
 
     .carousel-button {
-        font-size: 1.2rem; /* Ukuran tombol carousel lebih kecil */
+        font-size: 1.2rem;
     }
 
     .contact-button {
-        font-size: 0.9rem; /* Ukuran tombol kontak lebih kecil */
+        font-size: 0.9rem;
         padding: 0.6rem 1rem;
     }
-        }
+}
+/* Desktop Styles */
+@media (min-width: 769px) {
+    body {
+        margin-top: 0; /* Reset margin top di desktop */
+    }
+
+    nav {
+        background-color: #fff;
+        padding: 0.5rem 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #007bff;
+    }
+
+    .hamburger-menu {
+        display: none; /* Sembunyikan di desktop */
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        position: static; /* Reset positioning */
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        box-shadow: none;
+        padding-top: 0;
+        flex-direction: row;
+    }
+
+    .nav-links ul {
+        list-style: none;
+        display: flex;
+        margin-bottom: 0;
+    }
+
+    .nav-links ul li {
+        margin-left: 1.8rem;
+    }
+
+    .nav-links ul li a {
+        text-decoration: none;
+        color: #555;
+        transition: color 0.3s ease;
+        font-weight: 300;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .nav-links ul li a:hover {
+        color: #007bff;
+    }
+
+    .close-menu {
+        display: none; /* Sembunyikan di desktop */
+    }
+
+    .choice-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        flex-direction: row; /* Kembali ke tampilan horizontal */
+        align-items: center; /* Align item secara vertikal di tengah */
+    }
+
+    .choice-button {
+        background-color: #fff;
+        border: 2px solid transparent;
+        padding: 1.5rem 2.5rem;
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        color: #333;
+        display: inline-flex; /* Kembali ke inline-flex */
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: auto; /* Reset lebar otomatis */
+    }
+}
+
+/* Styling konten utama agar tidak tertutup navbar */
+.main-content {
+    padding-top: 60px; /* Sesuaikan dengan tinggi navbar di desktop */
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: 56px; /* Sesuaikan dengan tinggi navbar mobile */
+    }
+}
+
 
         /* Navbar Styles */
         nav {
