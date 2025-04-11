@@ -43,7 +43,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 1000;
+        z-index: 1004;
     }
 
     nav .container {
@@ -65,11 +65,12 @@
     .hamburger-menu {
         background: none;
         border: none;
-        color: yellow;
+        color: #555;
         font-size: 3rem;
         cursor: pointer;
         display: block; /* Tampilkan di tampilan ponsel */
         outline: none;
+		z-index: 1004;
     }
 
     .nav-links {
@@ -916,13 +917,9 @@
     <nav>
         <div class="container">
             <div class="logo">Rampungin.id</div>
-            <button class="hamburger-menu">
-                <i class="fas fa-bars"></i>
-            </button>
+           <button class="hamburger-menu">☰</button>
             <div class="nav-links">
-                <button class="close-menu">
-                    <i class="fas fa-times"></i>
-                </button>
+                <button class="close-menu">x</button>
                 <ul>
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="carijoki.html">Cari Jasa</a></li>
@@ -1022,24 +1019,24 @@
 
       
 const hamburgerMenu = document.querySelector('.hamburger-menu');
-        const navLinks = document.querySelector('.nav-links');
-        const closeMenuButton = document.querySelector('.close-menu');
+const navLinks = document.querySelector('.nav-links');
+const closeMenuButton = document.querySelector('.close-menu');
 
-        console.log('hamburgerMenu:', hamburgerMenu);
-        console.log('navLinks:', navLinks);
-        console.log('closeMenuButton:', closeMenuButton);
+console.log('hamburgerMenu:', hamburgerMenu);
+console.log('navLinks:', navLinks);
+console.log('closeMenuButton:', closeMenuButton);
 
-        if (hamburgerMenu) {
-            hamburgerMenu.addEventListener('click', () => {
-                navLinks.classList.add('open');
-            });
-        }
+if (hamburgerMenu) {
+    hamburgerMenu.addEventListener('click', () => {
+        navLinks.classList.add('open');
+    });
+}
 
-        if (closeMenuButton) {
-            closeMenuButton.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-            });
-        }
+if (closeMenuButton) {
+    closeMenuButton.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+    });
+}
 hamburgerMenu.addEventListener('click', () => {
     navLinks.classList.add('open');
 });
