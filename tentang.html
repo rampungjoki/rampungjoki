@@ -20,13 +20,13 @@
         }
 
         :root {
-            --primary-color: #007bff; /* Blue */
-            --secondary-color: #6c757d; /* Gray */
-            --accent-color: #28a745; /* Green */
-            --light-bg: #f8f9fa;
-            --dark-text: #343a40; /* Dark Gray */
+            --primary-color: #007bff; /* Blue (warna tema sebelumnya) */
+            --secondary-color: #5a698f; /* Slate Gray */
+            --accent-color: #00a896; /* Teal */
+            --light-bg: #f4f6f8;
+            --dark-text: #333;
             --light-text: #fff;
-            --border-color: #dee2e6;
+            --border-color: #d1d7e0;
         }
 
         body {
@@ -38,7 +38,7 @@
             min-height: 100vh;
             position: relative;
             animation: fadein 0.5s ease-out;
-            padding-top: 78px; /* Sesuaikan dengan tinggi navbar */
+            padding-top: 100px; /* Jarak lebih besar untuk judul */
         }
 
         @keyframes fadein {
@@ -64,7 +64,7 @@
         /* Navbar Styles */
         nav {
             background-color: #fff;
-            padding: 1.2rem 20px;
+            padding: 1rem 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
@@ -110,7 +110,7 @@
         }
 
         .nav-links ul li {
-            margin-left: 1.8rem;
+            margin-left: 1.5rem;
         }
 
         .nav-links ul li a {
@@ -143,51 +143,72 @@
 
         /* Mobile Styles */
         @media (max-width: 768px) {
+            body {
+                padding-top: 90px; /* Jarak lebih besar untuk judul mobile */
+            }
+
+            nav {
+                padding: 0.8rem 15px;
+            }
+
             nav .container {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
             }
 
+            .logo {
+                font-size: 1.5rem;
+            }
+
             .hamburger-menu {
-                display: block; /* Tampilkan di tampilan ponsel */
+                display: block;
+                font-size: 1.8rem;
+                color: var(--primary-color);
             }
 
             .nav-links {
                 position: fixed;
                 top: 0;
-                left: -300px; /* Sembunyikan di luar layar */
-                width: 250px;
+                left: -280px;
+                width: 280px;
                 height: 100%;
                 background-color: #fff;
                 box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
                 z-index: 1001;
                 transition: left 0.3s ease-in-out;
-                padding-top: 4rem; /* Beri ruang untuk status bar */
+                padding-top: 3.5rem;
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start; /* Align items to the start */
+                align-items: flex-start;
             }
 
             .nav-links.open {
-                left: 0; /* Tampilkan sidebar saat class 'open' ditambahkan */
+                left: 0;
             }
 
             .close-menu {
-                display: block; /* Tampilkan di tampilan ponsel */
+                display: block;
+                font-size: 1.8rem;
+                color: var(--secondary-color);
+                padding: 0.8rem;
+                margin-left: auto;
+                margin-right: 1rem;
             }
 
             .nav-links ul {
                 flex-direction: column;
-                padding: 0 1.5rem;
-                margin-top: 1rem; /* Add some space below the close button */
+                padding: 1rem 1.5rem;
+                margin-top: 1rem;
+                width: 100%;
             }
 
             .nav-links ul li {
                 margin-left: 0;
-                margin-bottom: 1rem;
+                margin-bottom: 0.8rem;
                 border-bottom: 1px solid #eee;
-                padding-bottom: 1rem;
+                padding-bottom: 0.8rem;
+                width: 100%;
             }
 
             .nav-links ul li:last-child {
@@ -199,6 +220,8 @@
             .nav-links ul li a {
                 color: var(--dark-text);
                 font-weight: 600;
+                display: block;
+                padding: 0.5rem 0;
             }
 
             .nav-links ul li a:hover {
@@ -206,7 +229,7 @@
             }
         }
 
-        /* Visi Misi Section - Interaktif */
+        /* Visi Misi Section - Lebih Keren */
         .vision-mission-section {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -215,40 +238,52 @@
         }
 
         .vm-card {
-            background-color: var(--light-bg);
+            background-color: var(--light-text);
             border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             cursor: pointer;
+            border-top: 5px solid var(--accent-color); /* Aksen warna di atas */
         }
 
         .vm-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .vm-card i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
         }
 
         .vm-card h3 {
-            color: var(--dark-text);
-            margin-bottom: 10px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
 
         .vm-card p, .vm-card ul, .vm-card li {
             color: var(--secondary-color);
-            line-height: 1.6;
+            line-height: 1.7;
             text-align: left;
         }
 
         .vm-card ul {
-            list-style-type: disc;
-            margin-left: 20px;
+            list-style-type: none; /* Hilangkan bullet default */
+            padding-left: 25px; /* Beri ruang untuk ikon */
+            position: relative; /* Untuk memposisikan ikon */
+        }
+
+        .vm-card.mission-card ul li i {
+            position: absolute;
+            left: 0;
+            top: 5px; /* Sesuaikan posisi vertikal ikon */
+            color: var(--accent-color);
+            font-size: 1rem;
         }
 
         /* Responsive Visi Misi */
@@ -259,6 +294,97 @@
 
             .vm-card {
                 margin-bottom: 20px;
+                padding: 30px;
+            }
+
+            .vm-card i {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            .vm-card h3 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Nilai Kami Section - Kebawah di Mobile, Aksen Warna */
+        .additional-card-section {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: var(--light-bg);
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+
+        .additional-card-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .interactive-card-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .interactive-card {
+            background-color: var(--light-text);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border-left: 5px solid var(--accent-color); /* Aksen warna kiri */
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .interactive-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .interactive-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .interactive-card p {
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive Nilai Kami */
+        @media (max-width: 768px) {
+            .interactive-card-grid {
+                grid-template-columns: 1fr; /* Satu kolom di mobile */
+                gap: 15px;
+            }
+
+            .interactive-card {
+                margin-bottom: 15px;
+                padding: 20px;
+            }
+
+            .interactive-card i {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .interactive-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .interactive-card p {
+                font-size: 0.9rem;
             }
         }
 
@@ -347,79 +473,98 @@
         .support-thanks-section {
             padding: 40px 20px;
             text-align: center;
-            background-color: var(--light-bg);
+            background: linear-gradient(135deg, #e0f7fa, #f0fff0); /* Warna latar sama dengan tim */
             margin-bottom: 30px;
             border-radius: 8px;
+            border-left: 5px solid#80cbc4; /* Aksen garis kiri */
+            border-right: 5px solid #a5d6a7; /* Aksen garis kanan */
         }
 
         .support-thanks-section h2 {
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .support-thanks-section p {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .support-slider-container {
+            position: relative;
+            max-width: 400px; /* Ukuran disesuaikan */
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .support-team-names {
-            font-weight: bold;
-            color: var(--primary-color);
+        .support-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
 
-        /* Nilai Tambahan Card Interaktif - Gaya Lebih Modern (Disesuaikan) */
-        .additional-card-section {
-            padding: 40px 20px;
+        .support-card {
+            min-width: 100%;
+            padding: 20px;
             text-align: center;
-            background-color: var(--light-bg);
-            margin-bottom: 40px;
-            border-radius: 8px; /* Kembali ke border-radius awal */
-        }
-
-        .additional-card-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px; /* Kembali ke margin-bottom awal */
-        }
-
-        .interactive-card-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(150px, 1fr)); /* 4 kolom dengan lebar minimum lebih kecil */
-            gap: 15px; /* Gap antar card lebih kecil */
-        }
-
-        .interactive-card {
             background-color: var(--light-text);
-            border-radius: 8px; /* Kembali ke border-radius awal */
-            padding: 15px; /* Padding lebih kecil */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Kembali ke box-shadow awal */
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            border: none; /* Hilangkan border tipis yang ditambahkan sebelumnya jika tidak diinginkan */
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
         }
 
-        .interactive-card:hover {
-            transform: translateY(-5px); /* Kembali ke efek hover awal */
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Kembali ke efek shadow hover awal */
-        }
-
-        .interactive-card i {
-            font-size: 2rem; /* Kembali ke ukuran ikon awal */
+        .support-card i {
+            font-size: 2.5rem;
             color: var(--accent-color);
-            margin-bottom: 10px; /* Kembali ke margin-bottom awal */
+            margin-bottom: 10px;
         }
 
-        .interactive-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px; /* Kembali ke margin-bottom awal */
-            font-size: 1.1rem; /* Ukuran judul dikecilkan */
+        .support-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark-text);
+            margin-bottom: 5px;
         }
 
-        .interactive-card p {
+        .support-card p {
             color: var(--secondary-color);
-            font-size: 0.9rem; /* Ukuran paragraf kembali ke awal atau sedikit lebih kecil */
-            line-height: 1.6; /* Line height kembali ke awal */
+            font-size: 0.9rem;
+        }
+
+        .support-slider-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            transform: translateY(-50%);
+        }
+
+        .support-slider-button {
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--light-text);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .support-slider-button:hover {
+            opacity: 1;
+        }
+
+        /* Misi Kami - Hilangkan *, Tambah Icon */
+        .vm-card.mission-card ul li {
+            list-style-type: none; /* Hilangkan bullet default */
+            padding-left: 25px; /* Beri ruang untuk ikon */
+            position: relative; /* Untuk memposisikan ikon */
+        }
+
+        .vm-card.mission-card ul li i {
+            position: absolute;
+            left: 0;
+            top: 5px; /* Sesuaikan posisi vertikal ikon */
+            color: var(--accent-color);
+            font-size: 1rem;
         }
 
         /* Social Media Section dengan Logo Berwarna */
@@ -535,18 +680,19 @@
 
         <section class="vision-mission-section">
             <div class="vm-card vision-card">
-                <i class="fas fa-eye" style="color: var(--primary-color);"></i>
+                <i class="fas fa-bullseye" style="color: var(--accent-color);"></i>
                 <h3>Visi Kami</h3>
-                <p style="color: var(--secondary-color);">Menjadi platform terdepan yang menghubungkan individu dengan para ahli di berbagai bidang, memberdayakan setiap orang untuk mencapai tujuannya dengan efisien dan efektif.</p>
+                <p style="color: var(--secondary-color);">Mewujudkan ekosistem kolaborasi digital terunggul, di mana setiap individu dan bisnis dapat **meraih potensi maksimal** melalui akses mudah ke keahlian yang relevan dan terpercaya.</p>
             </div>
             <div class="vm-card mission-card">
-                <i class="fas fa-rocket" style="color: var(--primary-color);"></i>
+                <i class="fas fa-handshake" style="color: var(--accent-color);"></i>
                 <h3>Misi Kami</h3>
                 <ul>
-                    <li style="color: var(--secondary-color);">Menyediakan layanan jasa yang berkualitas, terpercaya, dan beragam sesuai kebutuhan pengguna.</li>
-                    <li style="color: var(--secondary-color);">Membangun komunitas profesional yang solid dan saling mendukung.</li>
-                    <li style="color: var(--secondary-color);">Memastikan pengalaman pengguna yang aman, nyaman, dan memuaskan.</li>
-                    <li style="color: var(--secondary-color);">Terus berinovasi dan mengembangkan platform untuk memenuhi tuntutan zaman.</li>
+                    <li style="color: var(--secondary-color);"><i class="fas fa-users"></i> Menyediakan platform intuitif yang mempertemukan pencari dan penyedia jasa secara efektif.</li>
+                    <li style="color: var(--secondary-color);"><i class="fas fa-building"></i> Membangun komunitas profesional yang berintegritas, inovatif, dan saling mendukung.</li>
+                    <li style="color: var(--secondary-color);"><i class="fas fa-check-shield"></i> Mengedepankan kualitas dan keamanan dalam setiap interaksi dan transaksi di platform.</li>
+                    <li style="color: var(--secondary-color);"><i class="fas fa-chart-line"></i> Mendorong pertumbuhan dan kesuksesan para penyedia jasa melalui visibilitas dan peluang yang luas.</li>
+                    <li style="color: var(--secondary-color);"><i class="fas fa-rocket"></i> Berkontribusi pada kemajuan individu dan bisnis dengan menyediakan solusi jasa yang adaptif dan relevan.</li>
                 </ul>
             </div>
         </section>
@@ -555,23 +701,19 @@
             <h2>Nilai Kami</h2>
             <div class="interactive-card-grid">
                 <div class="interactive-card">
-                    <i class="fas fa-bolt" style="color: var(--accent-color);"></i>
-                    <h3>Cepat & Efisien</h3>
+                    <i class="fas fa-tachometer-alt" style="color: #ffc107;"></i> <h3>Cepat & Efisien</h3>
                     <p style="color: var(--secondary-color);">Kami berkomitmen untuk memberikan layanan jasa yang cepat dan efisien sesuai kebutuhan Anda.</p>
                 </div>
                 <div class="interactive-card">
-                    <i class="fas fa-lock" style="color: var(--accent-color);"></i>
-                    <h3>Aman & Terpercaya</h3>
+                    <i class="fas fa-shield-alt" style="color: #28a745;"></i> <h3>Aman & Terpercaya</h3>
                     <p style="color: var(--secondary-color);">Keamanan dan kepercayaan Anda adalah prioritas utama kami dalam setiap transaksi.</p>
                 </div>
                 <div class="interactive-card">
-                    <i class="fas fa-users" style="color: var(--accent-color);"></i>
-                    <h3>Profesional & Berkualitas</h3>
-                    <p style="color: var(--secondary-color);">Tim penyedia jasa kami terdiri dari para profesional yang ahli di bidangnya masing-masing.</p>
+                    <i class="fas fa-lightbulb" style="color: #007bff;"></i> <h3>Inovatif</h3>
+                    <p style="color: var(--secondary-color);">Kami terus berinovasi untuk memberikan solusi dan pengalaman terbaik bagi pengguna.</p>
                 </div>
                 <div class="interactive-card">
-                    <i class="fas fa-smile" style="color: var(--accent-color);"></i>
-                    <h3>Berorientasi Pelanggan</h3>
+                    <i class="fas fa-hand-holding-heart" style="color: #dc3545;"></i> <h3>Berorientasi Pelanggan</h3>
                     <p style="color: var(--secondary-color);">Kepuasan pelanggan adalah tujuan utama kami. Kami selalu siap melayani Anda.</p>
                 </div>
             </div>
@@ -621,7 +763,29 @@
 
         <section class="support-thanks-section">
             <h2>Terima Kasih Kepada Tim Pendukung!</h2>
-            <p style="color: var(--secondary-color);">Kami juga ingin menyampaikan rasa terima kasih yang sebesar-besarnya kepada tim pendukung kami yang luar biasa: <span class="support-team-names" style="color: var(--primary-color);">Iyus</span>, <span class="support-team-names" style="color: var(--primary-color);">Onggo</span>, dan <span class="support-team-names" style="color: var(--primary-color);">Yove</span>. Kontribusi dan dedikasi kalian sangat berarti bagi perkembangan Rampungin.id.</p>
+            <div class="support-slider-container">
+                <div class="support-slider">
+                    <div class="support-card">
+                        <i class="fas fa-user-circle" style="color: var(--accent-color);"></i>
+                        <h3>Iyus</h3>
+                        <p style="color: var(--secondary-color);">Koordinator</p>
+                    </div>
+                    <div class="support-card">
+                        <i class="fas fa-user-circle" style="color: var(--accent-color);"></i>
+                        <h3>Onggo</h3>
+                        <p style="color: var(--secondary-color);">Koordinator</p>
+                    </div>
+                    <div class="support-card">
+                        <i class="fas fa-user-circle" style="color: var(--accent-color);"></i>
+                        <h3>Yove</h3>
+                        <p style="color: var(--secondary-color);">Koordinator</p>
+                    </div>
+                </div>
+                <div class="slider-controls support-controls">
+                    <button class="slider-button prev-support"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-button next-support"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
         </section>
 
         <section class="social-media-section">
@@ -663,72 +827,128 @@
             });
         });
 
+        // Slider Tim
         const teamSliderContainer = document.querySelector('.team-slider-container');
         const teamSlider = document.querySelector('.team-slider');
         const teamCards = document.querySelectorAll('.team-card');
         const prevButton = document.querySelector('.prev-button');
         const nextButton = document.querySelector('.next-button');
-        const interactiveCards = document.querySelectorAll('.interactive-card');
-        const vmCards = document.querySelectorAll('.vm-card');
+        let teamCounter = 0;
+        let teamCardWidth = teamCards[0].offsetWidth;
+        let teamIntervalId;
+        const teamSlideIntervalTime = 4000;
 
-        let counter = 0;
-        const cardWidth = teamCards[0].offsetWidth;
-        let intervalId;
-        const slideIntervalTime = 4000; // 4 detik
-
-        function slideTo(index) {
-            teamSlider.style.transform = `translateX(-${cardWidth * index}px)`;
-            counter = index;
+        function slideTeamTo(index) {
+            teamSlider.style.transform = `translateX(-${teamCardWidth * index}px)`;
+            teamCounter = index;
         }
 
-        function nextSlide() {
-            counter++;
-            if (counter >= teamCards.length) {
-                counter = 0;
+        function nextTeamSlide() {
+            teamCounter++;
+            if (teamCounter >= teamCards.length) {
+                teamCounter = 0;
             }
-            slideTo(counter);
+            slideTeamTo(teamCounter);
         }
 
-        function prevSlide() {
-            counter--;
-            if (counter < 0) {
-                counter = teamCards.length - 1;
+        function prevTeamSlide() {
+            teamCounter--;
+            if (teamCounter < 0) {
+                teamCounter = teamCards.length - 1;
             }
-            slideTo(counter);
+            slideTeamTo(teamCounter);
         }
 
-        function startAutoSlide() {
-            intervalId = setInterval(nextSlide, slideIntervalTime);
+        function startAutoTeamSlide() {
+            teamIntervalId = setInterval(nextTeamSlide, teamSlideIntervalTime);
         }
 
-        function stopAutoSlide() {
-            clearInterval(intervalId);
+        function stopAutoTeamSlide() {
+            clearInterval(teamIntervalId);
         }
 
-        // Inisialisasi Slider Tim
-        slideTo(0);
-        startAutoSlide();
+        slideTeamTo(0);
+        startAutoTeamSlide();
 
-        // Kontrol Manual Slider Tim
         prevButton.addEventListener('click', () => {
-            stopAutoSlide();
-            prevSlide();
-            startAutoSlide();
+            stopAutoTeamSlide();
+            prevTeamSlide();
+            startAutoTeamSlide();
         });
 
         nextButton.addEventListener('click', () => {
-            stopAutoSlide();
-            nextSlide();
-            startAutoSlide();
+            stopAutoTeamSlide();
+            nextTeamSlide();
+            startAutoTeamSlide();
         });
 
-        // Responsif Slider Tim
         window.addEventListener('resize', () => {
-            const newCardWidth = teamCards[0].offsetWidth;
-            slideTo(counter);
+            teamCardWidth = teamCards[0].offsetWidth;
+            slideTeamTo(teamCounter);
+        });
+
+        // Slider Tim Pendukung
+        const supportSliderContainer = document.querySelector('.support-slider-container');
+        const supportSlider = document.querySelector('.support-slider');
+        const supportCards = document.querySelectorAll('.support-card');
+        const prevSupportButton = document.querySelector('.prev-support');
+        const nextSupportButton = document.querySelector('.next-support');
+        let supportCounter = 0;
+        let supportCardWidth = supportCards[0].offsetWidth;
+        let supportIntervalId;
+        const supportSlideIntervalTime = 3000;
+
+        function slideSupportTo(index) {
+            supportSlider.style.transform = `translateX(-${supportCardWidth * index}px)`;
+            supportCounter = index;
+        }
+
+        function nextSupportSlide() {
+            supportCounter++;
+            if (supportCounter >= supportCards.length) {
+                supportCounter = 0;
+            }
+            slideSupportTo(supportCounter);
+        }
+
+        function prevSupportSlide() {
+            supportCounter--;
+            if (supportCounter < 0) {
+                supportCounter = supportCards.length - 1;
+            }
+            slideSupportTo(supportCounter);
+        }
+
+        function startAutoSupportSlide() {
+            supportIntervalId = setInterval(nextSupportSlide, supportSlideIntervalTime);
+        }
+
+        function stopAutoSupportSlide() {
+            clearInterval(supportIntervalId);
+        }
+
+        slideSupportTo(0);
+        startAutoSupportSlide();
+
+        prevSupportButton.addEventListener('click', () => {
+            stopAutoSupportSlide();
+            prevSupportSlide();
+            startAutoSupportSlide();
+        });
+
+        nextSupportButton.addEventListener('click', () => {
+            stopAutoSupportSlide();
+            nextSupportSlide();
+            startAutoSupportSlide();
+        });
+
+        window.addEventListener('resize', () => {
+            supportCardWidth = supportCards[0].offsetWidth;
+            slideSupportTo(supportCounter);
         });
 
         // Interaksi Card Nilai Kami
+        const interactiveCards = document.querySelectorAll('.interactive-card');
         interactiveCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-8px)';
@@ -737,20 +957,21 @@
 
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0)';
-                card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+                card.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
             });
         });
 
         // Interaksi Card Visi Misi
+        const vmCards = document.querySelectorAll('.vm-card');
         vmCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.style.transform = 'translateY(-5px)';
-                card.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.15)';
             });
 
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0)';
-                card.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
+                card.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.1)';
             });
         });
 
