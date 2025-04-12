@@ -4,358 +4,495 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cari Jasa - Rampungin.id</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-       /* Reset CSS */
-        body, h1, h2, h3, p, ul, li, a, button, input, select, div, img {
+        /* === Gaya Umum === */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body, h1, h2, h3, p, ul, li {
             margin: 0;
             padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
-            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --light-bg: #eceff1;
+            --dark-text: #263238;
+            --light-text: #fff;
+            --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --button-radius: 50px;
+            --transition-duration: 0.3s;
+            --rating-star-color: #ffc107;
+            --phone-frame-color: #343a40;
+            --filter-bg: #fff;
+            --filter-border: #ddd;
+            --filter-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.7;
-            background-color: #f4f6f8;
-            color: #333;
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            margin: 0;
+            padding-top: 120px; /* Tambah padding atas untuk menghindari tabrakan dengan navbar fixed */
+            overflow-x: hidden; /* Mencegah scroll horizontal */
         }
 
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 20px auto;
             padding: 20px;
         }
 
-       /* Mobile Styles */
-@media (max-width: 768px) {
-    body {
-        margin-top: 56px; /* Beri ruang untuk navbar fixed */
-    }
+        /* === Judul Halaman (Penyesuaian Posisi) === */
+        .page-title {
+            color: var(--dark-text);
+            text-align: center;
+            margin-bottom: 50px; /* Tambah margin bawah agar lebih jauh dari filter */
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.8rem; /* Ukuran lebih besar */
+            position: relative;
+            padding-bottom: 18px;
+            font-weight: 700; /* Lebih tebal */
+        }
 
-    nav {
-        background-color: #fff;
-        padding: 0.5rem 1rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1004;
-    }
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Garis lebih panjang */
+            height: 4px; /* Garis lebih tebal */
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
 
-    nav .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0;
-        max-width: none;
-        margin: 0;
-        width: 100%;
-    }
+        .title-accent {
+            color: var(--primary-color);
+        }
 
-    nav .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #007bff;
-    }
+        /* === Filter Kategori yang Diperbaiki (Revisi - Interaktif) === */
+        .category-filter-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    .hamburger-menu {
-        background: none;
-        border: none;
-        color: #555;
-        font-size: 3rem;
-        cursor: pointer;
-        display: block; /* Tampilkan di tampilan ponsel */
-        outline: none;
-		z-index: 1004;
-    }
+        .category-filter-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Responsive untuk layar kecil */
+        }
 
-    .nav-links {
-        position: fixed;
-        top: 0;
-        left: -250px; /* Sembunyikan di luar layar */
-        width: 250px;
-        height: 100%;
-        background-color: #fff;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
-        transition: left 0.3s ease-in-out;
-        padding-top: 5rem; /* Beri ruang untuk logo dan mungkin status bar */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Align items to the start */
-    }
+        .category-filter-button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: var(--button-radius);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer; /* Mengembalikan cursor menjadi interaktif */
+            box-shadow: var(--filter-shadow);
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Tambah transisi warna */
+            opacity: 1; /* Kembalikan opasitas default */
+        }
 
-    .nav-links.open {
-        left: 0; /* Tampilkan sidebar saat class 'open' ditambahkan */
-    }
+        .category-filter-button.active {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-    .close-menu {
-        background: none;
-        border: none;
-        color: #555;
-        font-size: 1.5rem;
-        cursor: pointer;
-        outline: none;
-        align-self: flex-end;
-        padding: 1rem;
-        margin-right: 0.5rem;
-        display: block; /* Tampilkan di tampilan ponsel */
-    }
+        .category-filter-button.game {
+            background-color: #29b6f6;
+            color: #fff;
+        }
 
-    .nav-links ul {
-        flex-direction: column;
-        padding: 0 1.5rem;
-        margin-top: 1rem; /* Add some space below the close button */
-        width: 100%;
-    }
+        .category-filter-button.game.active {
+            background-color: #03a9f4;
+        }
 
-    .nav-links ul li {
-        margin-left: 0;
-        margin-bottom: 1rem;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 1rem;
-        width: 100%;
-    }
+        .category-filter-button.tugas {
+            background-color: #9ccc65;
+            color: #fff;
+        }
 
-    .nav-links ul li:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-        margin-bottom: 0;
-    }
+        .category-filter-button.tugas.active {
+            background-color: #7cb342;
+        }
 
-    .nav-links ul li a {
-        text-decoration: none;
-        color: #333;
-        transition: color 0.3s ease;
-        font-weight: 600;
-        padding: 0.5rem 0;
-        display: block; /* Make the whole li clickable */
-    }
+        .category-filter-button.multimedia {
+            background-color: #ffca28;
+            color: var(--dark-text);
+        }
 
-    .nav-links ul li a:hover {
-        color: #007bff;
-    }
+        .category-filter-button.multimedia.active {
+            background-color: #fbc02d;
+            color: var(--dark-text); /* Pastikan teks tetap terlihat saat aktif */
+        }
 
-    .choice-buttons {
-        display: flex;
-        flex-direction: column; /* Ubah menjadi satu kolom */
-        align-items: stretch; /* Tombol membentang selebar container */
-        gap: 1rem; /* Kurangi jarak antar tombol */
-        margin-bottom: 2rem; /* Kurangi margin bawah */
-    }
+        .category-filter-button:not(.active):hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
 
-    /* Target tombol ketiga di awal */
-    .choice-buttons > *:nth-child(3) {
-        /* Membuat tombol ketiga memanjang ke bawah */
-        width: 100%;
-    }
+        .category-filter-button.active:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
-    .choice-button {
-        padding: 1rem 1.5rem; /* Kurangi padding tombol */
-        font-size: 1rem; /* Kurangi ukuran font tombol */
-        display: block; /* Membuat tombol memanjang secara default di mobile */
-        width: 100%; /* Membuat tombol memenuhi lebar container */
-    }
+        /* === Filter Pencarian yang Dipercantik === */
+        .search-filter {
+            background-color: var(--filter-bg);
+            padding: 20px;
+            border-radius: var(--button-radius);
+            box-shadow: var(--filter-shadow);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid var(--filter-border);
+            flex-direction: column; /* Responsif untuk layar kecil */
+            align-items: stretch;
+        }
 
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Tetap di posisinya meskipun di-scroll */
-        z-index: 1002; /* Pastikan modal di atas navbar samping */
-        left: 0;
-        top: 0;
-        width: 100%; /* Lebar penuh viewport */
-        height: 100%; /* Tinggi penuh viewport */
-        overflow: auto; /* Aktifkan scroll jika konten panjang */
-        background-color: rgba(0,0,0,0.4); /* Latar belakang semi-transparan */
-    }
+        .search-filter label {
+            font-weight: bold;
+            color: var(--dark-text);
+            font-size: 1.1rem;
+            margin-bottom: 5px; /* Ruang kecil di bawah label */
+        }
 
-    .modal.open {
-        display: block;
-    }
+        .search-filter input[type="text"] {
+            padding: 12px 20px;
+            border: 1px solid var(--secondary-color);
+            border-radius: var(--button-radius);
+            font-size: 1rem;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 10px; /* Ruang kecil di bawah input */
+        }
 
-    .modal-content {
-        background-color: #fefefe;
-        margin: 0; /* Hilangkan margin default */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 100%; /* Lebar penuh modal */
-        height: 100%; /* Tinggi penuh modal */
-        border-radius: 0; /* Hilangkan sudut bulat */
-        position: relative;
-        overflow-y: auto; /* Aktifkan scroll jika konten modal panjang */
-    }
+        .search-button {
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            border-radius: var(--button-radius);
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color var(--transition-duration) ease, transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .close-button {
-        color: #aaa;
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: 2rem;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 1003; /* Pastikan tombol close di atas modal-content */
-    }
+        .search-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-    /* Styling modal lainnya tetap sama */
-    .modal-nama {
-        font-size: 1.3rem;
-        margin-bottom: 0.3rem;
-    }
+        /* === Layout Card 3 Per Baris (Responsif) === */
+        .provider-list.grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
 
-    .modal-rating {
-        margin-bottom: 0.5rem;
-    }
+        @media (max-width: 768px) {
+            .provider-list.grid-view {
+                grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Satu card per baris di layar kecil */
+            }
+        }
 
-    .modal-layanan h3,
-    .modal-detail h3,
-    .testimonial-section h3 {
-        font-size: 1rem;
-        margin-top: 0.8rem;
-        margin-bottom: 0.3rem;
-    }
+        /* === Card Penyedia Jasa yang Lebih Mewah (Warna Pembeda & Logo Fix) === */
+        .provider-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .modal-layanan p,
-    .modal-detail-layanan {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 0.8rem;
-    }
+        .provider-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px 5px 0 0;
+        }
 
-    .testimonial-carousel {
-        width: 90%;
-        margin: 0.3rem auto;
-    }
+        .provider-card[data-kategori="game"]::before {
+            background-color: #03a9f4;
+        }
 
-    .carousel-button {
-        font-size: 1.2rem;
-    }
+        .provider-card[data-kategori="tugas"]::before {
+            background-color: #7cb342;
+        }
 
-    .contact-button {
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
-    }
-}
-/* Desktop Styles */
-@media (min-width: 769px) {
-    body {
-        margin-top: 0; /* Reset margin top di desktop */
-    }
+        .provider-card[data-kategori="multimedia"]::before {
+            background-color: #fbc02d;
+        }
 
-    nav {
-        background-color: #fff;
-        padding: 0.5rem 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-    }
+        .provider-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
 
-    nav .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .provider-card .logo-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    nav .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #007bff;
-    }
+        .provider-card .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan avatar tidak terpotong */
+        }
 
-    .hamburger-menu {
-        display: none; /* Sembunyikan di desktop */
-    }
+        .provider-card h3 {
+            color: var(--dark-text);
+            margin-bottom: 10px;
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
 
-    .nav-links {
-        display: flex;
-        align-items: center;
-        position: static; /* Reset positioning */
-        width: auto;
-        height: auto;
-        background-color: transparent;
-        box-shadow: none;
-        padding-top: 0;
-        flex-direction: row;
-    }
+        .provider-card .rating {
+            color: var(--rating-star-color);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
 
-    .nav-links ul {
-        list-style: none;
-        display: flex;
-        margin-bottom: 0;
-    }
+        .provider-card .short-description {
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
 
-    .nav-links ul li {
-        margin-left: 1.8rem;
-    }
+        .provider-card .detail-button {
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            border-radius: var(--button-radius);
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: background-color var(--transition-duration) ease, transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .nav-links ul li a {
-        text-decoration: none;
-        color: #555;
-        transition: color 0.3s ease;
-        font-weight: 300;
-        padding-top: 0.4rem;
-        padding-bottom: 0.4rem;
-    }
+        .provider-card .detail-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-    .nav-links ul li a:hover {
-        color: #007bff;
-    }
+        /* === Pop Up Detail === */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
 
-    .close-menu {
-        display: none; /* Sembunyikan di desktop */
-    }
+        .modal-content {
+            background-color: var(--light-text);
+            margin: 10% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 12px;
+            position: relative;
+        }
 
-    .choice-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        margin-bottom: 3rem;
-        flex-direction: row; /* Kembali ke tampilan horizontal */
-        align-items: center; /* Align item secara vertikal di tengah */
-    }
+        @media (max-width: 600px) {
+            .modal-content {
+                width: 95%;
+                margin: 15% auto;
+                padding: 20px;
+            }
+        }
 
-    .choice-button {
-        background-color: #fff;
-        border: 2px solid transparent;
-        padding: 1.5rem 2.5rem;
-        border-radius: 0.5rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
-        color: #333;
-        display: inline-flex; /* Kembali ke inline-flex */
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        width: auto; /* Reset lebar otomatis */
-    }
-}
+        .modal-content h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+        }
 
-/* Styling konten utama agar tidak tertutup navbar */
-.main-content {
-    padding-top: 60px; /* Sesuaikan dengan tinggi navbar di desktop */
-}
+        .modal-content .long-description {
+            color: var(--dark-text);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
 
-@media (max-width: 768px) {
-    .main-content {
-        padding-top: 56px; /* Sesuaikan dengan tinggi navbar mobile */
-    }
-}
+        /* === Slideshow Testimoni === */
+        .testimonial-slideshow {
+            position: relative;
+            margin-bottom: 30px;
+        }
 
+        .slide {
+            display: none;
+        }
 
-        /* Navbar Styles */
+        .slide.fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: var(--dark-text);
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+            color: white;
+        }
+
+        .testimonial-phone-frame {
+            border: 10px solid var(--phone-frame-color);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            max-width: 300px;
+            margin: 0 auto 15px;
+        }
+
+        .testimonial-phone-frame img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-content {
+            text-align: center;
+            font-style: italic;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .modal-content .contact-buttons {
+            display: flex;justify-content: center;
+            gap: 20px;
+            flex-direction: column; /* Responsif untuk layar kecil */
+            align-items: stretch;
+        }
+
+        @media (max-width: 600px) {
+            .modal-content .contact-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        .modal-content .contact-button {
+            padding: 12px 25px;
+            color: var(--light-text);
+            border: none;
+            border-radius: var(--button-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color var(--transition-duration) ease, transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px; /* Ruang antar tombol di layar kecil */
+        }
+
+        .modal-content .contact-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-content .website-button {
+            background-color: #28a745;
+        }
+
+        .modal-content .sosmed-button {
+            background-color: var(--primary-color);
+        }
+
+        .modal .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal .close-button:hover,
+        .modal .close-button:focus {
+            color: var(--dark-text);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Navbar and Footer (Responsive) */
         nav {
             background-color: #fff;
-            padding: 0.5rem 10px;
+            padding: 1.2rem 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
@@ -364,29 +501,30 @@
             z-index: 1000;
         }
 
-       nav .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* padding: nilai-lama; */ /* Jika ada, kurangi nilainya */
-}
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
         nav .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #007bff; /* Primary Color */
-    /* margin-top: nilai-lama; */ /* Kurangi jika ada */
-    /* margin-bottom: nilai-lama; */ /* Kurangi jika ada */
-}
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
 
         .hamburger-menu {
             background: none;
             border: none;
-            color: #555;
+            color: var(--secondary-color);
             font-size: 1.5rem;
             cursor: pointer;
-            display: none; /* Sembunyikan secara default di desktop */
+            display: none;
             outline: none;
+            z-index: 1002; /* Ensure it's above the sliding menu */
         }
 
         .nav-links {
@@ -404,1180 +542,517 @@
             margin-left: 1.8rem;
         }
 
-       .nav-links ul li a {
-    text-decoration: none;
-    color: #555;
-    transition: color 0.3s ease;
-    font-weight: 300;
-	 padding-top: 0.4rem; /* Contoh padding baru */
-    padding-bottom: 0.4rem; /* Contoh padding baru */
-    /* padding-top: nilai-lama; */ /* Kurangi jika ada */
-    /* padding-bottom: nilai-lama; */ /* Kurangi jika ada */
-}
+        .nav-links ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: color var(--transition-duration) ease;
+            font-weight: 500;
+        }
 
         .nav-links ul li a:hover {
-            color: #007bff;
+            color: var(--primary-color);
         }
 
         .close-menu {
             background: none;
             border: none;
-            color: #555;
+            color: var(--secondary-color);
             font-size: 1.5rem;
             cursor: pointer;
             outline: none;
             align-self: flex-end;
             padding: 1rem;
             margin-right: 0.5rem;
-            display: none; /* Sembunyikan secara default di desktop */
+            display: none;
         }
 
         .close-menu:hover {
-            color: #dc3545; /* Danger color on hover */
+            color: #dc3545;
+        }
+
+        @media (max-width: 768px) {
+            nav .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -300px;
+                width: 250px;
+                height: 100%;
+                background-color: #fff;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+                z-index: 1001;
+                transition: left var(--transition-duration) ease-in-out;
+                padding-top: 4rem;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links.open {
+                left: 0;
+            }
+
+            .close-menu {
+                display: block;
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                padding: 0 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .nav-links ul li {
+                margin-left: 0;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 1rem;
+            }
+
+            .nav-links ul li:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+
+            .nav-links ul li a {
+                color: var(--dark-text);
+                font-weight: 600;
+            }
+
+            .nav-links ul li a:hover {
+                color: var(--primary-color);
+            }
         }
 
-        /* Main Content Styling */
-        .main-content {
-            padding-top: 80px;
-        }
-
-        /* Jasa Choice Section */
-        .jasa-choice-section {
-            text-align: center;
-            padding: 4rem 20px;
-            background-color: #f9f9f9;
-        }
-
-        .jasa-choice-section h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .jasa-choice-section p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-
-       .choice-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.choice-button {
-    background-color: #fff;
-    border: 2px solid transparent;
-    padding: 1.5rem 2.5rem;
-    border-radius: 0.5rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-        .choice-button.game {
-            border-color: #ff6f61;
-            color: #ff6f61;
-        }
-
-        .choice-button.game:hover {
-            background-color: #ff6f61;
-            color: #fff;
-            transform: scale(1.05);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .choice-button.tugas {
-            border-color: #4dd0e1;
-            color: #4dd0e1;
-        }
-
-        .choice-button.tugas:hover {
-            background-color: #4dd0e1;
-            color: #fff;
-            transform: scale(1.05);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .choice-button.multimedia {
-            border-color: #aed581;
-            color: #aed581;
-        }
-
-        .choice-button.multimedia:hover {
-            background-color: #aed581;
-            color: #fff;
-            transform: scale(1.05);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .choice-button i {
-            margin-right: 0; /* Hilangkan margin default ikon */
-        }
-
-        /* Joki List Section */
-        .joki-list-section {
-            padding: 3rem 20px;
-        }
-
-        .joki-list-section h2 {
-            font-size: 2rem;
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .joki-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .joki-card {
-             background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-    border-left: 5px solid #007bff; /* Aksen border kiri berwarna biru */
-        }
-		.joki-card.game {
-    border-left-color: #28a745; /* Warna hijau untuk kategori Game */
-}
-
-.joki-card.tugas {
-    border-left-color: #ffc107; /* Warna kuning untuk kategori Tugas */
-}
-
-.joki-card.multimedia {
-    border-left-color: #dc3545; /* Warna merah untuk kategori Multimedia */
-}
-
-        .joki-card:hover {
-             transform: scale(1.02);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .joki-card-header {
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-        }
-
-        .joki-logo-container {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 1rem;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .joki-logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .joki-logo-placeholder {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #555;
-        }
-
-        .joki-title-rating {
-            flex-grow: 1;
-        }
-
-        .joki-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #007bff; /* Warna nama jasa lebih hidup */
-            margin-bottom: 0.2rem;
-            /* Anda bisa menambahkan font-family yang lebih keren di sini */
-        }
-
-        .joki-rating {
-            color: gold;
-            font-size: 0.9rem;
-        }
-
-        .joki-body {
-            font-size: 0.9rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .joki-actions {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: flex-end;
-        }
-
-        .button-lihat-detail {
-            background-color: #28a745; /* Warna tombol lihat detail */
-            color: #fff;
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 0.3rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .button-lihat-detail:hover {
-            background-color: #1e7e34;
-        }
-
-        .button-kunjungi-website {
-            background-color: #007bff; /* Warna tombol kunjungi website */
-            color: #fff;
-            border: none;
-            padding: 0.6rem 1rem;
-            border-radius: 0.3rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .button-kunjungi-website:hover {
-            background-color: #0056b3;
-        }
-
-        .joki-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            color: #555;
-            font-weight: bold;
-        }
-
-        .joki-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .joki-info h3 {
-            font-size: 1.2rem;
-            color: #007bff;
-            margin-bottom: 0.5rem;
-        }
-
-        .rating {
-            color: gold;
-            margin-bottom: 0.75rem;
-        }
-
-        .joki-info p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-
-        .joki-contact {
-            margin-top: 1rem;
-            display: flex;
-            gap: 0.75rem;
-            flex-direction: column;
-        }
-
-        .contact-button {
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.3rem;
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-align: center;
-            transition: background-color 0.3s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .contact-button.hubungi-wa {
-            background-color: #25d366;
-            color: #fff;
-        }
-
-        .contact-button.hubungi-wa:hover {
-            background-color: #1e7e34;
-        }
-
-        .contact-button.lihat-profil {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .contact-button.lihat-profil:hover {
-            background-color: #0056b3;
-        }
-
-        .filter-section {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-bottom: 2rem;
-            border-left: 6px solid #007bff; /* Warna aksen filter */
-        }
-
-       .filter-section.game {
-    border-left-color: #ff6f61;
-}
-
-.filter-section.tugas {
-    border-left-color: #4dd0e1;
-}
-
-.filter-section.multimedia {
-    border-left-color: #aed581;
-}
-
-        .filter-section h2 {
-            font-size: 1.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #eee;
-        }
-
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .filter-group label {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 0.3rem;
-        }
-
-        .filter-group select {
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 0.3rem;
-            font-size: 0.9rem;
-        }
-
-        .back-button {
-    display: inline-block;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff; /* Warna biru yang menarik */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-.back-button:hover {
-    background-color: #0056b3;
-}
-
-        .hidden {
-            display: none;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            border-radius: 0.5rem;
-            position: relative;
-        }
-
-        .close-button {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-nama {font-size: 1.5rem;
-            color: #007bff;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-rating {
-            color: gold;
-            margin-bottom: 1rem;
-        }
-
-        .modal-layanan h3 {
-            font-size: 1.1rem;
-            color: #333;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-layanan p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .modal-detail h3 {
-            font-size: 1.1rem;
-            color: #333;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-detail-layanan {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-section {
-            margin-top: 1rem;
-        }
-
-        .testimonial-section h3 {
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .testimonial-carousel {
-            overflow: hidden;
-            position: relative;
-            width: 80%; /* Lebih kecil */
-            margin: 0.5rem auto;
-            border-radius: 0.3rem;
-        }
-
-        .carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-item {
-            min-width: 100%;
-        }
-
-        .carousel-item img, .carousel-item video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 0.3rem;
-            max-height: 300px; /* Batasi ketinggian gambar/video */
-            object-fit: contain; /* Agar gambar/video tidak terdistorsi */
-        }
-
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #555;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .carousel-button.prev {
-            left: 10px;
-        }
-
-        .carousel-button.next {
-            right: 10px;
-        }
-
-        .detail-info {
-            margin-top: 1rem;
-            line-height: 1.6;
-            color: #555;
-        }
-		#filterSearchButton {
-    background-color: #007bff; /* Warna biru utama */
-    color: #fff; /* Teks putih */
-    border: none; /* Hilangkan border default */
-    padding: 0.75rem 1.5rem; /* Padding atas-bawah dan kiri-kanan */
-    border-radius: 0.3rem; /* Sudut membulat */
-    font-size: 1rem; /* Ukuran font */
-    cursor: pointer; /* Mengubah kursor menjadi pointer saat dihover */
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Transisi untuk efek hover */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan tipis */
-    outline: none; /* Hilangkan outline default saat fokus */
-    margin-top: 1rem; /* Beri jarak dari elemen filter di atasnya */
-    width: fit-content; /* Lebar sesuai konten */
-    justify-self: start; /* Posisikan ke kiri (jika di dalam grid) */
-}
-
-#filterSearchButton:hover {
-    background-color: #0056b3; /* Warna biru lebih gelap saat dihover */
-    transform: translateY(-0.1rem); /* Sedikit naik saat dihover */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); /* Bayangan lebih tebal saat dihover */
-}
-
-#filterSearchButton:active {
-    transform: translateY(0); /* Kembali ke posisi semula saat ditekan */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan seperti semula saat ditekan */
-}
-
-        /* Footer */
         footer {
             background-color: #2c3e50;
             color: #fff;
             text-align: center;
-            padding:2.5rem 20px;
+            padding: 2.5rem 20px;
             font-size: 0.9rem;
+            margin-top: 40px;
         }
 
         footer p {
             margin-bottom: 0;
         }
-		
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
         <div class="container">
-            <div class="logo">Rampungin.id</div>
-           <button class="hamburger-menu">☰</button>
+            <a href="index.html" class="logo">Rampungin.id</a>
+            <button class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="nav-links">
-                <button class="close-menu">x</button>
+                <button class="close-menu">
+                    <i class="fas fa-times"></i>
+                </button>
                 <ul>
                     <li><a href="index.html">Beranda</a></li>
-                    <li><a href="carijoki.html">Cari Jasa</a></li>
-                    <li><a href="daftar.html">Daftar Jadi Penyedia Jasa</a></li>
-					<li><a href="tentang.html">Tentang Kami</a></li>
-                    <li><a href="kontak.html">Kontak Pengaduan</a></li>
+                    <li><a href="carijasa.html" class="active">Cari Jasa</a></li>
+                    <li><a href="daftar.html">Bergabung Jadi Profesional</a></li>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="main-content">
-        <section class="jasa-choice-section">
-            <div class="container">
-                <h1>Cari Jasa yang Anda Butuhkan</h1>
-                <p>Pilih kategori jasa yang Anda cari untuk menemukan penyedia terbaik.</p>
-                <div class="choice-buttons">
-                    <a href="#" class="choice-button game"><i class="fas fa-gamepad"></i> Jasa Game</a>
-                    <a href="#" class="choice-button tugas"><i class="fas fa-tasks"></i> Jasa Tugas</a>
-                    <a href="#" class="choice-button multimedia"><i class="fas fa-icons"></i> Jasa Multimedia</a>
-                </div>
+    <div class="container">
+        <h1 class="page-title">Cari Jasa <span class="title-accent">Terpercaya</span></h1>
+
+        <section class="category-filter-section">
+            <div class="category-filter-list">
+                <button class="category-filter-button active" data-kategori="all">Semua Layanan</button>
+                <button class="category-filter-button game" data-kategori="game">Layanan Game</button>
+                <button class="category-filter-button tugas" data-kategori="tugas">Layanan Tugas</button>
+                <button class="category-filter-button multimedia" data-kategori="multimedia">Layanan Multimedia</button>
             </div>
         </section>
 
-        <section id="jokiListSection" class="joki-list-section hidden">
-    <div class="container">
-        <h2 id="layananTitle"></h2>
-        <div id="filterSection" class="filter-section hidden">
-            <h3>Filter</h3>
-            <div id="filterGrid" class="filter-grid">
-                </div>
-            <button id="filterSearchButton" class="button">Cari</button>
+        <div class="search-filter">
+            <label for="search-name">Cari Nama Penyedia:</label>
+            <input type="text" id="search-name" placeholder="Masukkan nama penjoki">
+            <button class="search-button">Cari</button>
         </div>
-        <button class="back-button">Kembali ke Pilihan Jasa</button>
-        <div id="jokiList" class="joki-list">
+
+        <div class="provider-list grid-view">
             </div>
-    </div>
-</section>
     </div>
 
-    <div id="jokiModal" class="modal">
+    <div id="detail-sebatsz" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 id="modalNama" class="modal-nama"></h2>
-            <div id="modalRatingDiv" class="modal-rating">
+            <span class="close-button" onclick="closeModal('detail-sebatsz')">&times;</span>
+            <h2>Detail Layanan SEBATSZ</h2>
+            <p class="long-description">SEBATSZ adalah joki game berpengalaman yang dikenal dengan kemampuannya mengalahkan squad-squad tangguh di ranked Mythic. Dengan strategi yang matang dan penguasaan hero yang mendalam, SEBATSZ siap membantu Anda push rank Mobile Legends dengan cepat dan efisien. Layanan ini cocok bagi Anda yang ingin segera mencapai tier impian tanpa harus bersusah payah.</p>
+            <div class="testimonial-slideshow">
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-default1.jpg" alt="Testimoni SEBATSZ 1" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"SEBATSZ memang GG! Push rank jadi cepat banget." - Anonim</p>
+                    </div>
                 </div>
-            <div class="modal-layanan">
-                <h3>Layanan:</h3>
-                <p id="modalLayananIsi"></p>
-            </div>
-            <div class="modal-detail">
-                <h3>Detail Layanan:</h3>
-                <p id="modalDetailLayanan"></p>
-            </div>
-            <div class="testimonial-section">
-                <h3>Testimoni:</h3>
-                <div id="testimonialCarousel" class="testimonial-carousel">
-                    <div id="carouselInner" class="carousel-inner">
-                        </div>
-                    <button class="carousel-button prev" id="prevButton"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-button next" id="nextButton"><i class="fas fa-chevron-right"></i></button>
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-default2.jpg" alt="Testimoni SEBATSZ 2" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Mantap jiwa! Squad musuh auto rata." - Rahasia</p>
+                    </div>
                 </div>
+                <a class="prev" onclick="plusSlides(-1, this.closest('.modal-content'))">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, this.closest('.modal-content'))">&#10095;</a>
             </div>
-            <div class="detail-info">
+            <div class="contact-buttons">
+                <a href="#" class="contact-button website-button" target="_blank">Kunjungi Website</a>
+                <a href="#" class="contact-button sosmed-button" target="_blank">Kunjungi Sosmed</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-matadore" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('detail-matadore')">&times;</span>
+            <h2>Detail Layanan Matadore Store</h2>
+            <p class="long-description">Matadore Store hadir sebagai solusi joki game yang tidak hanya cepat tetapi juga menyenangkan! Joki-joki kami akan membawa Anda meraih kemenangan beruntun yang akan membuat hati Anda senang. Dengan harga yang bersahabat dan kualitas layanan yang hebat, Matadore Store adalah pilihan terbaik untuk meningkatkan rank Anda tanpa menguras dompet.</p>
+            <div class="testimonial-slideshow">
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-default3.jpg" alt="Testimoni Matadore 1" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Jokinya ramah, hasilnya memuaskan!" - GamerSenang</p>
+                    </div>
                 </div>
-            <a id="modalPesanSekarang" href="#" class="contact-button hubungi-wa"><i class="fab fa-whatsapp"></i> Hubungi WA</a>
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-default4.jpg" alt="Testimoni Matadore 2" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Win streak terus! Terima kasih Matadore Store!" - RRQNext</p>
+                    </div>
+                </div>
+                <a class="prev" onclick="plusSlides(-1, this.closest('.modal-content'))">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, this.closest('.modal-content'))">&#10095;</a>
+            </div>
+            <div class="contact-buttons">
+                <a href="#" class="contact-button website-button" target="_blank">Kunjungi Website</a>
+                <a href="#" class="contact-button sosmed-button" target="_blank">Kunjungi Sosmed</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-jokiskysan" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('detail-jokiskysan')">&times;</span>
+            <h2>Detail Layanan Jokiskysan</h2>
+            <p class="long-description">Jokiskysan adalah penyedia jasa joki game yang amanah dan terpercaya. Kami mengutamakan keamanan akun Anda dan memberikan layanan joki yang profesional. Dengan Jokiskysan, Anda bisa tenang menyerahkan akun game Anda kepada ahlinya dan fokus pada keseruan bermain di rank yang lebih tinggi.</p>
+            <div class="testimonial-slideshow">
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-default5.jpg" alt="Testimoni Jokiskysan 1" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Aman dan terpercaya! Itu yang saya cari di Jokiskysan." - PlayerSetia</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-default6.jpg" alt="Testimoni Jokiskysan 2" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Pelayanannya ramah, jokinya profesional." - TopGlobal</p>
+                    </div>
+                </div>
+                <a class="prev" onclick="plusSlides(-1, this.closest('.modal-content'))">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, this.closest('.modal-content'))">&#10095;</a>
+            </div>
+            <div class="contact-buttons">
+                <a href="#" class="contact-button website-button" target="_blank">Kunjungi Website</a>
+                <a href="#" class="contact-button sosmed-button" target="_blank">Kunjungi Sosmed</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-trims-project" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('detail-trims-project')">&times;</span>
+            <h2>Detail Layanan Trims.Project</h2>
+            <p class="long-description">Trims.Project hadir sebagai mitra terpercaya dalam menyelesaikan berbagai kebutuhan tugas akademik Anda. Kami menyediakan layanan penulisan karya ilmiah yang komprehensif, mulai dari proposal, skripsi, tesis, hingga disertasi. Selain itu, tim ahli kami juga mahir dalam pengolahan data statistik menggunakan berbagai software. Dengan Trims.Project, Anda dapat fokus pada pemahaman materi tanpa terbebani oleh proses penulisan dan analisis data yang rumit.</p>
+            <div class="testimonial-slideshow">
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testitofa.jpeg" alt="Testimoni Trims 1" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Karya ilmiah saya selesai dengan baik dan sesuai standar." - MahasiswaSukses</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testitofa2.jpeg" alt="Testimoni Trims 2" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Pengolahan datanya cepat dan akurat." - PenelitiHebat</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testitofa3.jpeg" alt="Testimoni Trims 3" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Sangat membantu dalam menyelesaikan skripsi saya." - CalonSarjana</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testitofa4.jpeg" alt="Testimoni Trims 4" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Rekomendasi untuk yang butuh bantuan tugas akhir." - AlumniBerjaya</p>
+                    </div>
+                </div>
+                <a class="prev" onclick="plusSlides(-1, this.closest('.modal-content'))">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, this.closest('.modal-content'))">&#10095;</a>
+            </div>
+            <div class="contact-buttons">
+                <a href="#" class="contact-button website-button" target="_blank">Kunjungi Website</a>
+                <a href="#" class="contact-button sosmed-button" target="_blank">Kunjungi Sosmed</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="detail-creative-media" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('detail-creative-media')">&times;</span>
+            <h2>Detail Layanan CreativeMediaPro</h2>
+            <p class="long-description">CreativeMediaPro adalah tim kreatif yang bersemangat membantu Anda mewujudkan ide-ide brilian menjadi konten visual yang memukau. Kami menawarkan layanan desain grafis yang beragam, mulai dari pembuatan logo yang ikonik, ilustrasi yang menarik, hingga desain materi promosi yang efektif. Tim video editor kami siap menyulap rekaman mentah menjadi video yang engaging dan profesional. Selain itu, kami juga membantu dalam pembuatan konten media sosial yang akan meningkatkan kehadiran online Anda.</p>
+            <div class="testimonial-slideshow">
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-multimedia1.jpg" alt="Testimoni CreativeMediaPro 1" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Desain logo dari CreativeMediaPro sangat profesional dan sesuai dengan branding kami." - KlienPuas1</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="testimonial-phone-frame">
+                        <img src="testimoni-multimedia2.jpg" alt="Testimoni CreativeMediaPro 2" style="max-width: 100%; height: auto;">
+                        <p class="testimonial-content">"Video promosi yang dibuat sangat menarik perhatian audiens." - KlienPuas2</p>
+                    </div>
+                </div>
+                <a class="prev" onclick="plusSlides(-1, this.closest('.modal-content'))">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, this.closest('.modal-content'))">&#10095;</a>
+            </div>
+            <div class="contact-buttons">
+                <a href="#" class="contact-button website-button" target="_blank">Kunjungi Website</a>
+                <a href="#" class="contact-button sosmed-button" target="_blank">Kunjungi Sosmed</a>
+            </div>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Rampungin.id. All rights reserved.</p>
+            <p>&copy; 2025 Rampungin.id. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-      const jasaChoiceSection = document.querySelector('.jasa-choice-section');
-        const jokiListSection = document.getElementById('jokiListSection');
-        const jokiListDiv = document.getElementById('jokiList');
-        const layananTitle = document.getElementById('layananTitle');
-        const filterSection = document.getElementById('filterSection');
-        const filterGrid = document.getElementById('filterGrid');
-        const filterSearchButton = document.getElementById('filterSearchButton');
-        const backButton = document.querySelector('.back-button');
-        const jokiModal = document.getElementById('jokiModal');
-        const closeModalButton = document.querySelector('.close-button');
-        const modalNama = document.getElementById('modalNama');
-        const modalRatingDiv = document.getElementById('modalRatingDiv');
-        const modalLayananIsi = document.getElementById('modalLayananIsi');
-        const modalDetailLayanan = document.getElementById('modalDetailLayanan');
-        const modalPesanSekarang = document.getElementById('modalPesanSekarang');
-        const testimonialCarousel = document.getElementById('testimonialCarousel');
-        const carouselInner = document.getElementById('carouselInner');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        let testimonialIndex = 0;
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProviders('all');
+            setupCategoryFilters(); // Kembalikan fungsi ini
+            setupSearchFilter();
 
+            // Inisialisasi active state untuk button "Semua Layanan" saat load
+            const semuaButton = document.querySelector('.category-filter-button[data-kategori="all"]');
+            if (semuaButton) {
+                semuaButton.classList.add('active');
+            }
 
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const navLinks = document.querySelector('.nav-links');
-const closeMenuButton = document.querySelector('.close-menu');
+            // Navbar mobile toggle
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const closeMenu = document.querySelector('.close-menu');
 
-console.log('hamburgerMenu:', hamburgerMenu);
-console.log('navLinks:', navLinks);
-console.log('closeMenuButton:', closeMenuButton);
+            hamburgerMenu.addEventListener('click', function() {
+                navLinks.classList.add('open');
+            });
 
-if (hamburgerMenu) {
-    hamburgerMenu.addEventListener('click', () => {
-        navLinks.classList.add('open');
-    });
-}
+            closeMenu.addEventListener('click', function() {
+                navLinks.classList.remove('open');
+            });
 
-if (closeMenuButton) {
-    closeMenuButton.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-    });
-}
-hamburgerMenu.addEventListener('click', () => {
-    navLinks.classList.add('open');
-});
+            // Tutup navbar saat link di-klik (opsional)
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                });
+            });
+        });
 
-closeMenuButton.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-});
+        let allProvidersData = [];
 
-        const dataJoki = [
-             {
-                id: 1,
-                nama: "SEBATSZ",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "Rp 10.000 - Rp 50.000 tergantung tier",
-                pengalaman: "Ahli",
-                avatar: "sebatsz.jpeg",
-                wa: "6281292398570",
-                detail_layanan: "🎮 Pernah mengalahkan squad SIWA & ACURSIO di ranked mythic. Siap membantu push rank dengan cepat dan efisien.",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_ml_1.jpg", "testimoni_ml_2.png"]
-            },
-            {
-                id: 2,
-                nama: "Matadore Store",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "Epic 1 Star Rp 5.000",
-                pengalaman: "Menengah",
-                avatar: "matadore.jfif",
-                wa: "6285716046032",
-                detail_layanan: "✨ Joki di sini membuat hati kalian senang dengan kemenangan beruntun. Harga bersahabat, kualitas hebat!",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_ml_3.jpeg", "testimoni_ml_4.gif", "testimoni_ml_5.png"]
-            },
-            {
-                 id: 3,
-                nama: "Trims.Project",
-                layanan: ["Tugas"],
-                skill: ["Skripsi", "Tugas", "Pengolahan Data"],
-                harga: "Start Form Rp 25000",
-                pengalaman: "Ahli",
-                avatar: "trims.jpeg",
-                wa: "6285775085507",
-                detail_layanan: "📚 Layanan Penulisan Karya Ilmiah & Pengolahan Data Statistik.",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testitofa.jpeg", "testitofa2.jpeg", "testitofa3.jpeg", "testitofa4.jpeg"]
-            },
-			{
-                id: 4,
-                nama: "PenulisBukuNonFiksi (CONTOH)",
-                layanan: ["Penulisan"],
-                skill: ["Buku Non-Fiksi", "Riset"],
-                harga: "Nego tergantung proyek",
-                pengalaman: "Ahli",
-                avatar: null,
-                wa: "6282355667788",
-                detail_layanan: "📚 Ingin menulis buku non-fiksi tapi terkendala riset dan penulisan? Saya siap membantu dari awal sampai akhir.",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            },
-            {
-                id: 5,
-                nama: "Jokiskysan",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "10k",
-                pengalaman: "Menengah",
-                avatar: "jokisky.jpeg",
-                wa: "6281412141451",
-                detail_layanan: "Jokiskysan amanah terpercaya 😘",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            },
-			{
-                id: 6,
-                nama: "Yums Joki",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "5k/match",
-                pengalaman: "Ahli",
-                avatar: "yums.png",
-                wa: "6287884642420",
-                detail_layanan: "Yums Joki tempat joki gaming terpercaya",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            },
-			{
-                id: 7,
-                nama: "Happier joki",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "Permatch 5000",pengalaman: "MENENGAH",
-                avatar: "hapier.jpg",
-                wa: "6281992602029",
-                detail_layanan: "Aman dan terpercaya",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            },
-			{
-    id: 8,
-    nama: "Desain Kreatif Studio",
-    layanan: ["Multimedia"],
-    skill: ["Desain Logo", "Desain Poster"],
-    harga: "Mulai dari Rp 100.000 per desain",
-    pengalaman: "Menengah",
-    avatar: "desainkreatif.png",
-    wa: "6281234567890",
-    detail_layanan: "🎨 Jasa desain logo dan poster profesional untuk branding bisnis Anda.",
-    profil: "#",
-    rating: 4,
-    testimonials: ["testimoni_desain1.jpg"]
-},
-{
-    id: 9,
-    nama: "Video Maker Pro",
-    layanan: ["Multimedia"],
-    skill: ["Editing Video Pendek", "Video Promosi"],
-    harga: "Mulai dari Rp 150.000 per video",
-    pengalaman: "Ahli",
-    avatar: "videomaker.jpg",
-    wa: "6289876543210",
-    detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
-    profil: "#",
-    rating: 5,
-    testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
-},
-            {
-                id: 10,
-                nama: "Video Maker Pro",
-                layanan: ["Multimedia"],
-                skill: ["Editing Video Pendek", "Video Promosi"],
-                harga: "Mulai dari Rp 150.000 per video",
-                pengalaman: "Ahli",
-                avatar: "videomaker.jpg",
-                wa: "6289876543210",
-                detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
-            }
-        ];
+        function loadProviders(kategori = 'all', searchTerm = '') {
+            const providerListContainer = document.querySelector('.provider-list');
+            providerListContainer.innerHTML = '';
 
-        let filteredJoki = [];
+            const providersData = [
+                { kategori: 'game', logo: 'sebatsz.jpeg', nama: 'SEBATSZ', rating: 4.9, deskripsi: '🎮 Pernah mengalahkan squad SIWA & ACURSIO...', detailId: 'detail-sebatsz', website: '#', sosmed: '#' },
+                { kategori: 'game', logo: 'matadore.jfif', nama: 'Matadore Store', rating: 4.7, deskripsi: '✨ Joki di sini membuat hati kalian senang...', detailId: 'detail-matadore', website: '#', sosmed: '#' },
+                { kategori: 'game', logo: 'jokisky.jpeg', nama: 'Jokiskysan', rating: 5.0, deskripsi: 'Jokiskysan amanah terpercaya 😘', detailId: 'detail-jokiskysan', website: '#', sosmed: '#' },
+                { kategori: 'tugas', logo: 'trims.jpeg', nama: 'Trims.Project', rating: 4.8, deskripsi: '📚 Layanan Penulisan Karya Ilmiah & Pengolahan Data Statistik.', detailId: 'detail-trims-project', website: '#', sosmed: '#' },
+                { kategori: 'multimedia', logo: 'creative-media.png', nama: 'CreativeMediaPro', rating: 4.7, deskripsi: '🎨 Jasa desain grafis, editing video, konten kreatif...', detailId: 'detail-creative-media', website: '#', sosmed: '#' },
+                // Tambahkan lebih banyak data provider di sini
+            ];
+            allProvidersData = providersData;
 
-        document.querySelectorAll('.choice-button').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                const layanan = this.textContent.split(' ')[2]; // Get "Game", "Tugas", or "Multimedia"
-                layananTitle.textContent = layanan;
-                filteredJoki = dataJoki.filter(j => j.layanan.includes(layanan));
-                jokiListDiv.innerHTML = '';
-                filteredJoki.forEach(displayJoki);
-                jasaChoiceSection.classList.add('hidden');
-                jokiListSection.classList.remove('hidden');
-                filterSection.classList.remove('hidden');
-                filterGrid.innerHTML = '';
-                createFilters(layanan);
-            });
-        });
+            const filteredProviders = allProvidersData.filter(provider => {
+                const kategoriMatch = kategori === 'all' || provider.kategori.toLowerCase() === kategori.toLowerCase();
+                const searchMatch = provider.nama.toLowerCase().includes(searchTerm.toLowerCase());
+                return kategoriMatch && searchMatch;
+            });
 
-        backButton.addEventListener('click', () => {
-            jasaChoiceSection.classList.remove('hidden');
-            jokiListSection.classList.add('hidden');
-        });
+            if (filteredProviders.length === 0) {
+                providerListContainer.innerHTML = '<p>Tidak ada penyedia jasa ditemukan.</p>';
+            }
 
-        function generateRatingStars(rating) {
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 !== 0;
-            let stars = '';
-            for (let i = 0; i < fullStars; i++) {
-                stars += '<i class="fas fa-star"></i>';
-            }
-            if (hasHalfStar) {
-                stars += '<i class="fas fa-star-half-alt"></i>';
-            }
-            const emptyStars = 5 - Math.ceil(rating);
-            for (let i = 0; i < emptyStars; i++) {
-                stars += '<i class="far fa-star"></i>';
-            }
-            return stars;
-        }
+            filteredProviders.forEach(provider => {
+                const card = document.createElement('div');
+                card.classList.add('provider-card');
+                card.dataset.kategori = provider.kategori;
 
-        function displayJoki(joki){
-            const card = document.createElement('div');
-            card.classList.add('joki-card');
-            if (joki.layanan.includes('Game')) card.classList.add('game');
-            else if (joki.layanan.includes('Tugas')) card.classList.add('tugas');
-            else if (joki.layanan.includes('Multimedia')) card.classList.add('multimedia');
-            else if (joki.layanan.includes('Penulisan')) card.classList.add('tugas'); // Sementara samakan dengan tugas
+                card.innerHTML = `
+                    <div class="logo-container">
+                        <img src="${provider.logo}" alt="Logo ${provider.nama}">
+                    </div>
+                    <h3>${provider.nama}</h3>
+                    <div class="rating">${getStarRating(provider.rating)} (${provider.rating})</div>
+                    <p class="short-description">${provider.deskripsi}</p>
+                    <button class="detail-button" onclick="openModal('${provider.detailId}')">Lihat Detail</button>
+                `;
+                providerListContainer.appendChild(card);
+            });
 
-            const cardHeader = document.createElement('div');
-            cardHeader.classList.add('joki-card-header');
+            // Apply grid layout only when there are providers
+            providerListContainer.classList.toggle('grid-view', filteredProviders.length > 0);
+        }
 
-            const logoContainer = document.createElement('div');
-            logoContainer.classList.add('joki-logo-container');
-            let logoElement;
-            if (joki.avatar) {
-                logoElement = document.createElement('img');
-                logoElement.src = joki.avatar;
-                logoElement.alt = `Logo ${joki.nama}`;
-            } else {
-                logoElement = document.createElement('div');
-                logoElement.classList.add('joki-logo-placeholder');
-                logoElement.textContent = joki.nama.charAt(0).toUpperCase();
-            }
-            logoContainer.appendChild(logoElement);
+        function getStarRating(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            return stars;
+        }
 
-            const titleRatingDiv = document.createElement('div');
-            titleRatingDiv.classList.add('joki-title-rating');
-            const namaH3 = document.createElement('h3');
-            namaH3.classList.add('joki-title');
-            namaH3.textContent = joki.nama;
-            const ratingDiv = document.createElement('div');
-            ratingDiv.classList.add('joki-rating');
-            ratingDiv.innerHTML = generateRatingStars(joki.rating);
-            titleRatingDiv.appendChild(namaH3);
-            titleRatingDiv.appendChild(ratingDiv);
+        function setupCategoryFilters() {
+            const categoryButtons = document.querySelectorAll('.category-filter-button');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const kategori = this.dataset.kategori;
+                    loadProviders(kategori);
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
 
-            cardHeader.appendChild(logoContainer);
-            cardHeader.appendChild(titleRatingDiv);
+        function setupSearchFilter() {
+            const searchInput = document.getElementById('search-name');
+            const searchButton = document.querySelector('.search-button');
 
-            const cardBody = document.createElement('div');
-            cardBody.classList.add('joki-body');
-            const detailSingkat = document.createElement('p');
-            detailSingkat.classList.add('joki-details');
-            // Ambil sebagian kecil dari detail layanan sebagai detail singkat
-            const shortDetail = typeof joki.detail_layanan === 'string' ?
-                            joki.detail_layanan.substring(0, 100) + '...' :
-                            (joki.detail_layanan.textContent || joki.detail_layanan.innerHTML).substring(0, 100) + '...';
-            detailSingkat.textContent = shortDetail;
+            searchButton.addEventListener('click', function() {
+                const searchTerm = searchInput.value;
+                const activeCategoryButton = document.querySelector('.category-filter-button.active');
+                const kategori = activeCategoryButton ? activeCategoryButton.dataset.kategori : 'all';
+                loadProviders(kategori, searchTerm);
+            });
 
-            cardBody.appendChild(detailSingkat);
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+        }
 
-            const cardActions = document.createElement('div');
-            cardActions.classList.add('joki-actions');
-            const detailButton = document.createElement('a');
-            detailButton.href = '#';
-            detailButton.classList.add('button-lihat-detail');
-            detailButton.textContent = 'Lihat Detail';
-            detailButton.addEventListener('click', () => openModal(joki));
+        const modals = document.querySelectorAll('.modal');
 
-            const websiteButton = document.createElement('a');
-            websiteButton.href = joki.profil; // Asumsi profil adalah link website
-            websiteButton.target = '_blank';
-            websiteButton.classList.add('button-kunjungi-website');
-            websiteButton.textContent = 'Kunjungi Website';
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "block";
+            }
+        }
 
-            cardActions.appendChild(detailButton);
-            cardActions.appendChild(websiteButton);
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "none";
+            }
+        }
 
-            card.appendChild(cardHeader);
-            card.appendChild(cardBody);
-            card.appendChild(cardActions);jokiListDiv.appendChild(card);
-    }
+        window.onclick = function(event) {
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        }
 
-    function openModal(joki) {
-        modalNama.textContent = joki.nama;
-        modalRatingDiv.innerHTML = generateRatingStars(joki.rating);
-        modalLayananIsi.textContent = joki.layanan.join(', ');
-        modalDetailLayanan.innerHTML = typeof joki.detail_layanan === 'string' ? joki.detail_layanan : joki.detail_layanan.innerHTML;
-        modalPesanSekarang.href = `https://wa.me/${joki.wa}`;
+        function plusSlides(n, modalContent) {
+            let slideIndex = 1;
+            const slides = modalContent.querySelectorAll(".slide");
+            const currentSlide = modalContent.querySelector('.slide.fade');
+            if (currentSlide) {
+                slideIndex = parseInt(currentSlide.dataset.slideIndex) || 1;
+            }
 
-        carouselInner.innerHTML = '';
-        if (joki.testimonials && joki.testimonials.length > 0) {
-            joki.testimonials.forEach(imgSrc => {
-                const isVideo = imgSrc.toLowerCase().endsWith('.mp4');
-                const item = document.createElement(isVideo ? 'video' : 'img');
-                item.classList.add('carousel-item');
-                item.src = `${imgSrc}`;
-                if (isVideo) {
-                    item.controls = true;
-                }
-                carouselInner.appendChild(item);
-            });
-            testimonialCarousel.style.display = 'block';
-            showTestimonial(0);
-        } else {
-            testimonialCarousel.style.display = 'none';
-        }
+            let newIndex = slideIndex + n;
+            if (newIndex > slides.length) { newIndex = 1 }
+            if (newIndex < 1) { newIndex = slides.length }
 
-        jokiModal.style.display = 'block';
-    }
+            slides.forEach(slide => {
+                slide.style.display = "none";
+                slide.classList.remove('fade');
+            });
 
-    closeModalButton.addEventListener('click', () => {
-        jokiModal.style.display = 'none';
-    });
+            const nextSlide = slides[newIndex - 1];
+            if (nextSlide) {
+                nextSlide.style.display = "block";
+                nextSlide.classList.add('fade');
+                nextSlide.dataset.slideIndex = newIndex;
+            }
+        }
 
-    window.addEventListener('click', (event) => {
-        if (event.target == jokiModal) {
-            jokiModal.style.display = 'none';
-        }
-    });
+        modals.forEach(modal => {
+            const websiteButton = modal.querySelector('.contact-button.website-button');
+            const sosmedButton = modal.querySelector('.contact-button.sosmed-button');
+            const providerData = allProvidersData.find(p => p.detailId === modal.id);
 
-    function createFilters(layanan) {
-        filterGrid.innerHTML = ''; // Clear previous filters
+            if (websiteButton && providerData && providerData.website) {
+                websiteButton.textContent = 'Kunjungi Website';
+                websiteButton.href = providerData.website;
+            }
+            if (sosmedButton && providerData && providerData.sosmed) {
+                sosmedButton.textContent = 'Kunjungi Sosmed';
+                sosmedButton.href = providerData.sosmed;
+            }
 
-        // Filter Pencarian Nama
-        const filterGroupNama = document.createElement('div');
-        filterGroupNama.classList.add('filter-group');
-        const labelNama = document.createElement('label');
-        labelNama.textContent = 'Cari Nama';
-        const inputNama = document.createElement('input');
-        inputNama.type = 'text';
-        inputNama.id = 'filterSearchInput';
-        inputNama.placeholder = 'Masukkan nama';
-        filterGroupNama.appendChild(labelNama);
-        filterGroupNama.appendChild(inputNama);
-        filterGrid.appendChild(filterGroupNama);
-
-        const skills = getUniqueSkills(layanan);
-        const pengalamanOptions = getUniquePengalaman(layanan);
-
-        // Filter 1: Berdasarkan Skill
-        if (skills.length > 0) {
-            const filterGroupSkill = document.createElement('div');
-            filterGroupSkill.classList.add('filter-group');
-            const labelSkill = document.createElement('label');
-            labelSkill.textContent = 'Skill';
-            const selectSkill = document.createElement('select');
-            const defaultOptionSkill = document.createElement('option');
-            defaultOptionSkill.value = '';
-            defaultOptionSkill.textContent = 'Semua Skill';
-            selectSkill.appendChild(defaultOptionSkill);
-
-            skills.forEach(skill => {
-                const option = document.createElement('option');
-                option.value = skill;
-                option.textContent = skill;
-                selectSkill.appendChild(option);
-            });
-            filterGroupSkill.appendChild(labelSkill);
-            filterGroupSkill.appendChild(selectSkill);
-            filterGrid.appendChild(filterGroupSkill);
-        }
-
-        // Filter 2: Berdasarkan Pengalaman
-        if (pengalamanOptions.length > 0) {
-            const filterGroupPengalaman = document.createElement('div');
-            filterGroupPengalaman.classList.add('filter-group');
-            const labelPengalaman = document.createElement('label');
-            labelPengalaman.textContent = 'Pengalaman';
-            const selectPengalaman = document.createElement('select');
-            const defaultOptionPengalaman = document.createElement('option');
-            defaultOptionPengalaman.value = '';
-            defaultOptionPengalaman.textContent = 'Semua Pengalaman';
-            selectPengalaman.appendChild(defaultOptionPengalaman);
-
-            pengalamanOptions.forEach(pengalaman => {
-                const option = document.createElement('option');
-                option.value = pengalaman;
-                option.textContent = pengalaman;
-                selectPengalaman.appendChild(option);
-            });
-            filterGroupPengalaman.appendChild(labelPengalaman);
-            filterGroupPengalaman.appendChild(selectPengalaman);
-            filterGrid.appendChild(filterGroupPengalaman);
-        }
-    }
-
-    function getUniqueSkills(layanan) {
-        const skills = new Set();
-        filteredJoki.forEach(joki => {
-            if (joki.layanan.includes(layanan) && joki.skill) {
-                joki.skill.forEach(s => skills.add(s));
-            }
-        });
-        return Array.from(skills).sort();
-    }
-
-    function getUniquePengalaman(layanan) {
-        const pengalamanSet = new Set();
-        filteredJoki.forEach(joki => {
-            if (joki.layanan.includes(layanan) && joki.pengalaman) {
-                pengalamanSet.add(joki.pengalaman);
-            }
-        });
-        return Array.from(pengalamanSet).sort();
-    }
-
-    filterSearchButton.addEventListener('click', () => {
-        const filters = Array.from(filterGrid.querySelectorAll('select'));
-        const activeFilters = {};
-        filters.forEach(select => {
-            if (select.value) {
-                const label = select.previousElementSibling.textContent.toLowerCase();
-                activeFilters[label] = select.value;
-            }
-        });
-
-        const searchTerm = document.getElementById('filterSearchInput').value.toLowerCase();
-        const layanan = layananTitle.textContent;
-        const filteredResults = dataJoki.filter(joki => {
-            if (!joki.layanan.includes(layanan)) {
-                return false;
-            }
-            if (searchTerm && !joki.nama.toLowerCase().includes(searchTerm)) {
-                return false;
-            }
-            for (const filterName in activeFilters) {
-                const filterValue = activeFilters[filterName];
-                if (filterName === 'skill') {
-                    if (!joki.skill || !joki.skill.includes(filterValue)) {
-                        return false;
-                    }
-                } else if (filterName === 'pengalaman') {
-                    if (joki.pengalaman && joki.pengalaman.toLowerCase() !== filterValue.toLowerCase()) {
-                        return false;
-                    } else if (!joki.pengalaman && filterValue !== '') {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        });
-
-        jokiListDiv.innerHTML = '';
-        filteredResults.forEach(displayJoki);
-    });
-
-    function showTestimonial(index) {
-        const items = carouselInner.querySelectorAll('.carousel-item');if (items.length === 0) return;
-
-        if (index >= items.length) {
-            testimonialIndex = 0;
-        } else if (index < 0) {
-            testimonialIndex = items.length - 1;
-        } else {
-            testimonialIndex = index;
-        }
-
-        items.forEach((item, i) => {
-            item.style.display = i === testimonialIndex ? 'block' : 'none';
-        });
-    }
-
-    prevButton.addEventListener('click', () => {
-        showTestimonial(testimonialIndex - 1);
-    });
-
-    nextButton.addEventListener('click', () => {
-        showTestimonial(testimonialIndex + 1);
-    });
-
-    // Initial load (you might want to show a default list or nothing here)
-    // dataJoki.forEach(displayJoki);
-</script>
+            const slideshows = modal.querySelectorAll('.testimonial-slideshow');
+            slideshows.forEach(slideshow => {
+                const slides = slideshow.querySelectorAll('.slide');
+                slides.forEach((slide, index) => {
+                    slide.dataset.slideIndex = index + 1;
+                    if (index > 0) {
+                        slide.style.display = 'none';
+                    } else {
+                        slide.classList.add('fade');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/your_fontawesome_kit.js" crossorigin="anonymous"></script>
 </body>
 </html>
