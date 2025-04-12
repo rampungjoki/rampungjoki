@@ -318,7 +318,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 2;
+            z-index: 1003; /* Lebih tinggi dari navbar (z-index: 1000) */
             left: 0;
             top: 0;
             width: 100%;
@@ -329,7 +329,7 @@
 
         .modal-content {
             background-color: var(--light-text);
-            margin: 10% auto;
+            margin: 10% auto; /* Tetap menggunakan margin auto untuk posisi tengah */
             padding: 30px;
             border: 1px solid #888;
             width: 80%;
@@ -340,7 +340,7 @@
         @media (max-width: 600px) {
             .modal-content {
                 width: 95%;
-                margin: 15% auto;
+                margin: 5% auto; /* Sesuaikan margin atas agar tidak terlalu ke tengah di ponsel */
                 padding: 20px;
             }
         }
