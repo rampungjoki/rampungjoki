@@ -34,7 +34,7 @@
         /* Navbar Styles */
         nav {
             background-color: #fff;
-            padding: 1.2rem 20px;
+            padding: 1rem 20px; /* Reduced vertical padding */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             position: fixed;
             top: 0;
@@ -50,7 +50,7 @@
         }
 
         nav .logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem; /* Reduced logo size */
             font-weight: 700;
             color: #007bff; /* Primary Color */
         }
@@ -77,7 +77,7 @@
         }
 
         .nav-links ul li {
-            margin-left: 1.8rem;
+            margin-left: 1.5rem; /* Reduced horizontal spacing */
         }
 
         .nav-links ul li a {
@@ -99,7 +99,7 @@
             cursor: pointer;
             outline: none;
             align-self: flex-end;
-            padding: 1rem;
+            padding: 0.8rem; /* Reduced padding */
             margin-right: 0.5rem;
             display: none; /* Sembunyikan secara default di desktop */
         }
@@ -130,7 +130,7 @@
                 box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
                 z-index: 1001;
                 transition: left 0.3s ease-in-out;
-                padding-top: 4rem; /* Beri ruang untuk status bar */
+                padding-top: 3rem; /* Reduced padding top */
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start; /* Align items to the start */
@@ -147,14 +147,14 @@
             .nav-links ul {
                 flex-direction: column;
                 padding: 0 1.5rem;
-                margin-top: 1rem; /* Add some space below the close button */
+                margin-top: 0.5rem; /* Reduced top margin */
             }
 
             .nav-links ul li {
                 margin-left: 0;
-                margin-bottom: 1rem;
+                margin-bottom: 0.8rem; /* Reduced bottom margin */
                 border-bottom: 1px solid #eee;
-                padding-bottom: 1rem;
+                padding-bottom: 0.8rem; /* Reduced bottom padding */
             }
 
             .nav-links ul li:last-child {
@@ -176,7 +176,7 @@
         /* Hero Section with Animation and Padding Top */
         .hero-section {
             background-color: #e9f7ff; /* Light Blue Background */
-            padding: 12rem 20px 10rem 20px; /* Tambah padding-top */
+            padding: 10rem 20px 8rem 20px; /* Further reduced padding */
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -184,73 +184,78 @@
 
         .hero-title-wrapper {
             opacity: 0;
-            transform: translateY(-50px);
+            transform: translateY(-30px); /* Reduced initial offset */
             animation: fallDown 0.8s ease-out 0.3s forwards;
         }
 
         .hero-title {
-            font-size: 3rem;
+            font-size: 2.5rem; /* Reduced font size */
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Reduced bottom margin */
         }
 
         .hero-subtitle-wrapper {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px); /* Reduced initial offset */
             animation: fadeInUp 0.8s ease-out 0.5s forwards;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Reduced font size */
             color: #777;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
         }
 
         .hero-buttons-wrapper {
             opacity: 0;
             animation: fadeIn 0.8s ease-out 0.7s forwards;
+            display: flex;
+            flex-direction: column; /* Stack buttons on mobile */
+            align-items: center;
         }
 
         .hero-cta, .hero-secondary-cta {
-            display: inline-block;
-            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem; /* Reduced padding */
             border-radius: 0.3rem;
             font-weight: 600;
             transition: background-color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-size: 1.1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+            font-size: 1rem; /* Reduced font size */
             text-decoration: none;
-            align-items: center;
-            display: inline-flex;
+            margin-bottom: 0.7rem; /* Add margin between buttons on mobile */
         }
 
         .hero-cta i, .hero-secondary-cta i {
-            margin-right: 0.5em; /* Presisikan jarak */
+            margin-right: 0.4em; /* Further reduced icon spacing */
         }
 
         .hero-cta {
             background-color: #29abe2; /* Lebih menarik: Cyan */
             color: #fff;
-            margin-right: 1rem;
+            margin-right: 0.5rem; /* Reduced right margin */
         }
 
         .hero-cta:hover {
             background-color: #207ab0;
-            transform: scale(1.03);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02); /* Reduced scale */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
         .hero-secondary-cta {
             background-color: #8e44ad; /* Lebih menarik: Ungu */
             color: #fff;
             border: 1px solid #8e44ad;
+            margin-right: 0; /* Remove right margin */
         }
 
         .hero-secondary-cta:hover {
             background-color: #7a3a99;
-            transform: scale(1.03);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02); /* Reduced scale */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
         @keyframes fallDown {
@@ -273,111 +278,116 @@
             }
         }
 
-        /* Why Choose Us Section (Redesigned with Separate Client & Provider Benefits) */
+        /* Why Choose Us Section (Redesigned with Grid Layout) */
         .why-choose-us {
-            padding: 4rem 20px;
+            padding: 3rem 20px; /* Reduced padding */
             text-align: center;
             background-color: #fff;
         }
 
         .why-choose-us h2 {
-            font-size: 2.2rem;
+            font-size: 2rem; /* Reduced font size */
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
         }
 
-        .benefits-section {
+        .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem; /* Reduced gap */
+            margin-top: 1.5rem; /* Reduced top margin */
         }
 
-        .benefit-card {
+        /* Style agar menjadi 3 di atas dan 3 di bawah pada layar lebar */
+        @media (min-width: 992px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .benefit-card-single {
             background-color: #f9f9f9;
-            padding: 2rem;
+            padding: 1.5rem; /* Reduced padding */
             border-radius: 0.3rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
+            border-left: 5px solid transparent; /* For color accent */
         }
 
-        .benefit-card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        .benefit-card-single:hover {
+            transform: translateY(-0.3rem); /* Reduced hover effect */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
-        .benefit-card h3 {
-            font-size: 1.6rem;
+        .benefit-card-single h4 {
+            font-size: 1.2rem; /* Reduced font size */
             color: #2c3e50;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem; /* Reduced bottom margin */
         }
 
-        .benefit-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .benefit-card ul li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
+        .benefit-card-single p {
             color: #555;
+            line-height: 1.6;
+            font-size: 0.95rem; /* Reduced font size */
         }
 
-        .benefit-card ul li i {
-            margin-right: 0.75rem;
-            font-size: 1.1rem;
-            color: #007bff; /* Accent Color */
+        .benefit-card-client {
+            border-left-color: #007bff; /* Blue accent for client */
+        }
+
+        .benefit-card-provider {
+            border-left-color: #28a745; /* Green accent for provider */
         }
 
         /* Services Section */
         .services-section {
-            padding: 4rem 20px;
+            padding: 3rem 20px; /* Reduced padding */
             text-align: center;
             background-color: #e6f7ff; /* Light Accent Background */
             color: #333;
         }
 
         .services-title {
-            font-size: 2.2rem;
+            font-size: 2rem; /* Reduced font size */
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for mobile */
+            gap: 1.5rem; /* Reduced gap */
+            margin-top: 1.5rem; /* Reduced top margin */
         }
 
         .service-card {
             background-color: #fff;
-            padding: 2rem;
+            padding: 1.5rem; /* Reduced padding */
             border-radius: 0.3rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
 
         .service-card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-0.3rem); /* Reduced hover effect */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
         .service-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem; /* Reduced font size */
             color: #007bff; /* Accent Color */
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem; /* Reduced bottom margin */
         }
 
         .service-card p {
             color: #555;
             line-height: 1.6;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem; /* Reduced bottom margin */
+            font-size: 0.9rem; /* Reduced font size */
         }
 
         .service-cta {
@@ -386,46 +396,47 @@
             justify-content: center;
             background: linear-gradient(135deg, #667eea, #764ba2); /* Special Gradient Button */
             color: #fff;
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.2rem; /* Reduced padding */
             text-decoration: none;
-            border-radius: 0.5rem; /* More rounded */
+            border-radius: 0.3rem; /* More rounded */
             font-weight: 600;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-size: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem; /* Reduced font size */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
         .service-cta i {
-            margin-right: 0.5em; /* Presisikan jarak */
-            font-size: 1.1rem;
+            margin-right: 0.4em; /* Further reduced icon spacing */
+            font-size: 1rem; /* Reduced icon size */
         }
 
         .service-cta:hover {
-            transform: translateY(-0.2rem);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(-0.1rem); /* Reduced hover effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
         /* Join as Professional Section (Themed Card) - Emphasize Website Benefit */
         .join-professional-section {
-            padding: 3rem 20px;
+            padding: 2.5rem 20px; /* Reduced padding */
             text-align: center;
             background-color: #f9f9f9;
             border-radius: 0.3rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin: 2rem auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
+            margin: 1.5rem auto; /* Reduced margin */
             max-width: 800px;
+            margin-bottom: 3rem; /* Tambahkan margin bottom */
         }
 
         .join-professional-section h2 {
-            font-size: 2.2rem;
+            font-size: 2rem; /*Reduced font size */
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* Reduced bottom margin */
             color: #2c3e50;
         }
 
         .join-professional-section p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            font-size: 1rem; /* Reduced font size */
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
             color: #555;
         }
 
@@ -434,85 +445,102 @@
             color: #007bff;
         }
 
-        .why-join-list {
-            list-style: none;
-            padding-left: 0;
+        .benefits-grid-professional {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for mobile */
+            gap: 1.5rem; /* Reduced gap */
+            margin-top: 1.5rem; /* Reduced top margin */
+        }
+
+        .benefit-card-professional {
+            background-color: #fff;
+            padding: 1.5rem; /* Reduced padding */
+            border-radius: 0.3rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
-            margin-bottom: 2rem;
+            border-left: 5px solid #28a745; /* Green accent */
         }
 
-        .why-join-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
+        .benefit-card-professional:hover {
+            transform: translateY(-0.3rem); /* Reduced hover effect */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+        }
+
+        .benefit-card-professional h4 {
+            font-size: 1.2rem; /* Reduced font size */
+            color: #2c3e50;
+            margin-bottom: 0.5rem; /* Reduced bottom margin */
+        }
+
+        .benefit-card-professional p {
             color: #555;
-        }
-
-        .why-join-list li i {
-            margin-right: 0.75rem;
-            font-size: 1.1rem;
-            color: #28a745; /* Success Color */
+            line-height: 1.6;
+            font-size: 0.95rem; /* Reduced font size */
         }
 
         .join-professional-section .signup-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: #28a745; /* Success Color */
+            background: linear-gradient(135deg, #ff6f61, #f44336); /* Lebih Spesial: Gradient Merah */
             color: #fff;
-            padding: 1rem 2rem;
+            padding: 1rem 2rem; /* Lebih besar padding */
             text-decoration: none;
-            border-radius: 0.3rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-size: 1.1rem;
+            border-radius: 0.5rem; /* Lebih rounded */
+            font-weight: 700; /* Lebih tebal */
+            transition: background-color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Lebih menonjol */
+            font-size: 1.1rem; /* Lebih besar font */
         }
 
         .join-professional-section .signup-button i {
-            margin-right: 0.5em;/* Presisikan jarak */
+            margin-right: 0.6em; /* Jarak ikon lebih besar */
+            font-size: 1.2rem; /* Ukuran ikon lebih besar */
         }
 
         .join-professional-section .signup-button:hover {
-            background-color: #218838;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+            transform: scale(1.05); /* Efek hover lebih terasa */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* FAQ Section (Interactive Cards) - Remove contact info */
+        /* FAQ Section (Interactive Cards) - Left Align Text & Colored Accent */
         .faq-section {
-            padding: 4rem 20px;
+            padding: 3rem 20px; /* Reduced padding */
             background-color: #f9f9f9;
-            text-align: center;
         }
 
         .faq-section h2 {
-            font-size: 2.2rem;
+            font-size: 2rem; /* Reduced font size */
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
+            text-align: left; /* Left align heading */
         }
 
         .faq-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for mobile */
+            gap: 1rem; /* Reduced gap */
+            margin-top: 1rem; /* Reduced top margin */
         }
 
         .faq-card {
             background-color: #fff;
             border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
             overflow: hidden;
             transition: box-shadow 0.3s ease;
+            border-left: 5px solid #007bff; /* Blue accent */
         }
 
         .faq-card:hover {
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
         .faq-question {
-            padding: 1.2rem;
+            padding: 1rem; /* Reduced padding */
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -522,14 +550,15 @@
         }
 
         .faq-question h3 {
-            font-size: 1.1rem;
+            font-size: 1rem; /* Reduced font size */
             font-weight: 600;
             color: #333;
             margin: 0;
+            text-align: left; /* Left align question text */
         }
 
         .faq-toggle i {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Reduced icon size */
             color: #007bff;
             transition: transform 0.3s ease;
         }
@@ -539,56 +568,61 @@
         }
 
         .faq-answer {
-            padding: 1.2rem;
-            font-size: 0.95rem;
+            padding: 1rem; /* Reduced padding */
+            font-size: 0.9rem; /* Reduced font size */
             color: #555;
             line-height: 1.6;
             display: none; /* Initially hidden */
+            text-align: left; /* Left align answer text */
         }
 
         .faq-card.open .faq-answer {
             display: block;
         }
 
-        /* Testimonial Section (Redesigned Cards) - Adjust testimonials to reflect website benefit */
+        /* Testimonial Section (Interactive Cards with Color Accent) */
         .testimonial-section-grid {
-            padding: 4rem 20px;
+            padding: 3rem 20px; /* Reduced padding */
             background-color: #fff;
             text-align: center;
         }
 
         .testimonial-section-grid h2 {
-            font-size: 2.2rem;
+            font-size: 2rem; /* Reduced font size */
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
         }
 
         .testimonial-grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for mobile */
+            gap: 1rem; /* Reduced gap */
+            margin-top: 1rem; /* Reduced top margin */
         }
 
         .testimonial-card-redesigned {
             background-color: #f9f9f9;
-            padding: 1.5rem;
+            padding: 1.2rem; /* Reduced padding */
             border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
+            border-left: 5px solid #ffc107; /* Yellow accent */
+            cursor: pointer; /* Make interactive */
         }
 
         .testimonial-card-redesigned:hover {
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+            transform: translateY(-0.2rem); /* Reduced hover effect */
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
 
         .testimonial-card-redesigned .comment {
             color: #555;
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Reduced bottom margin */
             font-style: italic;
+            font-size: 0.9rem; /* Reduced font size */
         }
 
         .author-info {
@@ -597,17 +631,18 @@
         }
 
         .author-info .avatar {
-            width: 50px;
-            height: 50px;
+            width: 40px; /* Reduced avatar size */
+            height: 40px; /* Reduced avatar size */
             border-radius: 50%;
             overflow: hidden;
-            margin-right: 1rem;
+            margin-right: 0.8rem; /* Reduced right margin */
             background-color: #ddd;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
             color: #777;
+            font-size: 0.8rem; /* Reduced font size in avatar */
         }
 
         .author-info .avatar img {
@@ -619,79 +654,83 @@
         .author-info .author-name {
             font-weight: 600;
             color: #333;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.1rem; /* Reduced bottom margin */
+            font-size: 0.9rem; /* Reduced font size */
         }
 
         .author-info .author-role {
             color: #777;
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Reduced font size */
         }
 
         /* Rating Para Penyedia Jasa Section */
         .rating-penjoki-section {
-            padding: 4rem 20px;
+            padding: 3rem 20px; /* Reduced padding */
             background-color: #e9ecef; /* Light Gray Background */
             text-align: center;
         }
 
         .rating-penjoki-section h2 {
-            font-size: 2.2rem;
+            font-size: 2rem; /* Reduced font size */
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Reduced bottom margin */
         }
 
         .rating-penjoki-section p {
             color: #555;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
+            font-size: 0.9rem; /* Reduced font size */
         }
 
         .rating-penjoki-iframe-container {
             border-radius: 0.3rem;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
         }
 
         /* Beri Ulasan Section (Modal Style) */
         .beri-ulasan-container {
-            padding: 3rem 20px;
+            padding: 2.5rem 20px; /* Reduced padding */
             text-align: center;
             position: relative;
         }
 
         .beri-ulasan-container h2 {
-            font-size: 2.2rem;
+            font-size: 2rem; /* Reduced font size */
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Reduced bottom margin */
         }
 
         .beri-ulasan-container p {
             color: #555;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem; /* Reduced bottom margin */
+            font-size: 0.9rem; /* Reduced font size */
         }
 
         .beri-ulasan-button {
             background-color: #ffc107; /* Warning/Accent Color */
             color: #fff;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem; /* Reduced padding */
             border: none;
             border-radius: 0.3rem;
-            font-size: 1.1rem;
+            font-size: 1rem; /* Reduced font size */
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
             display: inline-flex;
             align-items: center;
         }
 
         .beri-ulasan-button i {
-            margin-right: 0.5em;
+            margin-right: 0.4em; /* Further reduced icon spacing */
+            font-size: 1rem; /* Reduced icon size */
         }
 
         .beri-ulasan-button:hover {
             background-color: #e0a800;
-            transform: scale(1.05);
+            transform: scale(1.02); /* Reduced scale */
         }
 
         .beri-ulasan-iframe-container {
@@ -700,9 +739,9 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #fff;
-            padding: 2rem;
+            padding: 1.5rem; /* Reduced padding */
             border-radius: 0.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2); /* Reduced shadow */
             z-index: 1050;
             display: none; /* Hidden by default */
             flex-direction: column;
@@ -714,27 +753,27 @@
         }
 
         .beri-ulasan-iframe-container h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem; /* Reduced font size */
+            margin-bottom: 0.8rem; /* Reduced bottom margin */
             color: #333;
         }
 
         .beri-ulasan-iframe {
-            width: 90vw;
-            max-width: 600px;
-            height: 400px;
+            width: 95vw; /* Adjust iframe width for mobile */
+            max-width: 500px; /* Reduced max width */
+            height: 300px; /* Reduced height */
             border: none;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem; /* Reduced bottom margin */
         }
 
         .close-ulasan-button {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0.5rem; /* Reduced top position */
+            right: 0.5rem; /* Reduced right position */
             background: none;
             border: none;
             color: #555;
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Reduced font size */
             cursor: pointer;
             outline: none;
         }
@@ -763,8 +802,8 @@
             background-color: #343a40; /* Dark Footer */
             color: #fff;
             text-align: center;
-            padding: 1.5rem 20px;
-            font-size: 0.9rem;
+            padding: 1rem 20px; /* Reduced padding */
+            font-size: 0.8rem; /* Reduced font size */
         }
 
         footer .container p {
@@ -774,19 +813,25 @@
         /* Responsive Design Adjustments */
         @media (max-width: 600px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2rem; /* Further reduced font size on smaller screens */
             }
 
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 0.95rem; /* Further reduced font size on smaller screens */
+            }
+
+            .hero-buttons-wrapper {
+                flex-direction: column;
             }
 
             .hero-cta, .hero-secondary-cta {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+                font-size: 0.9rem; /* Further reduced font size on smaller screens */
+                padding: 0.6rem 1.2rem; /* Further reduced padding */
             }
 
-            .benefits-section {
+            .benefits-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -816,7 +861,7 @@
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="carijasa.html">Cari Jasa</a></li>
                     <li><a href="bergabung.html">Bergabung Jadi Profesional</a></li>
-                    <li><a href="portofolio.html">Portofolio Kami</a></li>
+                    <li><a href="tentang-kami.html">Tentang Kami</a></li>
                 </ul>
             </div>
         </div>
@@ -840,22 +885,30 @@
     <section class="why-choose-us">
         <div class="container">
             <h2 class="why-choose-us h2">Mengapa Memilih Rampungin.id?</h2>
-            <div class="benefits-section">
-                <div class="benefit-card">
-                    <h3><i class="fas fa-users" style="color: #007bff;"></i>Untuk Klien: Temukan Profesional Terbaik</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i>Akses ke penyedia jasa yang telah **terseleksi** dengan ketat.</li>
-                        <li><i class="fas fa-eye"></i>Lihat **website pribadi** profesional untuk detail layanan dan portofolio.</li>
-                        <li><i class="fas fa-handshake"></i>**Interaksi langsung** dengan profesional pilihan Anda melalui website mereka.</li>
-                    </ul>
+            <div class="benefits-grid">
+                <div class="benefit-card-single benefit-card-client">
+                    <h4><i class="fas fa-check-circle"></i>Akses Profesional Terseleksi</h4>
+                    <p>Kami memilih dengan cermat penyedia jasa untuk memastikan keahlian dan kualitas layanan terbaik.</p>
                 </div>
-                <div class="benefit-card">
-                    <h3><i class="fas fa-briefcase" style="color: #28a745;"></i>Untuk Profesional: Kembangkan Bisnis Anda</h3>
-                    <ul>
-                        <li><i class="fas fa-globe"></i>Dapatkan **website pribadi** yang profesional untuk menampilkan layanan Anda.</li>
-                        <li><i class="fas fa-bullhorn"></i>Nikmati **pemasaran gratis** di halaman Cari Jasa Rampungin.id.</li>
-                        <li><i class="fas fa-chart-line"></i>**Perluas jangkauan** pasar Anda dan bangun kredibilitas online.</li>
-                    </ul>
+                <div class="benefit-card-single benefit-card-client">
+                    <h4><i class="fas fa-eye"></i>Lihat Website Profesional</h4>
+                    <p>Telusuri detail layanan dan profesionalisme penyedia jasa melalui website pribadi mereka.</p>
+                </div>
+                <div class="benefit-card-single benefit-card-client">
+                    <h4><i class="fas fa-handshake"></i>Interaksi Langsung</h4>
+                    <p>Berinteraksi dan pahami layanan langsung dari penyedia jasa melalui website mereka.</p>
+                </div>
+                <div class="benefit-card-single benefit-card-provider">
+                    <h4><i class="fas fa-globe"></i>Website Pribadi Profesional</h4>
+                    <p>Dapatkan website pribadi untuk menampilkan layanan dan portofolio Anda.</p>
+                </div>
+                <div class="benefit-card-single benefit-card-provider">
+                    <h4><i class="fas fa-bullhorn"></i>Pemasaran Unggul</h4>
+                    <p>Kami pasarkan website pribadi Anda secara gratis di halaman Cari Jasa kami.</p>
+                </div>
+                <div class="benefit-card-single benefit-card-provider">
+                    <h4><i class="fas fa-chart-line"></i>Perluas Jangkauan Pasar</h4>
+                    <p>Jangkau ribuan calon klien dan bangun kredibilitas online Anda.</p>
                 </div>
             </div>
         </div>
@@ -866,17 +919,17 @@
             <h2 class="services-title">Kategori Jasa Profesional yang Tersedia:</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3><i class="fas fa-gamepad" style="color: #ff6f61; margin-right:0.5em;"></i>Jasa Gaming Profesional</h3>
+                    <h3><i class="fas fa-gamepad" style="color: #ff6f61; margin-right:0.4em;"></i>Jasa Gaming Profesional</h3>
                     <p>Tingkatkan level dan raih kemenangan dengan bantuan joki terpercaya.</p>
                     <a href="carijasa.html?kategori=gaming" class="service-cta"><i class="fas fa-search"></i>Cari Joki Gaming</a>
                 </div>
                 <div class="service-card">
-                    <h3><i class="fas fa-graduation-cap" style="color: #4dd0e1; margin-right: 0.5em;"></i>Bantuan Tugas Akademik</h3>
+                    <h3><i class="fas fa-graduation-cap" style="color: #4dd0e1; margin-right: 0.4em;"></i>Bantuan Tugas Akademik</h3>
                     <p>Solusi untuk tugas kuliah, skripsi, dan kebutuhan akademik lainnya.</p>
                     <a href="carijasa.html?kategori=tugas" class="service-cta"><i class="fas fa-search"></i>Cari Bantuan Akademik</a>
                 </div>
                 <div class="service-card">
-                    <h3><i class="fas fa-paint-brush" style="color: #aed581; margin-right: 0.5em;"></i>Layanan Multimedia Kreatif</h3>
+                    <h3><i class="fas fa-paint-brush" style="color: #aed581; margin-right: 0.4em;"></i>Layanan Multimedia Kreatif</h3>
                     <p>Desain grafis, editing video, dan solusi visual lainnya.</p>
                     <a href="carijasa.html?kategori=multimedia" class="service-cta"><i class="fas fa-search"></i>Cari Ahli Multimedia</a>
                 </div>
@@ -888,14 +941,26 @@
         <div class="container">
             <h2>Mengapa Anda Sebagai Profesional Harus Bergabung dengan Rampungin.id?</h2>
             <p>Kembangkan bisnis Anda dan raih lebih banyak klien potensial dengan bergabung bersama Rampungin.id! Dengan mendaftar dan melakukan pembayaran, Anda akan mendapatkan:</p>
-            <ul class="why-join-list">
-                <li><i class="fas fa-code"></i>**Website Pribadi Profesional:** Kami akan membuatkan website khusus untuk menampilkan layanan dan portofolio Anda.</li>
-                <li><i class="fas fa-bullhorn"></i>**Pemasaran Gratis di Platform Kami:** Website Anda akan kami promosikan di halaman Cari Jasa Rampungin.id, menjangkau ribuan calon klien.</li>
-                <li><i class="fas fa-globe-asia"></i>**Perluas Jangkauan Pasar:** Tingkatkan visibilitas online Anda dan temukan klien baru di luar jaringanlokal Anda.</li>
-                <li><i class="fas fa-user-tie"></i>**Bangun Brand dan Kredibilitas:** Miliki representasi online yang profesional dan tingkatkan kepercayaan klien terhadap layanan Anda.</li>
-                <li><i class="fas fa-chart-bar"></i>**Analisis dan Pelaporan (Segera Hadir):** Dapatkan data performa website Anda dan insight pasar (fitur ini akan segera hadir).</li>
-            </ul>
-            <a href="bergabung.html" class="signup-button"><i class="fas fa-handshake"></i>Saya Profesional, Ingin Bergabung & Dipromosikan!</a>
+            <div class="benefits-grid-professional">
+                <div class="benefit-card-professional">
+                    <h4><i class="fas fa-code"></i>Website Pribadi Profesional</h4>
+                    <p>Kami akan membuatkan website khusus untuk menampilkan layanan dan portofolio Anda.</p>
+                </div>
+                <div class="benefit-card-professional">
+                    <h4><i class="fas fa-bullhorn"></i>Pemasaran Gratis</h4>
+                    <p>Website Anda akan kami promosikan di halaman Cari Jasa Rampungin.id.</p>
+                </div>
+                <div class="benefit-card-professional">
+                    <h4><i class="fas fa-globe-asia"></i>Perluas Jangkauan Pasar</h4>
+                    <p>Tingkatkan visibilitas online Anda dan temukan klien baru.</p>
+                </div>
+                <div class="benefit-card-professional">
+                    <h4><i class="fas fa-user-tie"></i>Bangun Brand & Kredibilitas</h4>
+                    <p>Miliki representasi online yang profesional dan tingkatkan kepercayaan klien.</p>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;"> <a href="bergabung.html" class="signup-button"><i class="fas fa-handshake"></i>Saya Profesional, Ingin Bergabung & Dipromosikan!</a>
+            </div>
         </div>
     </section>
 
@@ -1026,28 +1091,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="testimonial-card-redesigned">
-                    <p class="comment">"Rampungin.id adalah solusi tepat untuk profesional seperti saya yang ingin memiliki representasi online yang kuat dan menjangkau pasar yang lebih luas."</p>
-                    <div class="author-info">
-                        <div class="avatar">BT</div>
-                        <div>
-                            <div class="author-name">Bintang Terang</div>
-                            <div class="author-role">Konsultan Bisnis</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card-redesigned">
-                    <p class="comment">"Saya terkesan dengan layanan Rampungin.id. Website pribadi saya membantu meningkatkan kredibilitas dan mendatangkan lebih banyak klien."</p>
-                    <div class="author-info">
-                        <div class="avatar">AR</div>
-                        <div>
-                            <div class="author-name">Andi Renovasi</div>
-                            <div class="author-role">Kontraktor Bangunan</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -1134,7 +1177,7 @@
             });
         });
 
-        // Smooth Scrolling for "Lihat Layanan Kami" Button (Adjusted for new links)
+        // Smooth Scrolling for "Lihat Layanan Kami" Button (Adjusted for newlinks)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
