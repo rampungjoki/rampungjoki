@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cari Jasa - Rampungin.id</title>
     <style>
-        /* Reset CSS */
+       /* Reset CSS */
         body, h1, h2, h3, p, ul, li, a, button, input, select, div, img {
             margin: 0;
             padding: 0;
@@ -29,7 +29,7 @@
             padding: 20px;
         }
 
-     /* Mobile Styles */
+       /* Mobile Styles */
 @media (max-width: 768px) {
     body {
         margin-top: 56px; /* Beri ruang untuk navbar fixed */
@@ -371,7 +371,7 @@
     /* padding: nilai-lama; */ /* Jika ada, kurangi nilainya */
 }
 
-       nav .logo {
+        nav .logo {
     font-size: 1.5rem;
     font-weight: 700;
     color: #007bff; /* Primary Color */
@@ -545,31 +545,122 @@
         }
 
         .joki-card {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 0.3rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border-top: 5px solid transparent; /* Placeholder for accent color */
+             background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    border-left: 5px solid #007bff; /* Aksen border kiri berwarna biru */
         }
+		.joki-card.game {
+    border-left-color: #28a745; /* Warna hijau untuk kategori Game */
+}
 
-        .joki-card.game {
-            border-top-color: #ff6f61; /* Warna aksen game */
-        }
+.joki-card.tugas {
+    border-left-color: #ffc107; /* Warna kuning untuk kategori Tugas */
+}
 
-        .joki-card.tugas {
-            border-top-color: #4dd0e1; /* Warna aksen tugas */
-        }
-
-        .joki-card.multimedia {
-            border-top-color: #aed581; /* Warna aksen multimedia */
-        }
+.joki-card.multimedia {
+    border-left-color: #dc3545; /* Warna merah untuk kategori Multimedia */
+}
 
         .joki-card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+             transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .joki-card-header {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .joki-logo-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .joki-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .joki-logo-placeholder {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .joki-title-rating {
+            flex-grow: 1;
+        }
+
+        .joki-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #007bff; /* Warna nama jasa lebih hidup */
+            margin-bottom: 0.2rem;
+            /* Anda bisa menambahkan font-family yang lebih keren di sini */
+        }
+
+        .joki-rating {
+            color: gold;
+            font-size: 0.9rem;
+        }
+
+        .joki-body {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .joki-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .button-lihat-detail {
+            background-color: #28a745; /* Warna tombol lihat detail */
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 0.3rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .button-lihat-detail:hover {
+            background-color: #1e7e34;
+        }
+
+        .button-kunjungi-website {
+            background-color: #007bff; /* Warna tombol kunjungi website */
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 0.3rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .button-kunjungi-website:hover {
+            background-color: #0056b3;
         }
 
         .joki-avatar {
@@ -651,31 +742,32 @@
 
         .filter-section {
             background-color: #fff;
-            padding: 2rem;
-            border-radius: 0.3rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
-            border-left: 5px solid transparent; /* Placeholder for accent color */
+            border-left: 6px solid #007bff; /* Warna aksen filter */
         }
 
        .filter-section.game {
-    border-left: 8px linear-gradient(to right, #ff6f61, #f57f17);
+    border-left-color: #ff6f61;
 }
 
 .filter-section.tugas {
-    border-left: 8px linear-gradient(to right, #4dd0e1, #26c6da);
+    border-left-color: #4dd0e1;
 }
 
 .filter-section.multimedia {
-    border-left: 8px linear-gradient(to right, #aed581, #9ccc65);
+    border-left-color: #aed581;
 }
 
-   .filter-section h2 {
-    /* ... properti lain ... */
-    border-bottom: 3px solid #007bff; /* Contoh warna border bawah */
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem; /* Tambah jarak setelah border */
-}
+        .filter-section h2 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
 
         .filter-grid {
             display: grid;
@@ -689,42 +781,37 @@
         }
 
         .filter-group label {
-    /* ... properti lain ... */
-    color: #007bff; /* Contoh warna label */
-    font-weight: 600; /* Membuat label lebih tebal */
-}
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.3rem;
+        }
 
-      .filter-group select {
-    /* ... properti lain ... */
-    background-color: #f9f9f9;
-}
+        .filter-group select {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.3rem;
+            font-size: 0.9rem;
+        }
 
         .back-button {
-            background-color: #6c757d; /* Warna tombol kembali */
-            color: #fff;
-            border: 1px solid #6c757d;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.3rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff; /* Warna biru yang menarik */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
 
-        .back-button i {
-            margin-right: 0; /* Hilangkan margin default ikon */
-        }
-
-        .back-button::before {
-            content: "\f060"; /* Font Awesome chevron left icon */
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            margin-right: 0.5rem;
-        }
+.back-button:hover {
+    background-color: #0056b3;
+}
 
         .hidden {
             display: none;
@@ -900,13 +987,14 @@
             background-color: #2c3e50;
             color: #fff;
             text-align: center;
-            padding: 2.5rem 20px;
+            padding:2.5rem 20px;
             font-size: 0.9rem;
         }
 
         footer p {
             margin-bottom: 0;
         }
+		
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -944,20 +1032,20 @@
             </div>
         </section>
 
-        <section class="joki-list-section hidden" id="jokiListSection">
-            <div class="container">
-                <h2>Penyedia Jasa <span id="layananTitle"></span> Terbaik</h2>
-                <div class="filter-section" id="filterSection">
-                    <h2>Filter Jasa</h2>
-                    <div class="filter-grid" id="filterGrid">
-                        </div>
-                    <button id="filterSearchButton">Cari</button>
+        <section id="jokiListSection" class="joki-list-section hidden">
+    <div class="container">
+        <h2 id="layananTitle"></h2>
+        <div id="filterSection" class="filter-section hidden">
+            <h3>Filter</h3>
+            <div id="filterGrid" class="filter-grid">
                 </div>
-                <button class="back-button"><i class="fas fa-arrow-left"></i> Kembali ke Pilihan Jasa</button>
-                <div class="joki-list" id="jokiList">
-                    </div>
+            <button id="filterSearchButton" class="button">Cari</button>
+        </div>
+        <button class="back-button">Kembali ke Pilihan Jasa</button>
+        <div id="jokiList" class="joki-list">
             </div>
-        </section>
+    </div>
+</section>
     </div>
 
     <div id="jokiModal" class="modal">
@@ -996,28 +1084,28 @@
     </footer>
 
     <script>
-        const jasaChoiceSection = document.querySelector('.jasa-choice-section');
-        const jokiListSection = document.getElementById('jokiListSection');
-        const jokiListDiv = document.getElementById('jokiList');
-        const layananTitle = document.getElementById('layananTitle');
-        const filterSection = document.getElementById('filterSection');
-        const filterGrid = document.getElementById('filterGrid');
-        const filterSearchButton = document.getElementById('filterSearchButton');
-        const backButton = document.querySelector('.back-button');
-        const jokiModal = document.getElementById('jokiModal');
-        const closeModalButton = document.querySelector('.close-button');
-        const modalNama = document.getElementById('modalNama');
-        const modalRatingDiv = document.getElementById('modalRatingDiv');
-        const modalLayananIsi = document.getElementById('modalLayananIsi');
-        const modalDetailLayanan = document.getElementById('modalDetailLayanan');
-        const modalPesanSekarang = document.getElementById('modalPesanSekarang');
-        const testimonialCarousel = document.getElementById('testimonialCarousel');
-        const carouselInner = document.getElementById('carouselInner');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        let testimonialIndex = 0;
+      const jasaChoiceSection = document.querySelector('.jasa-choice-section');
+        const jokiListSection = document.getElementById('jokiListSection');
+        const jokiListDiv = document.getElementById('jokiList');
+        const layananTitle = document.getElementById('layananTitle');
+        const filterSection = document.getElementById('filterSection');
+        const filterGrid = document.getElementById('filterGrid');
+        const filterSearchButton = document.getElementById('filterSearchButton');
+        const backButton = document.querySelector('.back-button');
+        const jokiModal = document.getElementById('jokiModal');
+        const closeModalButton = document.querySelector('.close-button');
+        const modalNama = document.getElementById('modalNama');
+        const modalRatingDiv = document.getElementById('modalRatingDiv');
+        const modalLayananIsi = document.getElementById('modalLayananIsi');
+        const modalDetailLayanan = document.getElementById('modalDetailLayanan');
+        const modalPesanSekarang = document.getElementById('modalPesanSekarang');
+        const testimonialCarousel = document.getElementById('testimonialCarousel');
+        const carouselInner = document.getElementById('carouselInner');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        let testimonialIndex = 0;
 
-      
+
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const navLinks = document.querySelector('.nav-links');
 const closeMenuButton = document.querySelector('.close-menu');
@@ -1027,55 +1115,55 @@ console.log('navLinks:', navLinks);
 console.log('closeMenuButton:', closeMenuButton);
 
 if (hamburgerMenu) {
-    hamburgerMenu.addEventListener('click', () => {
-        navLinks.classList.add('open');
-    });
+    hamburgerMenu.addEventListener('click', () => {
+        navLinks.classList.add('open');
+    });
 }
 
 if (closeMenuButton) {
-    closeMenuButton.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-    });
+    closeMenuButton.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+    });
 }
 hamburgerMenu.addEventListener('click', () => {
-    navLinks.classList.add('open');
+    navLinks.classList.add('open');
 });
 
 closeMenuButton.addEventListener('click', () => {
-    navLinks.classList.remove('open');
+    navLinks.classList.remove('open');
 });
 
-        const dataJoki = [
-             {
-                id: 1,
-                nama: "SEBATSZ",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "Rp 10.000 - Rp 50.000 tergantung tier",
-                pengalaman: "Ahli",
-                avatar: "sebatsz.jpeg",
-                wa: "6281292398570",
-                detail_layanan: "🎮 Pernah mengalahkan squad SIWA & ACURSIO di ranked mythic. Siap membantu push rank dengan cepat dan efisien.",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_ml_1.jpg", "testimoni_ml_2.png"]
-            },
-            {
-                id: 2,
-                nama: "Matadore Store",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "Epic 1 Star Rp 5.000",
-                pengalaman: "Menengah",
-                avatar: "matadore.jfif",
-                wa: "6285716046032",
-                detail_layanan: "✨ Joki di sini membuat hati kalian senang dengan kemenangan beruntun. Harga bersahabat, kualitas hebat!",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_ml_3.jpeg", "testimoni_ml_4.gif", "testimoni_ml_5.png"]
-            },
-            {
-                id: 3,
+        const dataJoki = [
+             {
+                id: 1,
+                nama: "SEBATSZ",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Rp 10.000 - Rp 50.000 tergantung tier",
+                pengalaman: "Ahli",
+                avatar: "sebatsz.jpeg",
+                wa: "6281292398570",
+                detail_layanan: "🎮 Pernah mengalahkan squad SIWA & ACURSIO di ranked mythic. Siap membantu push rank dengan cepat dan efisien.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ml_1.jpg", "testimoni_ml_2.png"]
+            },
+            {
+                id: 2,
+                nama: "Matadore Store",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Epic 1 Star Rp 5.000",
+                pengalaman: "Menengah",
+                avatar: "matadore.jfif",
+                wa: "6285716046032",
+                detail_layanan: "✨ Joki di sini membuat hati kalian senang dengan kemenangan beruntun. Harga bersahabat, kualitas hebat!",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_ml_3.jpeg", "testimoni_ml_4.gif", "testimoni_ml_5.png"]
+            },
+            {
+                 id: 3,
                 nama: "Trims.Project",
                 layanan: ["Tugas"],
                 skill: ["Skripsi", "Tugas", "Pengolahan Data"],
@@ -1083,391 +1171,413 @@ closeMenuButton.addEventListener('click', () => {
                 pengalaman: "Ahli",
                 avatar: "trims.jpeg",
                 wa: "6285775085507",
-                detail_layanan: `<div class="detail-info">
-                    <h3>📚 Layanan Penulisan Karya Ilmiah & Pengolahan Data Statistik</h3>
-                    <ul>
-                        <li>📊 Pengolahan Data Statistik (SPSS, SmartPLS)</li>
-                        <li>📝 Data Entry (Data Sekunder)</li>
-                        <li>🎓 Bantuan Skripsi (Bab 1-5, Full Skripsi, Revisi)</li>
-                        <li>📄 Daftar Isi, Gambar, Tabel, Lampiran Otomatis</li>
-                        <li>✨ Cepat, Terpercaya, dan Profesional. Harga mulai dari Rp 25.000 (fleksibel).</li>
-                    </ul>
-                </div>`,
+                detail_layanan: "📚 Layanan Penulisan Karya Ilmiah & Pengolahan Data Statistik.",
                 profil: "#",
                 rating: 5,
                 testimonials: ["testitofa.jpeg", "testitofa2.jpeg", "testitofa3.jpeg", "testitofa4.jpeg"]
-            }, 
+            },
 			{
-                id: 4,
-                nama: "PenulisBukuNonFiksi (CONTOH)",
-                layanan: ["Penulisan"],
-                skill: ["Buku Non-Fiksi", "Riset"],
-                harga: "Nego tergantung proyek",
-                pengalaman: "Ahli",
-                avatar: null,
-                wa: "6282355667788",
-                detail_layanan: "📚 Ingin menulis buku non-fiksi tapi terkendala riset dan penulisan? Saya siap membantu dari awal sampai akhir.",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            }, 
-            {
-                id: 5,
-                nama: "Jokiskysan",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "10k",
-                pengalaman: "Menengah",
-                avatar: "jokisky.jpeg",
-                wa: "6281412141451",
-                detail_layanan: "Jokiskysan amanah terpercaya 😘",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            }, 
+                id: 4,
+                nama: "PenulisBukuNonFiksi (CONTOH)",
+                layanan: ["Penulisan"],
+                skill: ["Buku Non-Fiksi", "Riset"],
+                harga: "Nego tergantung proyek",
+                pengalaman: "Ahli",
+                avatar: null,
+                wa: "6282355667788",
+                detail_layanan: "📚 Ingin menulis buku non-fiksi tapi terkendala riset dan penulisan? Saya siap membantu dari awal sampai akhir.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_nonfiksi_1.png"]
+            },
+            {
+                id: 5,
+                nama: "Jokiskysan",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "10k",
+                pengalaman: "Menengah",
+                avatar: "jokisky.jpeg",
+                wa: "6281412141451",
+                detail_layanan: "Jokiskysan amanah terpercaya 😘",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_nonfiksi_1.png"]
+            },
 			{
-                id: 6,
-                nama: "Yums Joki",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "5k/match",
-                pengalaman: "Ahli",
-                avatar: "yums.png",
-                wa: "6287884642420",
-                detail_layanan: "Yums Joki tempat joki gaming terpercaya",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            },
+                id: 6,
+                nama: "Yums Joki",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "5k/match",
+                pengalaman: "Ahli",
+                avatar: "yums.png",
+                wa: "6287884642420",
+                detail_layanan: "Yums Joki tempat joki gaming terpercaya",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_nonfiksi_1.png"]
+            },
 			{
-                id: 7,
-                nama: "Happier joki",
-                layanan: ["Game"],
-                skill: ["Mobile Legends"],
-                harga: "Permatch 5000",
-                pengalaman: "MENENGAH",
-                avatar: "hapier.jpg",
-                wa: "6281992602029",
-                detail_layanan: "Aman dan terpercaya",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_nonfiksi_1.png"]
-            },
+                id: 7,
+                nama: "Happier joki",
+                layanan: ["Game"],
+                skill: ["Mobile Legends"],
+                harga: "Permatch 5000",pengalaman: "MENENGAH",
+                avatar: "hapier.jpg",
+                wa: "6281992602029",
+                detail_layanan: "Aman dan terpercaya",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_nonfiksi_1.png"]
+            },
 			{
-    id: 8,
-    nama: "Desain Kreatif Studio",
-    layanan: ["Multimedia"],
-    skill: ["Desain Logo", "Desain Poster"],
-    harga: "Mulai dari Rp 100.000 per desain",
-    pengalaman: "Menengah",
-    avatar: "desainkreatif.png",
-    wa: "6281234567890",
-    detail_layanan: "🎨 Jasa desain logo dan poster profesional untuk branding bisnis Anda.",
-    profil: "#",
-    rating: 4,
-    testimonials: ["testimoni_desain1.jpg"]
+    id: 8,
+    nama: "Desain Kreatif Studio",
+    layanan: ["Multimedia"],
+    skill: ["Desain Logo", "Desain Poster"],
+    harga: "Mulai dari Rp 100.000 per desain",
+    pengalaman: "Menengah",
+    avatar: "desainkreatif.png",
+    wa: "6281234567890",
+    detail_layanan: "🎨 Jasa desain logo dan poster profesional untuk branding bisnis Anda.",
+    profil: "#",
+    rating: 4,
+    testimonials: ["testimoni_desain1.jpg"]
 },
 {
-    id: 9, 
-    nama: "Video Maker Pro",
-    layanan: ["Multimedia"],
-    skill: ["Editing Video Pendek", "Video Promosi"],
-    harga: "Mulai dari Rp 150.000 per video",
-    pengalaman: "Ahli",
-    avatar: "videomaker.jpg",
-    wa: "6289876543210",
-    detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
-    profil: "#",
-    rating: 5,
-    testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
+    id: 9,
+    nama: "Video Maker Pro",
+    layanan: ["Multimedia"],
+    skill: ["Editing Video Pendek", "Video Promosi"],
+    harga: "Mulai dari Rp 150.000 per video",
+    pengalaman: "Ahli",
+    avatar: "videomaker.jpg",
+    wa: "6289876543210",
+    detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
+    profil: "#",
+    rating: 5,
+    testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
 },
-            {
-                id: 10,
-                nama: "Video Maker Pro",
-                layanan: ["Multimedia"],
-                skill: ["Editing Video Pendek", "Video Promosi"],
-                harga: "Mulai dari Rp 150.000 per video",
-                pengalaman: "Ahli",
-                avatar: "videomaker.jpg",
-                wa: "6289876543210",
-                detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
-                profil: "#",
-                rating: 5,
-                testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
-            }
-        ];
+            {
+                id: 10,
+                nama: "Video Maker Pro",
+                layanan: ["Multimedia"],
+                skill: ["Editing Video Pendek", "Video Promosi"],
+                harga: "Mulai dari Rp 150.000 per video",
+                pengalaman: "Ahli",
+                avatar: "videomaker.jpg",
+                wa: "6289876543210",
+                detail_layanan: "🎬 Buat video promosi yang menarik dan profesional untuk meningkatkan engagement.",
+                profil: "#",
+                rating: 5,
+                testimonials: ["testimoni_video1.mp4", "testimoni_video2.jpeg"]
+            }
+        ];
 
-        let filteredJoki = [];
+        let filteredJoki = [];
 
-        document.querySelectorAll('.choice-button').forEach(button => {
-            button.addEventListener('click', function(event) {
-                event.preventDefault();
-                const layanan = this.textContent.split(' ')[2]; // Get "Game", "Tugas", or "Multimedia"
-                layananTitle.textContent = layanan;
-                filteredJoki = dataJoki.filter(j => j.layanan.includes(layanan));
-                jokiListDiv.innerHTML = '';
-                filteredJoki.forEach(displayJoki);
-                jasaChoiceSection.classList.add('hidden');
-                jokiListSection.classList.remove('hidden');
-                filterSection.classList.remove('hidden');
-                filterGrid.innerHTML = '';
-                createFilters(layanan);
-            });
-        });
+        document.querySelectorAll('.choice-button').forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const layanan = this.textContent.split(' ')[2]; // Get "Game", "Tugas", or "Multimedia"
+                layananTitle.textContent = layanan;
+                filteredJoki = dataJoki.filter(j => j.layanan.includes(layanan));
+                jokiListDiv.innerHTML = '';
+                filteredJoki.forEach(displayJoki);
+                jasaChoiceSection.classList.add('hidden');
+                jokiListSection.classList.remove('hidden');
+                filterSection.classList.remove('hidden');
+                filterGrid.innerHTML = '';
+                createFilters(layanan);
+            });
+        });
 
-        backButton.addEventListener('click', () => {
-            jasaChoiceSection.classList.remove('hidden');
-            jokiListSection.classList.add('hidden');
-        });
+        backButton.addEventListener('click', () => {
+            jasaChoiceSection.classList.remove('hidden');
+            jokiListSection.classList.add('hidden');
+        });
 
-        function generateRatingStars(rating) {
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 !== 0;
-            let stars = '';
-            for (let i = 0; i < fullStars; i++) {
-                stars += '<i class="fas fa-star"></i>';
-            }
-            if (hasHalfStar) {
-                stars += '<i class="fas fa-star-half-alt"></i>';
-            }
-            const emptyStars = 5 - Math.ceil(rating);
-            for (let i = 0; i < emptyStars; i++) {
-                stars += '<i class="far fa-star"></i>';
-            }
-            return stars;
-        }
+        function generateRatingStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            let stars = '';
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            return stars;
+        }
 
-        function displayJoki(joki){
-            const card = document.createElement('div');
-            card.classList.add('joki-card');
-            if (joki.layanan.includes('Game')) card.classList.add('game');
-            else if (joki.layanan.includes('Tugas')) card.classList.add('tugas');
-            else if (joki.layanan.includes('Multimedia')) card.classList.add('multimedia');
-            else if (joki.layanan.includes('Penulisan')) card.classList.add('tugas'); // Sementara samakan dengan tugas
+        function displayJoki(joki){
+            const card = document.createElement('div');
+            card.classList.add('joki-card');
+            if (joki.layanan.includes('Game')) card.classList.add('game');
+            else if (joki.layanan.includes('Tugas')) card.classList.add('tugas');
+            else if (joki.layanan.includes('Multimedia')) card.classList.add('multimedia');
+            else if (joki.layanan.includes('Penulisan')) card.classList.add('tugas'); // Sementara samakan dengan tugas
 
-            const avatarDiv = document.createElement('div');
-            avatarDiv.classList.add('joki-avatar');
-            avatarDiv.style.backgroundImage = joki.avatar ? `url('${joki.avatar}')` : '';
-            avatarDiv.style.backgroundSize = 'cover';
-            avatarDiv.style.backgroundPosition = 'center';
-            if (!joki.avatar) {
-                avatarDiv.textContent = joki.nama.charAt(0).toUpperCase();
-            }
+            const cardHeader = document.createElement('div');
+            cardHeader.classList.add('joki-card-header');
 
-            const infoDiv = document.createElement('div');
-            infoDiv.classList.add('joki-info');
-            const namaH3 = document.createElement('h3');
-            namaH3.textContent = joki.nama;
-            const ratingDiv = document.createElement('div');
-            ratingDiv.classList.add('rating');
-            ratingDiv.innerHTML = generateRatingStars(joki.rating);
-            const layananP = document.createElement('p');
-            layananP.textContent = `Layanan: ${joki.layanan.join(', ')}`;
-            const hargaP = document.createElement('p');
-            hargaP.textContent = `Harga: ${joki.harga}`;
+            const logoContainer = document.createElement('div');
+            logoContainer.classList.add('joki-logo-container');
+            let logoElement;
+            if (joki.avatar) {
+                logoElement = document.createElement('img');
+                logoElement.src = joki.avatar;
+                logoElement.alt = `Logo ${joki.nama}`;
+            } else {
+                logoElement = document.createElement('div');
+                logoElement.classList.add('joki-logo-placeholder');
+                logoElement.textContent = joki.nama.charAt(0).toUpperCase();
+            }
+            logoContainer.appendChild(logoElement);
 
-            infoDiv.appendChild(namaH3);
-            infoDiv.appendChild(ratingDiv);
-            infoDiv.appendChild(layananP);
-            infoDiv.appendChild(hargaP);
+            const titleRatingDiv = document.createElement('div');
+            titleRatingDiv.classList.add('joki-title-rating');
+            const namaH3 = document.createElement('h3');
+            namaH3.classList.add('joki-title');
+            namaH3.textContent = joki.nama;
+            const ratingDiv = document.createElement('div');
+            ratingDiv.classList.add('joki-rating');
+            ratingDiv.innerHTML = generateRatingStars(joki.rating);
+            titleRatingDiv.appendChild(namaH3);
+            titleRatingDiv.appendChild(ratingDiv);
 
-            const contactDiv = document.createElement('div');
-            contactDiv.classList.add('joki-contact');
-            const detailButton = document.createElement('a');
-            detailButton.href = '#';
-            detailButton.classList.add('contact-button', 'lihat-profil');
-            detailButton.innerHTML = '<i class="fas fa-info-circle"></i> Lihat Detail';
-            detailButton.addEventListener('click', () => openModal(joki));
+            cardHeader.appendChild(logoContainer);
+            cardHeader.appendChild(titleRatingDiv);
 
-            const waButton = document.createElement('a');
-            waButton.href = `https://wa.me/${joki.wa}`;
-            waButton.target = '_blank';
-            waButton.classList.add('contact-button', 'hubungi-wa');
-            waButton.innerHTML = '<i class="fab fa-whatsapp"></i> Hubungi WA';
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('joki-body');
+            const detailSingkat = document.createElement('p');
+            detailSingkat.classList.add('joki-details');
+            // Ambil sebagian kecil dari detail layanan sebagai detail singkat
+            const shortDetail = typeof joki.detail_layanan === 'string' ?
+                            joki.detail_layanan.substring(0, 100) + '...' :
+                            (joki.detail_layanan.textContent || joki.detail_layanan.innerHTML).substring(0, 100) + '...';
+            detailSingkat.textContent = shortDetail;
 
-            contactDiv.appendChild(detailButton);
-            contactDiv.appendChild(waButton);
+            cardBody.appendChild(detailSingkat);
 
-            card.appendChild(avatarDiv);
-            card.appendChild(infoDiv);
-            card.appendChild(contactDiv);
+            const cardActions = document.createElement('div');
+            cardActions.classList.add('joki-actions');
+            const detailButton = document.createElement('a');
+            detailButton.href = '#';
+            detailButton.classList.add('button-lihat-detail');
+            detailButton.textContent = 'Lihat Detail';
+            detailButton.addEventListener('click', () => openModal(joki));
 
-            jokiListDiv.appendChild(card);
-        }
+            const websiteButton = document.createElement('a');
+            websiteButton.href = joki.profil; // Asumsi profil adalah link website
+            websiteButton.target = '_blank';
+            websiteButton.classList.add('button-kunjungi-website');
+            websiteButton.textContent = 'Kunjungi Website';
 
-        function openModal(joki) {
-            modalNama.textContent = joki.nama;
-            modalRatingDiv.innerHTML = generateRatingStars(joki.rating);
-            modalLayananIsi.textContent = joki.layanan.join(', ');
-            modalDetailLayanan.innerHTML = typeof joki.detail_layanan === 'string' ? joki.detail_layanan : joki.detail_layanan.innerHTML;
-            modalPesanSekarang.href = `https://wa.me/${joki.wa}`;
+            cardActions.appendChild(detailButton);
+            cardActions.appendChild(websiteButton);
 
-            carouselInner.innerHTML = '';
-            if (joki.testimonials && joki.testimonials.length > 0) {
-                joki.testimonials.forEach(imgSrc => {
-                    const isVideo = imgSrc.toLowerCase().endsWith('.mp4');
-                    const item = document.createElement(isVideo ? 'video' : 'img');
-                    item.classList.add('carousel-item');
-                    item.src = `${imgSrc}`;
-                    if (isVideo) {
-                        item.controls = true;
-                    }
-                    carouselInner.appendChild(item);
-                });
-                testimonialCarousel.style.display = 'block';
-                showTestimonial(0);
-            } else {
-                testimonialCarousel.style.display = 'none';
-            }
+            card.appendChild(cardHeader);
+            card.appendChild(cardBody);
+            card.appendChild(cardActions);jokiListDiv.appendChild(card);
+    }
 
-            jokiModal.style.display = 'block';
-        }
+    function openModal(joki) {
+        modalNama.textContent = joki.nama;
+        modalRatingDiv.innerHTML = generateRatingStars(joki.rating);
+        modalLayananIsi.textContent = joki.layanan.join(', ');
+        modalDetailLayanan.innerHTML = typeof joki.detail_layanan === 'string' ? joki.detail_layanan : joki.detail_layanan.innerHTML;
+        modalPesanSekarang.href = `https://wa.me/${joki.wa}`;
 
-        closeModalButton.addEventListener('click', () => {
-            jokiModal.style.display = 'none';
-        });
+        carouselInner.innerHTML = '';
+        if (joki.testimonials && joki.testimonials.length > 0) {
+            joki.testimonials.forEach(imgSrc => {
+                const isVideo = imgSrc.toLowerCase().endsWith('.mp4');
+                const item = document.createElement(isVideo ? 'video' : 'img');
+                item.classList.add('carousel-item');
+                item.src = `${imgSrc}`;
+                if (isVideo) {
+                    item.controls = true;
+                }
+                carouselInner.appendChild(item);
+            });
+            testimonialCarousel.style.display = 'block';
+            showTestimonial(0);
+        } else {
+            testimonialCarousel.style.display = 'none';
+        }
 
-        window.addEventListener('click', (event) => {
-            if (event.target == jokiModal) {
-                jokiModal.style.display = 'none';
-            }
-        });
+        jokiModal.style.display = 'block';
+    }
 
-        function createFilters(layanan) {
-            filterGrid.innerHTML = ''; // Clear previous filters
-            const skills = getUniqueSkills(layanan);
-            const pengalamanOptions = getUniquePengalaman(layanan);
+    closeModalButton.addEventListener('click', () => {
+        jokiModal.style.display = 'none';
+    });
 
-            // Filter 1: Berdasarkan Skill
-            if (skills.length > 0) {
-                const filterGroupSkill = document.createElement('div');
-                filterGroupSkill.classList.add('filter-group');
-                const labelSkill = document.createElement('label');
-                labelSkill.textContent = 'Skill';
-                const selectSkill = document.createElement('select');
-                const defaultOptionSkill = document.createElement('option');
-                defaultOptionSkill.value = '';
-                defaultOptionSkill.textContent = 'Semua Skill';
-                selectSkill.appendChild(defaultOptionSkill);
+    window.addEventListener('click', (event) => {
+        if (event.target == jokiModal) {
+            jokiModal.style.display = 'none';
+        }
+    });
 
-                skills.forEach(skill => {
-                    const option = document.createElement('option');
-                    option.value = skill;
-                    option.textContent = skill;
-                    selectSkill.appendChild(option);
-                });
-                filterGroupSkill.appendChild(labelSkill);
-                filterGroupSkill.appendChild(selectSkill);
-                filterGrid.appendChild(filterGroupSkill);
-            }
+    function createFilters(layanan) {
+        filterGrid.innerHTML = ''; // Clear previous filters
 
-            // Filter 2: Berdasarkan Pengalaman
-            if (pengalamanOptions.length > 0) {
-                const filterGroupPengalaman = document.createElement('div');
-                filterGroupPengalaman.classList.add('filter-group');
-                const labelPengalaman = document.createElement('label');
-                labelPengalaman.textContent = 'Pengalaman';
-                const selectPengalaman = document.createElement('select');
-                const defaultOptionPengalaman = document.createElement('option');
-                defaultOptionPengalaman.value = '';
-                defaultOptionPengalaman.textContent = 'Semua Pengalaman';
-                selectPengalaman.appendChild(defaultOptionPengalaman);
+        // Filter Pencarian Nama
+        const filterGroupNama = document.createElement('div');
+        filterGroupNama.classList.add('filter-group');
+        const labelNama = document.createElement('label');
+        labelNama.textContent = 'Cari Nama';
+        const inputNama = document.createElement('input');
+        inputNama.type = 'text';
+        inputNama.id = 'filterSearchInput';
+        inputNama.placeholder = 'Masukkan nama';
+        filterGroupNama.appendChild(labelNama);
+        filterGroupNama.appendChild(inputNama);
+        filterGrid.appendChild(filterGroupNama);
 
-                pengalamanOptions.forEach(pengalaman => {
-                    const option = document.createElement('option');
-                    option.value = pengalaman;
-                    option.textContent = pengalaman;
-                    selectPengalaman.appendChild(option);
-                });
-                filterGroupPengalaman.appendChild(labelPengalaman);
-                filterGroupPengalaman.appendChild(selectPengalaman);
-                filterGrid.appendChild(filterGroupPengalaman);
-            }
-        }
+        const skills = getUniqueSkills(layanan);
+        const pengalamanOptions = getUniquePengalaman(layanan);
 
-        function getUniqueSkills(layanan) {
-            const skills = new Set();
-            filteredJoki.forEach(joki => {
-                if (joki.layanan.includes(layanan) && joki.skill) {
-                    joki.skill.forEach(s => skills.add(s));
-                }
-            });
-            return Array.from(skills).sort();
-        }
+        // Filter 1: Berdasarkan Skill
+        if (skills.length > 0) {
+            const filterGroupSkill = document.createElement('div');
+            filterGroupSkill.classList.add('filter-group');
+            const labelSkill = document.createElement('label');
+            labelSkill.textContent = 'Skill';
+            const selectSkill = document.createElement('select');
+            const defaultOptionSkill = document.createElement('option');
+            defaultOptionSkill.value = '';
+            defaultOptionSkill.textContent = 'Semua Skill';
+            selectSkill.appendChild(defaultOptionSkill);
 
-        function getUniquePengalaman(layanan) {
-            const pengalamanSet = new Set();
-            filteredJoki.forEach(joki => {
-                if (joki.layanan.includes(layanan) && joki.pengalaman) {
-                    pengalamanSet.add(joki.pengalaman);
-                }
-            });
-            return Array.from(pengalamanSet).sort();
-        }
+            skills.forEach(skill => {
+                const option = document.createElement('option');
+                option.value = skill;
+                option.textContent = skill;
+                selectSkill.appendChild(option);
+            });
+            filterGroupSkill.appendChild(labelSkill);
+            filterGroupSkill.appendChild(selectSkill);
+            filterGrid.appendChild(filterGroupSkill);
+        }
 
-        filterSearchButton.addEventListener('click', () => {
-            const filters = Array.from(filterGrid.querySelectorAll('select'));
-            const activeFilters = {};
-            filters.forEach(select => {
-                if (select.value) {
-                    const label = select.previousElementSibling.textContent.toLowerCase();
-                    activeFilters[label] = select.value;
-                }
-            });
+        // Filter 2: Berdasarkan Pengalaman
+        if (pengalamanOptions.length > 0) {
+            const filterGroupPengalaman = document.createElement('div');
+            filterGroupPengalaman.classList.add('filter-group');
+            const labelPengalaman = document.createElement('label');
+            labelPengalaman.textContent = 'Pengalaman';
+            const selectPengalaman = document.createElement('select');
+            const defaultOptionPengalaman = document.createElement('option');
+            defaultOptionPengalaman.value = '';
+            defaultOptionPengalaman.textContent = 'Semua Pengalaman';
+            selectPengalaman.appendChild(defaultOptionPengalaman);
 
-            const layanan = layananTitle.textContent;
-            const filteredResults = dataJoki.filter(joki => {
-                if (!joki.layanan.includes(layanan)) {
-                    return false;
-                }
-                for (const filterName in activeFilters) {
-                    const filterValue = activeFilters[filterName];
-                    if (filterName === 'skill') {
-                        if (!joki.skill || !joki.skill.includes(filterValue)) {
-                            return false;
-                        }
-                    } else if (filterName === 'pengalaman') {
-                        if (joki.pengalaman && joki.pengalaman.toLowerCase() !== filterValue.toLowerCase()) {
-                            return false;
-                        } else if (!joki.pengalaman && filterValue !== '') {
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            });
+            pengalamanOptions.forEach(pengalaman => {
+                const option = document.createElement('option');
+                option.value = pengalaman;
+                option.textContent = pengalaman;
+                selectPengalaman.appendChild(option);
+            });
+            filterGroupPengalaman.appendChild(labelPengalaman);
+            filterGroupPengalaman.appendChild(selectPengalaman);
+            filterGrid.appendChild(filterGroupPengalaman);
+        }
+    }
 
-            jokiListDiv.innerHTML = '';
-            filteredResults.forEach(displayJoki);
-        });
+    function getUniqueSkills(layanan) {
+        const skills = new Set();
+        filteredJoki.forEach(joki => {
+            if (joki.layanan.includes(layanan) && joki.skill) {
+                joki.skill.forEach(s => skills.add(s));
+            }
+        });
+        return Array.from(skills).sort();
+    }
 
-        function showTestimonial(index) {
-            const items = carouselInner.querySelectorAll('.carousel-item');
-            if (items.length === 0) return;
+    function getUniquePengalaman(layanan) {
+        const pengalamanSet = new Set();
+        filteredJoki.forEach(joki => {
+            if (joki.layanan.includes(layanan) && joki.pengalaman) {
+                pengalamanSet.add(joki.pengalaman);
+            }
+        });
+        return Array.from(pengalamanSet).sort();
+    }
 
-            if (index >= items.length) {
-                testimonialIndex = 0;
-            } else if (index < 0) {
-                testimonialIndex = items.length - 1;
-            } else {
-                testimonialIndex = index;
-            }
+    filterSearchButton.addEventListener('click', () => {
+        const filters = Array.from(filterGrid.querySelectorAll('select'));
+        const activeFilters = {};
+        filters.forEach(select => {
+            if (select.value) {
+                const label = select.previousElementSibling.textContent.toLowerCase();
+                activeFilters[label] = select.value;
+            }
+        });
 
-            items.forEach((item, i) => {
-                item.style.display = i === testimonialIndex ? 'block' : 'none';
-            });
-        }
+        const searchTerm = document.getElementById('filterSearchInput').value.toLowerCase();
+        const layanan = layananTitle.textContent;
+        const filteredResults = dataJoki.filter(joki => {
+            if (!joki.layanan.includes(layanan)) {
+                return false;
+            }
+            if (searchTerm && !joki.nama.toLowerCase().includes(searchTerm)) {
+                return false;
+            }
+            for (const filterName in activeFilters) {
+                const filterValue = activeFilters[filterName];
+                if (filterName === 'skill') {
+                    if (!joki.skill || !joki.skill.includes(filterValue)) {
+                        return false;
+                    }
+                } else if (filterName === 'pengalaman') {
+                    if (joki.pengalaman && joki.pengalaman.toLowerCase() !== filterValue.toLowerCase()) {
+                        return false;
+                    } else if (!joki.pengalaman && filterValue !== '') {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        });
 
-        prevButton.addEventListener('click', () => {
-            showTestimonial(testimonialIndex - 1);
-        });
+        jokiListDiv.innerHTML = '';
+        filteredResults.forEach(displayJoki);
+    });
 
-        nextButton.addEventListener('click', () => {
-            showTestimonial(testimonialIndex + 1);
-        });
+    function showTestimonial(index) {
+        const items = carouselInner.querySelectorAll('.carousel-item');if (items.length === 0) return;
 
-        // Initial load (you might want to show a default list or nothing here)
-        // dataJoki.forEach(displayJoki);
-    </script>
+        if (index >= items.length) {
+            testimonialIndex = 0;
+        } else if (index < 0) {
+            testimonialIndex = items.length - 1;
+        } else {
+            testimonialIndex = index;
+        }
+
+        items.forEach((item, i) => {
+            item.style.display = i === testimonialIndex ? 'block' : 'none';
+        });
+    }
+
+    prevButton.addEventListener('click', () => {
+        showTestimonial(testimonialIndex - 1);
+    });
+
+    nextButton.addEventListener('click', () => {
+        showTestimonial(testimonialIndex + 1);
+    });
+
+    // Initial load (you might want to show a default list or nothing here)
+    // dataJoki.forEach(displayJoki);
+</script>
 </body>
 </html>
