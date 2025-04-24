@@ -3,1173 +3,1234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rampungin.id - Platform Jasa Profesional Terseleksi & Pemasaran Unggul</title>
-    <meta name="description" content="Rampungin.id: Temukan penyedia jasa profesional terseleksi. Dapatkan pemasaran unggul untuk website pribadi Anda di platform kami.">
+    <title>Rampungin.id - Solusi Penyedia Jasa Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Reset CSS */
-        body, h1, h2, h3, p, ul, li, a, button, iframe, img {
+        :root {
+            --primary: #4361EE;
+            --secondary: #3A0CA3;
+            --accent: #F72585;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, #4361EE 0%, #3A0CA3 50%, #F72585 100%);
+            --soft-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hard-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
             box-sizing: border-box;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-
+        
         body {
-            font-family: 'Poppins', sans-serif; /* Modern & Friendly Font */
-            line-height: 1.7;
-            background-color: #f4f6f8; /* Light Background */
-            color: #333; /* Dark Text */
+            background-color: var(--light);
+            color: var(--dark);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Navbar Styles */
-        nav {
-            background-color: #fff;
-            padding: 1rem 20px; /* Reduced vertical padding */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Loading Animation */
+        .loader-wrapper {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
 
-        nav .container {
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--primary);
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Navbar */
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.2rem 8%;
+            background-color: white;
+            box-shadow: var(--soft-shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-
-        nav .logo {
-            font-size: 1.6rem; /* Reduced logo size */
-            font-weight: 700;
-            color: #007bff; /* Primary Color */
-        }
-
-        .hamburger-menu {
-            background: none;
-            border: none;
-            color: #555;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none; /* Sembunyikan secara default di desktop */
-            outline: none;
-        }
-
-        .nav-links {
+        
+        .logo {
             display: flex;
             align-items: center;
+            transition: transform 0.3s ease;
         }
-
-        .nav-links ul {
-            list-style: none;
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 12px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
             display: flex;
-            margin-bottom: 0;
+            list-style: none;
+            transition: all 0.4s ease;
         }
-
-        .nav-links ul li {
-            margin-left: 1.5rem; /* Reduced horizontal spacing */
+        
+        .nav-links li {
+            margin-left: 2.5rem;
         }
-
-        .nav-links ul li a {
+        
+        .nav-links a {
             text-decoration: none;
-            color: #555;
-            transition: color 0.3s ease;
+            color: var(--dark);
             font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
         }
-
-        .nav-links ul li a:hover {
-            color: #007bff;
+        
+        .nav-links a:hover {
+            color: var(--primary);
         }
-
-        .close-menu {
-            background: none;
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--soft-shadow);
+            text-decoration: none;
+            font-size: 0.95rem;
             border: none;
-            color: #555;
-            font-size: 1.5rem;
             cursor: pointer;
-            outline: none;
-            align-self: flex-end;
-            padding: 0.8rem; /* Reduced padding */
-            margin-right: 0.5rem;
-            display: none; /* Sembunyikan secara default di desktop */
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--hard-shadow);
         }
 
-        .close-menu:hover {
-            color: #dc3545; /* Danger color on hover */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 1001;
         }
 
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            nav .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .hamburger-menu {
-                display: block; /* Tampilkan di tampilan ponsel */
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: -300px; /* Sembunyikan di luar layar */
-                width: 250px;
-                height: 100%;
-                background-color: #fff;
-                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-                z-index: 1001;
-                transition: left 0.3s ease-in-out;
-                padding-top: 3rem; /* Reduced padding top */
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start; /* Align items to the start */
-            }
-
-            .nav-links.open {
-                left: 0; /* Tampilkan sidebar saat class 'open' ditambahkan */
-            }
-
-            .close-menu {
-                display: block; /* Tampilkan di tampilan ponsel */
-            }
-
-            .nav-links ul {
-                flex-direction: column;
-                padding: 0 1.5rem;
-                margin-top: 0.5rem; /* Reduced top margin */
-            }
-
-            .nav-links ul li {
-                margin-left: 0;
-                margin-bottom: 0.8rem; /* Reduced bottom margin */
-                border-bottom: 1px solid #eee;
-                padding-bottom: 0.8rem; /* Reduced bottom padding */
-            }
-
-            .nav-links ul li:last-child {
-                border-bottom: none;
-                padding-bottom: 0;
-                margin-bottom: 0;
-            }
-
-            .nav-links ul li a {
-                color: #333;
-                font-weight: 600;
-            }
-
-            .nav-links ul li a:hover {
-                color: #007bff;
-            }
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--secondary);
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
         }
 
-        /* Hero Section with Animation and Padding Top */
-        .hero-section {
-            background-color: #e9f7ff; /* Light Blue Background */
-            padding: 10rem 20px 8rem 20px; /* Further reduced padding */
-            text-align: center;
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .hamburger span:nth-child(2), .hamburger span:nth-child(3) {
+            top: 10px;
+        }
+
+        .hamburger span:nth-child(4) {
+            top: 20px;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        .hamburger.open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        .hamburger.open span:nth-child(4) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 8rem 8% 5rem;
+            min-height: 90vh;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-title-wrapper {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/rampungjoki/rampungjoki/main/IMG_5277.png') center/cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-left: 3rem;
+            position: relative;
+            z-index: 2;
             opacity: 0;
-            transform: translateY(-30px); /* Reduced initial offset */
-            animation: fallDown 0.8s ease-out 0.3s forwards;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+        
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--secondary);
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
         }
 
-        .hero-title {
-            font-size: 2.5rem; /* Reduced font size */
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.8rem; /* Reduced bottom margin */
+        .hero-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underlineGrow 1.5s ease forwards 1s;
         }
 
-        .hero-subtitle-wrapper {
-            opacity: 0;
-            transform: translateY(20px); /* Reduced initial offset */
-            animation: fadeInUp 0.8s ease-out 0.5s forwards;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem; /* Reduced font size */
-            color: #777;
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
-        }
-
-        .hero-buttons-wrapper {
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.7s forwards;
-            display: flex;
-            flex-direction: column; /* Stack buttons on mobile */
-            align-items: center;
-        }
-
-        .hero-cta, .hero-secondary-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem 1.5rem; /* Reduced padding */
-            border-radius: 0.3rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-            font-size: 1rem; /* Reduced font size */
-            text-decoration: none;
-            margin-bottom: 0.7rem; /* Add margin between buttons on mobile */
-        }
-
-        .hero-cta i, .hero-secondary-cta i {
-            margin-right: 0.4em; /* Further reduced icon spacing */
-        }
-
-        .hero-cta {
-            background-color: #29abe2; /* Lebih menarik: Cyan */
-            color: #fff;
-            margin-right: 0.5rem; /* Reduced right margin */
-        }
-
-        .hero-cta:hover {
-            background-color: #207ab0;
-            transform: scale(1.02); /* Reduced scale */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-        }
-
-        .hero-secondary-cta {
-            background-color: #8e44ad; /* Lebih menarik: Ungu */
-            color: #fff;
-            border: 1px solid #8e44ad;
-            margin-right: 0; /* Remove right margin */
-        }
-
-        .hero-secondary-cta:hover {
-            background-color: #7a3a99;
-            transform: scale(1.02); /* Reduced scale */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-        }
-
-        @keyframes fallDown {
+        @keyframes underlineGrow {
             to {
-                opacity: 1;
-                transform: translateY(0);
+                transform: scaleX(1);
+            }
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1s;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1.2s;
+        }
+        
+        .secondary-button {
+            background: transparent;
+            color: var(--primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .secondary-button:hover {
+            background: rgba(67, 97, 238, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            position: relative;
+            opacity: 0;
+            transform: translateX(20px);
+            animation: fadeInRight 0.8s ease forwards 0.7s;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Particle Animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
             }
         }
 
         @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
             to {
                 opacity: 1;
+                transform: translateX(0);
             }
         }
 
-        /* Why Choose Us Section (Redesigned with Grid Layout) */
-        .why-choose-us {
-            padding: 3rem 20px; /* Reduced padding */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Why Choose Section */
+        .why-choose {
+            padding: 5rem 8%;
+            background-color: white;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1s;
+        }
+        
+        .section-title {
             text-align: center;
-            background-color: #fff;
+            margin-bottom: 3rem;
         }
-
-        .why-choose-us h2 {
-            font-size: 2rem; /* Reduced font size */
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
             font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
         }
-
-        .benefits-grid {
+        
+        .section-title .subtext {
+            font-size: 1.1rem;
+            color: var(--dark);
+            opacity: 0.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .card-alasan-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem; /* Reduced gap */
-            margin-top: 1.5rem; /* Reduced top margin */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .card-alasan {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        /* Style agar menjadi 3 di atas dan 3 di bawah pada layar lebar */
-        @media (min-width: 992px) {
-            .benefits-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .card-alasan:nth-child(1) { animation: fadeInUp 0.5s ease forwards 1.2s; }
+        .card-alasan:nth-child(2) { animation: fadeInUp 0.5s ease forwards 1.3s; }
+        .card-alasan:nth-child(3) { animation: fadeInUp 0.5s ease forwards 1.4s; }
+        .card-alasan:nth-child(4) { animation: fadeInUp 0.5s ease forwards 1.5s; }
+        .card-alasan:nth-child(5) { animation: fadeInUp 0.5s ease forwards 1.6s; }
+        .card-alasan:nth-child(6) { animation: fadeInUp 0.5s ease forwards 1.7s; }
+        
+        .card-alasan:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hard-shadow);
         }
-
-        .benefit-card-single {
-            background-color: #f9f9f9;
-            padding: 1.5rem; /* Reduced padding */
-            border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: left;
-            border-left: 5px solid transparent; /* For color accent */
+        
+        .card-alasan h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
         }
-
-        .benefit-card-single:hover {
-            transform: translateY(-0.3rem); /* Reduced hover effect */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+        
+        .card-alasan p {
+            color: var(--dark);
+            opacity: 0.8;
+            font-size: 0.95rem;
         }
-
-        .benefit-card-single h4 {
-            font-size: 1.2rem; /* Reduced font size */
-            color: #2c3e50;
-            margin-bottom: 0.5rem; /* Reduced bottom margin */
-        }
-
-        .benefit-card-single p {
-            color: #555;
-            line-height: 1.6;
-            font-size: 0.95rem; /* Reduced font size */
-        }
-
-        .benefit-card-client {
-            border-left-color: #007bff; /* Blue accent for client */
-        }
-
-        .benefit-card-provider {
-            border-left-color: #28a745; /* Green accent for provider */
-        }
-
+        
         /* Services Section */
-        .services-section {
-            padding: 3rem 20px; /* Reduced padding */
-            text-align: center;
-            background-color: #e6f7ff; /* Light Accent Background */
-            color: #333;
+        .services {
+            padding: 5rem 8%;
+            background-color: var(--light);
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1.8s;
         }
-
-        .services-title {
-            font-size: 2rem; /* Reduced font size */
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
-        }
-
-        .services-grid {
+        
+        .offer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for mobile */
-            gap: 1.5rem; /* Reduced gap */
-            margin-top: 1.5rem; /* Reduced top margin */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
-
-        .service-card {
-            background-color: #fff;
-            padding: 1.5rem; /* Reduced padding */
-            border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-0.3rem); /* Reduced hover effect */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-        }
-
-        .service-card h3 {
-            font-size: 1.2rem; /* Reduced font size */
-            color: #007bff; /* Accent Color */
-            margin-bottom: 0.5rem; /* Reduced bottom margin */
-        }
-
-        .service-card p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem; /* Reduced bottom margin */
-            font-size: 0.9rem; /* Reduced font size */
-        }
-
-        .service-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea, #764ba2); /* Special Gradient Button */
-            color: #fff;
-            padding: 0.6rem 1.2rem; /* Reduced padding */
+        
+        .offer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s ease;
             text-decoration: none;
-            border-radius: 0.3rem; /* More rounded */
+            color: var(--dark);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .offer-card:nth-child(1) { animation: fadeInUp 0.5s ease forwards 2s; }
+        .offer-card:nth-child(2) { animation: fadeInUp 0.5s ease forwards 2.1s; }
+        .offer-card:nth-child(3) { animation: fadeInUp 0.5s ease forwards 2.2s; }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hard-shadow);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
             font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-size: 0.9rem; /* Reduced font size */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
         }
-
-        .service-cta i {
-            margin-right: 0.4em; /* Further reduced icon spacing */
-            font-size: 1rem; /* Reduced icon size */
-        }
-
-        .service-cta:hover {
-            transform: translateY(-0.1rem); /* Reduced hover effect */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-        }
-
-        /* Join as Professional Section (Themed Card) - Emphasize Website Benefit */
-        .join-professional-section {
-            padding: 2.5rem 20px; /* Reduced padding */
-            text-align: center;
-            background-color: #f9f9f9;
-            border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
-            margin: 1.5rem auto; /* Reduced margin */
-            max-width: 800px;
-            margin-bottom: 3rem; /* Tambahkan margin bottom */
-        }
-
-        .join-professional-section h2 {
-            font-size: 2rem; /*Reduced font size */
-            font-weight: 700;
-            margin-bottom: 1rem; /* Reduced bottom margin */
-            color: #2c3e50;
-        }
-
-        .join-professional-section p {
-            font-size: 1rem; /* Reduced font size */
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
-            color: #555;
-        }
-
-        .join-professional-section p strong {
-            font-weight: 700;
-            color: #007bff;
-        }
-
-        .benefits-grid-professional {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for mobile */
-            gap: 1.5rem; /* Reduced gap */
-            margin-top: 1.5rem; /* Reduced top margin */
-        }
-
-        .benefit-card-professional {
-            background-color: #fff;
-            padding: 1.5rem; /* Reduced padding */
-            border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: left;
-            border-left: 5px solid #28a745; /* Green accent */
-        }
-
-        .benefit-card-professional:hover {
-            transform: translateY(-0.3rem); /* Reduced hover effect */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-        }
-
-        .benefit-card-professional h4 {
-            font-size: 1.2rem; /* Reduced font size */
-            color: #2c3e50;
-            margin-bottom: 0.5rem; /* Reduced bottom margin */
-        }
-
-        .benefit-card-professional p {
-            color: #555;
-            line-height: 1.6;
-            font-size: 0.95rem; /* Reduced font size */
-        }
-
-        .join-professional-section .signup-button {
-            display: inline-flex;
+        
+        .offer-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #ff6f61, #f44336); /* Lebih Spesial: Gradient Merah */
-            color: #fff;
-            padding: 1rem 2rem; /* Lebih besar padding */
-            text-decoration: none;
-            border-radius: 0.5rem; /* Lebih rounded */
-            font-weight: 700; /* Lebih tebal */
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Lebih menonjol */
-            font-size: 1.1rem; /* Lebih besar font */
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .offer-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .offer-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+        }
+        
+        .offer-card p {
+            color: var(--dark);
+            opacity: 0.8;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .offer-hover-effect {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .offer-card:hover .offer-hover-effect {
+            transform: scaleX(1);
+        }
+        
+        .section-cta {
+            text-align: center;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 2.3s;
         }
 
-        .join-professional-section .signup-button i {
-            margin-right: 0.6em; /* Jarak ikon lebih besar */
-            font-size: 1.2rem; /* Ukuran ikon lebih besar */
-        }
-
-        .join-professional-section .signup-button:hover {
-            background: linear-gradient(135deg, #f44336, #d32f2f);
-            transform: scale(1.05); /* Efek hover lebih terasa */
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        /* FAQ Section (Interactive Cards) - Left Align Text & Colored Accent */
+        /* FAQ Section */
         .faq-section {
-            padding: 3rem 20px; /* Reduced padding */
-            background-color: #f9f9f9;
+            padding: 5rem 8%;
+            background-color: white;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 2.4s;
         }
 
-        .faq-section h2 {
-            font-size: 2rem; /* Reduced font size */
+        .faq-title {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            text-align: center;
             font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
-            text-align: left; /* Left align heading */
+        }
+
+        .faq-subtitle {
+            font-size: 1.1rem;
+            color: var(--dark);
+            opacity: 0.7;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
         }
 
         .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for mobile */
-            gap: 1rem; /* Reduced gap */
-            margin-top: 1rem; /* Reduced top margin */
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .faq-card {
-            background-color: #fff;
-            border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
             overflow: hidden;
-            transition: box-shadow 0.3s ease;
-            border-left: 5px solid #007bff; /* Blue accent */
+            box-shadow: var(--soft-shadow);
+            transition: all 0.3s ease;
         }
 
-        .faq-card:hover {
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+        .faq-item:hover {
+            box-shadow: var(--hard-shadow);
         }
 
         .faq-question {
-            padding: 1rem; /* Reduced padding */
-            cursor: pointer;
+            width: 100%;
+            padding: 1.5rem;
+            text-align: left;
+            background: white;
+            border: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #eee;
-        }
-
-        .faq-question h3 {
-            font-size: 1rem; /* Reduced font size */
+            cursor: pointer;
             font-weight: 600;
-            color: #333;
-            margin: 0;
-            text-align: left; /* Left align question text */
+            font-size: 1rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
         }
 
-        .faq-toggle i {
-            font-size: 1.1rem; /* Reduced icon size */
-            color: #007bff;
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question span {
+            flex: 1;
+            margin-right: 1rem;
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
             transition: transform 0.3s ease;
         }
 
-        .faq-card.open .faq-toggle i {
-            transform: rotate(90deg);
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(180deg);
         }
 
         .faq-answer {
-            padding: 1rem; /* Reduced padding */
-            font-size: 0.9rem; /* Reduced font size */
-            color: #555;
-            line-height: 1.6;
-            display: none; /* Initially hidden */
-            text-align: left; /* Left align answer text */
-        }
-
-        .faq-card.open .faq-answer {
-            display: block;
-        }
-
-        /* Testimonial Section (Interactive Cards with Color Accent) */
-        .testimonial-section-grid {
-            padding: 3rem 20px; /* Reduced padding */
-            background-color: #fff;
-            text-align: center;
-        }
-
-        .testimonial-section-grid h2 {
-            font-size: 2rem; /* Reduced font size */
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
-        }
-
-        .testimonial-grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for mobile */
-            gap: 1rem; /* Reduced gap */
-            margin-top: 1rem; /* Reduced top margin */
-        }
-
-        .testimonial-card-redesigned {
-            background-color: #f9f9f9;
-            padding: 1.2rem; /* Reduced padding */
-            border-radius: 0.3rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: left;
-            border-left: 5px solid #ffc107; /* Yellow accent */
-            cursor: pointer; /* Make interactive */
-        }
-
-        .testimonial-card-redesigned:hover {
-            transform: translateY(-0.2rem); /* Reduced hover effect */
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-        }
-
-        .testimonial-card-redesigned .comment {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 0.8rem; /* Reduced bottom margin */
-            font-style: italic;
-            font-size: 0.9rem; /* Reduced font size */
-        }
-
-        .author-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .author-info .avatar {
-            width: 40px; /* Reduced avatar size */
-            height: 40px; /* Reduced avatar size */
-            border-radius: 50%;
+            background: rgba(67, 97, 238, 0.05);
+            max-height: 0;
             overflow: hidden;
-            margin-right: 0.8rem; /* Reduced right margin */
-            background-color: #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            color: #777;
-            font-size: 0.8rem; /* Reduced font size in avatar */
+            transition: max-height 0.3s ease;
         }
 
-        .author-info .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .faq-content {
+            padding: 0 1.5rem 1.5rem;
+            line-height: 1.6;
         }
 
-        .author-info .author-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.1rem; /* Reduced bottom margin */
-            font-size: 0.9rem; /* Reduced font size */
+        .faq-content a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
         }
 
-        .author-info .author-role {
-            color: #777;
-            font-size: 0.8rem; /* Reduced font size */
+        .faq-content a:hover {
+            text-decoration: underline;
         }
-
-        /* Rating Para Penyedia Jasa Section */
-        .rating-penjoki-section {
-            padding: 3rem 20px; /* Reduced padding */
-            background-color: #e9ecef; /* Light Gray Background */
-            text-align: center;
-        }
-
-        .rating-penjoki-section h2 {
-            font-size: 2rem; /* Reduced font size */
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.8rem; /* Reduced bottom margin */
-        }
-
-        .rating-penjoki-section p {
-            color: #555;
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
-            font-size: 0.9rem; /* Reduced font size */
-        }
-
-        .rating-penjoki-iframe-container {
-            border-radius: 0.3rem;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Reduced shadow */
-        }
-
-        /* Beri Ulasan Section (Modal Style) */
-        .beri-ulasan-container {
-            padding: 2.5rem 20px; /* Reduced padding */
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 8%;
+            background: var(--gradient);
+            color: white;
             text-align: center;
             position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 2.5s;
         }
-
-        .beri-ulasan-container h2 {
-            font-size: 2rem; /* Reduced font size */
+        
+        .cta-section h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
             font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.8rem; /* Reduced bottom margin */
         }
-
-        .beri-ulasan-container p {
-            color: #555;
-            margin-bottom: 1.5rem; /* Reduced bottom margin */
-            font-size: 0.9rem; /* Reduced font size */
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            opacity: 0.9;
         }
-
-        .beri-ulasan-button {
-            background-color: #ffc107; /* Warning/Accent Color */
-            color: #fff;
-            padding: 0.8rem 1.5rem; /* Reduced padding */
+        
+        .white-button {
+            background: white;
+            color: var(--accent);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
             border: none;
-            border-radius: 0.3rem;
-            font-size: 1rem; /* Reduced font size */
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-            display: inline-flex;
-            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: var(--soft-shadow);
+            text-decoration: none;
         }
-
-        .beri-ulasan-button i {
-            margin-right: 0.4em; /* Further reduced icon spacing */
-            font-size: 1rem; /* Reduced icon size */
+        
+        .white-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hard-shadow);
         }
-
-        .beri-ulasan-button:hover {
-            background-color: #e0a800;
-            transform: scale(1.02); /* Reduced scale */
-        }
-
-        .beri-ulasan-iframe-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            padding: 1.5rem; /* Reduced padding */
-            border-radius: 0.5rem;
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2); /* Reduced shadow */
-            z-index: 1050;
-            display: none; /* Hidden by default */
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .beri-ulasan-iframe-container.show {
-            display: flex;
-        }
-
-        .beri-ulasan-iframe-container h3 {
-            font-size: 1.2rem; /* Reduced font size */
-            margin-bottom: 0.8rem; /* Reduced bottom margin */
-            color: #333;
-        }
-
-        .beri-ulasan-iframe {
-            width: 95vw; /* Adjust iframe width for mobile */
-            max-width: 500px; /* Reduced max width */
-            height: 300px; /* Reduced height */
-            border: none;
-            margin-bottom: 0.8rem; /* Reduced bottom margin */
-        }
-
-        .close-ulasan-button {
-            position: absolute;
-            top: 0.5rem; /* Reduced top position */
-            right: 0.5rem; /* Reduced right position */
-            background: none;
-            border: none;
-            color: #555;
-            font-size: 1.2rem; /* Reduced font size */
-            cursor: pointer;
-            outline: none;
-        }
-
-        .close-ulasan-button:hover {
-            color: #dc3545;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1040;
-            display: none; /* Hidden by default */
-        }
-
-        .overlay.show {
-            display: block;
-        }
-
-        /* Footer Styles */
+        
+        /* Footer */
         footer {
-            background-color: #343a40; /* Dark Footer */
-            color: #fff;
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 8% 2rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 2.6s;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
             text-align: center;
-            padding: 1rem 20px; /* Reduced padding */
-            font-size: 0.8rem; /* Reduced font size */
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
         }
-
-        footer .container p {
-            margin-bottom: 0;
-        }
-
-        /* Responsive Design Adjustments */
-        @media (max-width: 600px) {
-            .hero-title {
-                font-size: 2rem; /* Further reduced font size on smaller screens */
-            }
-
-            .hero-subtitle {
-                font-size: 0.95rem; /* Further reduced font size on smaller screens */
-            }
-
-            .hero-buttons-wrapper {
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero {
                 flex-direction: column;
+                padding-top: 7rem;
             }
-
-            .hero-cta, .hero-secondary-cta {
-                margin-right: 0;
-                margin-bottom: 0.5rem;
-                font-size: 0.9rem; /* Further reduced font size on smaller screens */
-                padding: 0.6rem 1.2rem; /* Further reduced padding */
+            
+            .hero-content {
+                padding-left: 0;
+                margin-bottom: 3rem;
+                text-align: center;
             }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
+            
+            .hero-buttons {
+                justify-content: center;
             }
-
-            .testimonial-grid-container {
+            
+            .hero-image {
+                justify-content: center;
+            }
+            
+            .hero-image img {
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .logo h1 {
+                font-size: 1.6rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 80px 30px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2, .faq-title {
+                font-size: 1.8rem;
+            }
+            
+            .card-alasan-wrapper, .offer-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loader-wrapper">
+        <span class="loader"></span>
+    </div>
 
-     <nav>
-        <div class="container">
-            <div class="logo">Rampungin.id</div>
-            <button class="hamburger-menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="nav-links">
-                <button class="close-menu">
-                    <i class="fas fa-times"></i>
-                </button>
-                <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="carijoki.html">Cari Jasa</a></li>
-                    <li><a href="daftar.html">Bergabung Jadi Profesional</a></li>
-                    <li><a href="tentang.html">Tentang Kami</a></li>
-                </ul>
-            </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/rampungjoki/rampungjoki/main/logo.jpeg" alt="Rampungin.id Logo">
+            <h1>Rampungin.id</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="carijasa.html">Cari Jasa</a></li>
+            <li><a href="daftar.html">Daftar</a></li>
+            <li><a href="tentang.html">Tentang Kami</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="container">
-            <div class="hero-title-wrapper">
-                <h1 class="hero-title">Platform Jasa Profesional Terintegrasi</h1>
-            </div>
-            <div class="hero-subtitle-wrapper">
-                <p class="hero-subtitle">Punya Kesibukan Lain? Serahkan Semuanya pada Rampungin.id.</p>
-            </div>
-            <div class="hero-buttons-wrapper">
-                <a href="carijoki.html" class="hero-cta"><i class="fas fa-search"></i>Cari Jasa Profesional</a>
-                <a href="daftar.html" class="hero-secondary-cta"><i class="fas fa-user-plus"></i>Saya Profesional, Ingin Bergabung & Dipromosikan!</a>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h2>Nggak sempat ngerjain tugas, desain, dan game?</h2>
+            <p>Rampungin.id siap bantu!<br>Temukan penyedia jasa terpercaya atau jadi bagian dari mereka.</p>
+            <div class="hero-buttons">
+                <a href="carijasa.html" class="cta-button">Cari Jasa</a>
+                <a href="daftar.html" class="secondary-button">Daftar Sekarang</a>
             </div>
         </div>
-    </header>
+        <div class="hero-image">
+            <img src="https://raw.githubusercontent.com/rampungjoki/rampungjoki/main/IMG_5277.png" alt="Rampungin.id Services">
+        </div>
+    </section>
 
-    <section class="why-choose-us">
-        <div class="container">
-            <h2 class="why-choose-us h2">Mengapa Memilih Rampungin.id?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card-single benefit-card-client">
-                    <h4><i class="fas fa-check-circle"></i>Akses Profesional Terseleksi</h4>
-                    <p>Kami memilih dengan cermat penyedia jasa untuk memastikan keahlian dan kualitas layanan terbaik.</p>
-                </div>
-                <div class="benefit-card-single benefit-card-client">
-                    <h4><i class="fas fa-eye"></i>Lihat Website Profesional</h4>
-                    <p>Telusuri detail layanan dan profesionalisme penyedia jasa melalui website pribadi mereka.</p>
-                </div>
-                <div class="benefit-card-single benefit-card-client">
-                    <h4><i class="fas fa-handshake"></i>Interaksi Langsung</h4>
-                    <p>Berinteraksi dan pahami layanan langsung dari penyedia jasa melalui website mereka.</p>
-                </div>
-                <div class="benefit-card-single benefit-card-provider">
-                    <h4><i class="fas fa-globe"></i>Website Pribadi Profesional</h4>
-                    <p>Dapatkan website pribadi untuk menampilkan layanan dan portofolio Anda.</p>
-                </div>
-                <div class="benefit-card-single benefit-card-provider">
-                    <h4><i class="fas fa-bullhorn"></i>Pemasaran Unggul</h4>
-                    <p>Kami pasarkan website pribadi Anda secara gratis di halaman Cari Jasa kami.</p>
-                </div>
-                <div class="benefit-card-single benefit-card-provider">
-                    <h4><i class="fas fa-chart-line"></i>Perluas Jangkauan Pasar</h4>
-                    <p>Jangkau ribuan calon klien dan bangun kredibilitas online Anda.</p>
-                </div>
+    <!-- Why Choose Section -->
+    <section class="why-choose">
+        <div class="section-title">
+            <h2>Mengapa Memilih Rampungin.id?</h2>
+            <p class="subtext">Kami hadir memberikan solusi digital terbaik melalui layanan dan platform yang terpercaya serta profesional.</p>
+        </div>
+        <div class="card-alasan-wrapper">
+            <div class="card-alasan">
+                <h3>✅ Akses Profesional Terseleksi</h3>
+                <p>Kami memilih dengan cermat penyedia jasa untuk memastikan keahlian dan kualitas layanan terbaik.</p>
+            </div>
+
+            <div class="card-alasan">
+                <h3>🌐 Lihat Website Profesional</h3>
+                <p>Telusuri detail layanan dan profesionalisme penyedia jasa melalui website pribadi mereka.</p>
+            </div>
+
+            <div class="card-alasan">
+                <h3>💬 Interaksi Langsung</h3>
+                <p>Berinteraksi dan pahami layanan langsung dari penyedia jasa melalui website mereka.</p>
+            </div>
+
+            <div class="card-alasan">
+                <h3>🧑‍💻 Website Pribadi Profesional</h3>
+                <p>Dapatkan website pribadi untuk menampilkan layanan dan portofolio Anda.</p>
+            </div>
+
+            <div class="card-alasan">
+                <h3>📣 Pemasaran Unggul</h3>
+                <p>Kami pasarkan website pribadi Anda secara gratis di halaman Cari Jasa kami.</p>
+            </div>
+
+            <div class="card-alasan">
+                <h3>📈 Perluas Jangkauan Pasar</h3>
+                <p>Jangkau ribuan calon klien dan bangun kredibilitas online Anda.</p>
             </div>
         </div>
     </section>
 
-    <section class="services-section" id="services">
-        <div class="container">
-            <h2 class="services-title">Kategori Jasa Profesional yang Tersedia:</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3><i class="fas fa-gamepad" style="color: #ff6f61; margin-right:0.4em;"></i>Jasa Gaming Profesional</h3>
-                    <p>Tingkatkan level dan raih kemenangan dengan bantuan joki terpercaya.</p>
-                    <a href="carijoki.html?kategori=gaming" class="service-cta"><i class="fas fa-search"></i>Cari Joki Gaming</a>
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-title">
+            <h2>Jenis Layanan Kami</h2>
+            <p class="subtext">Temukan berbagai layanan profesional yang kami tawarkan untuk memenuhi kebutuhan Anda</p>
+        </div>
+        <div class="offer-grid">
+            <a href="carijasa.html" class="offer-card card-akademik">
+                <div class="card-badge">Populer</div>
+                <div class="offer-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6.25278V19.2528M12 6.25278C10.8325 5.47686 9.24649 5 7.5 5C5.75351 5 4.16749 5.47686 3 6.25278V19.2528C4.16749 18.4769 5.75351 18 7.5 18C9.24649 18 10.8325 18.4769 12 19.2528M12 6.25278C13.1675 5.47686 14.7535 5 16.5 5C18.2465 5 19.8325 5.47686 21 6.25278V19.2528C19.8325 18.4769 18.2465 18 16.5 18C14.7535 18 13.1675 18.4769 12 19.2528" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
-                <div class="service-card">
-                    <h3><i class="fas fa-graduation-cap" style="color: #4dd0e1; margin-right: 0.4em;"></i>Bantuan Tugas Akademik</h3>
-                    <p>Solusi untuk tugas kuliah, skripsi, dan kebutuhan akademik lainnya.</p>
-                    <a href="carijoki.html?kategori=tugas" class="service-cta"><i class="fas fa-search"></i>Cari Bantuan Akademik</a>
+                <h3>Jasa Akademik</h3>
+                <p>Bantuan tugas, skripsi, jurnal, dan keperluan akademik lainnya dengan tenaga berpengalaman dari berbagai disiplin ilmu.</p>
+                <div class="offer-hover-effect"></div>
+            </a>
+
+            <a href="carijasa.html" class="offer-card card-desain">
+                <div class="offer-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 2V7M12 17V22M22 12H17M7 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </div>
-                <div class="service-card">
-                    <h3><i class="fas fa-paint-brush" style="color: #aed581; margin-right: 0.4em;"></i>Layanan Multimedia Kreatif</h3>
-                    <p>Desain grafis, editing video, dan solusi visual lainnya.</p>
-                    <a href="carijoki.html?kategori=multimedia" class="service-cta"><i class="fas fa-search"></i>Cari Ahli Multimedia</a>
+                <h3>Jasa Desain</h3>
+                <p>Desain website, logo, media sosial, dan kebutuhan visual lainnya yang profesional sesuai dengan identitas brand Anda.</p>
+                <div class="offer-hover-effect"></div>
+            </a>
+
+            <a href="carijasa.html" class="offer-card card-game">
+                <div class="offer-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 11L12 11M9 8L9 14M16 10C16 10.5523 16.4477 11 17 11C17.5523 11 18 10.5523 18 10C18 9.44772 17.5523 9 17 9C16.4477 9 16 9.44772 16 10ZM14 13C14 13.5523 14.4477 14 15 14C15.5523 14 16 13.5523 16 13C16 12.4477 15.5523 12 15 12C14.4477 12 14 12.4477 14 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 5H20C21.1046 5 22 5.89543 22 7V17C22 18.1046 21.1046 19 20 19H4C2.89543 19 2 18.1046 2 17V7C2 5.89543 2.89543 5 4 5Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
                 </div>
-                </div>
+                <h3>Jasa Game</h3>
+                <p>Joki rank dan layanan gaming lainnya oleh profesional dengan rating tinggi dan terpercaya.</p>
+                <div class="offer-hover-effect"></div>
+            </a>
+        </div>
+        <div class="section-cta">
+            <a href="carijasa.html" class="cta-button">Lihat Semua Layanan</a>
         </div>
     </section>
 
-    <section class="join-professional-section">
-        <div class="container">
-            <h2>Mari saatnya bakat profesional anda mulai dikembangkan di Rampungin.id</h2>
-            <p>Kembangkan bisnis Anda dan raih lebih banyak klien potensial dengan bergabung bersama Rampungin.id!</p>
-            <div style="margin-top: 2rem;"> <a href="daftar.html" class="signup-button"><i class="fas fa-handshake"></i>Saya Profesional, Ingin Bergabung & Dipromosikan!</a>
-            </div>
-        </div>
-    </section>
-
+    <!-- FAQ Section -->
     <section class="faq-section">
-        <div class="container">
-            <h2>Sering Ditanyakan</h2>
-            <div class="faq-grid">
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Apa itu Rampungin.id?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Rampungin.id adalah platform yang mempertemukan klien dengan penyedia jasa profesional terseleksi dan menyediakan pemasaran unggul bagi para profesional.</p>
-                    </div>
-                </div>
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Bagaimana cara mencari penyedia jasa di platform ini?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Anda dapat mencari melalui halaman "Cari Jasa" berdasarkan kategori layanan yang Anda butuhkan.</p>
+        <h2 class="faq-title">Pertanyaan yang Sering Diajukan</h2>
+        <p class="faq-subtitle">Temukan jawaban atas pertanyaan umum tentang layanan kami</p>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq1">
+                    <span>Apa itu Rampungin.id?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="faq-answer" id="faq1">
+                    <div class="faq-content">
+                        Rampungin.id adalah platform layanan digital yang menghubungkan klien dengan penyedia jasa terpercaya, dari tugas kampus hingga desain dan jasa gaming.
                     </div>
                 </div>
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Apakah penyedia jasa di Rampungin.id sudah terjamin kualitasnya?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Ya, kami melakukan proses seleksi untuk memastikan bahwa penyedia jasa yang terdaftar adalah profesional di bidangnya.</p>
-                    </div>
-                </div>
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Bagaimana cara penyedia jasa mendapatkan website pribadi?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Setelah mendaftar dan melakukan pembayaran, penyedia jasa akan mendapatkan website pribadi yang kami buatkan dan pasarkan di platform ini.</p>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq2">
+                    <span>Bagaimana cara memesan layanan?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="faq-answer" id="faq2">
+                    <div class="faq-content">
+                        Kamu bisa langsung mengunjungi halaman <a href="carijasa.html">Cari Profesional</a>, pilih jasa yang dibutuhkan, lalu hubungi penyedianya via WhatsApp.
                     </div>
                 </div>
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Di mana klien bisa melihat detail layanan penyedia jasa?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Detail layanan dan informasi kontak penyedia jasa dapat dilihat di halaman "Cari Jasa" dan pada website pribadi mereka.</p>
-                    </div>
-                </div>
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Bagaimana interaksi dan pembayaran antara klien dan penyedia jasa?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Interaksi dan pembayaran dilakukan langsung antara klien dan penyedia jasa melalui website pribadi masing-masing.</p>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq3">
+                    <span>Apakah saya bisa bergabung sebagai penyedia jasa?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="faq-answer" id="faq3">
+                    <div class="faq-content">
+                        Tentu! Kamu bisa mendaftar sebagai profesional melalui halaman <a href="daftar.html">Gabung Profesional</a> dan mulai menawarkan layananmu.
                     </div>
                 </div>
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Apa keuntungan bagi penyedia jasa bergabung dengan Rampungin.id?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Keuntungannya adalah mendapatkan website pribadi, pemasaran gratis di platform kami, perluasan jangkauan pasar, pembangunan brand, dan potensi analisis pasar.</p>
-                    </div>
-                </div>
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <h3>Bagaimana cara penyedia jasa mendaftar?</h3>
-                        <div class="faq-toggle"><i class="fas fa-plus-circle"></i></div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Penyedia jasa dapat mendaftar melalui halaman "Bergabung Jadi Profesional" dan mengikuti proses pendaftaran yang tersedia.</p>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false" aria-controls="faq4">
+                    <span>Apakah aman menggunakan jasa di Rampungin.id?</span>
+                    <svg class="faq-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="faq-answer" id="faq4">
+                    <div class="faq-content">
+                        Kami melakukan seleksi penyedia jasa dan menampilkan testimoni real dari klien sebelumnya agar kamu merasa aman dan yakin menggunakan layanan mereka.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonial-section-grid">
-        <div class="container">
-            <h2>Testimoni Profesional</h2>
-            <div class="testimonial-grid-container">
-                <div class="testimonial-card-redesigned">
-                    <p class="comment">"Bergabung dengan Rampungin.id adalah langkah cerdas! Website pribadi saya terlihat profesional dan pemasaran di platform ini sangat membantu."</p>
-                    <div class="author-info">
-                        <div class="avatar"><img src="matadore.jfif" alt="Avatar Matadore Store"></div>
-                        <div>
-                            <div class="author-name">Matadore Store</div>
-                            <div class="author-role">Penyedia Jasa Gaming</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card-redesigned">
-                    <p class="comment">"Saya sangat puas dengan website yang dibuat dan promosi yang diberikan. Rampungin.id benar-benar meningkatkan visibilitas layanan akademik saya."</p>
-                    <div class="author-info">
-                        <div class="avatar"><img src="trims.jpeg" alt="Avatar Trims.Project"></div>
-                        <div>
-                            <div class="author-name">Trims.Project</div>
-                            <div class="author-role">Penyedia Jasa Tugas Akademik</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card-redesigned">
-                    <p class="comment">"Dengan Rampungin.id, saya tidak hanya mendapatkan website yang menarik, tetapi juga kesempatan menjangkau klien baru yang relevan dengan layanan multimedia saya."</p>
-                    <div class="author-info">
-                        <div class="avatar"><img src="sebatsz.jpeg" alt="Avatar Sebatsz"></div>
-                        <div>
-                            <div class="author-name">SEBATSZ</div>
-                            <div class="author-role">Penyedia Jasa Gaming</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card-redesigned">
-                    <p class="comment">"Saya merekomendasikan Rampungin.id bagi para profesional yang ingin mengembangkan bisnis mereka secara online dengan website pribadi dan pemasaran yang efektif."</p>
-                    <div class="author-info">
-                        <div class="avatar"><img src="statispro.png"</div>
-                        <div>
-                            <div class="author-name">Statis Pro</div>
-                            <div class="author-role">Penyedia Jasa Multimedia</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h3>Siap Bergabung dengan Komunitas Kami?</h3>
+        <p>Daftarkan diri Anda sekarang sebagai penyedia jasa dan nikmati berbagai benefit eksklusif termasuk pemasaran luas dan website pribadi untuk memamerkan portofolio Anda.</p>
+        <a href="daftar.html" class="white-button">Daftar Sekarang</a>
     </section>
 
-    <section class="rating-penjoki-section">
-        <div class="container">
-            <h2>Rating Penyedia Jasa</h2>
-            <p>Lihat bagaimana kualitas layanan dari para profesional di Rampungin.id:</p>
-            <div class="rating-penjoki-iframe-container">
-                <iframe width="100%" height="450" src="https://lookerstudio.google.com/embed/reporting/07c12a5c-8431-45ac-a5b1-bba8daf5c073/page/4z5FF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <section class="beri-ulasan-container">
-        <div class="container">
-            <h2>Berikan Penilaian Anda!</h2>
-            <p>Bagikan pengalaman Anda dengan penyedia jasa di Rampungin.id.</p>
-            <button class="beri-ulasan-button" id="beriUlasanButton"><i class="fas fa-star-half-alt"></i> Beri Ulasan</button>
-            <div class="beri-ulasan-iframe-container" id="ulasanFormContainer">
-                <h3>Formulir Penilaian Penyedia Jasa</h3>
-                <iframe src="https://forms.gle/jLUPjtmhTWGAhd1U8" class="beri-ulasan-iframe" frameborder="0" style="border:0" allowfullscreen></iframe>
-                <button class="close-ulasan-button" onclick="closeUlasanForm()">&times;</button>
-            </div>
-        </div>
-        <div class="overlay" id="overlay"></div>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Rampungin.id. **Hubungkan Profesional, Kembangkan Bisnis!**</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Tentang Kami</h4>
+                <p>Rampungin.id adalah platform terdepan yang menghubungkan penyedia jasa profesional dengan klien yang membutuhkan.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Layanan</h4>
+                <ul>
+                    <li><a href="#">Jasa Gaming</a></li>
+                    <li><a href="#">Jasa Tugas</a></li>
+                    <li><a href="#">Jasa Multimedia</a></li>
+                    <li><a href="#">Jasa Lainnya</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Perusahaan</h4>
+                <ul>
+                    <li><a href="tentang.html">Tentang Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Kontak</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Bantuan</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Panduan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Rampungin.id. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        // Loading Animation
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loader-wrapper').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.loader-wrapper').style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-        const closeMenuButton = document.querySelector('.close-menu');
 
-        hamburgerMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('open');
+            navLinks.classList.toggle('active');
         });
 
-        closeMenuButton.addEventListener('click', () => {
-            navLinks.classList.remove('open');
-        });
-
-        // Optional: Close sidebar when a link is clicked (if you want this behavior)
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('open');
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const isExpanded = question.getAttribute('aria-expanded') === 'true';
+                question.setAttribute('aria-expanded', !isExpanded);
+                
+                const answer = document.getElementById(question.getAttribute('aria-controls'));
+                if (isExpanded) {
+                    answer.style.maxHeight = null;
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
                 }
             });
         });
 
-        // Toggle Ulasan Form
-        const beriUlasanButton = document.getElementById('beriUlasanButton');
-        const ulasanFormContainer = document.getElementById('ulasanFormContainer');
-        const overlay = document.getElementById('overlay');
-
-        beriUlasanButton.addEventListener('click', () => {
-            ulasanFormContainer.classList.add('show');
-            overlay.classList.add('show');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        hamburger.classList.remove('open');
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
         });
 
-        function closeUlasanForm() {
-            ulasanFormContainer.classList.remove('show');
-            overlay.classList.remove('show');
+        // Animate elements when they come into view
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.card-alasan, .offer-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Particle Animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 3px and 8px
+                const size = Math.random() * 5 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100 + 100}%`;
+                
+                // Random color from gradient
+                const colors = ['#4361EE', '#3A0CA3', '#F72585'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random animation duration between 10s and 20s
+                const duration = Math.random() * 10 + 10;
+                particle.style.animation = `floatParticle ${duration}s linear infinite`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
         }
 
-        overlay.addEventListener('click', closeUlasanForm);
-
-        // FAQ Toggle (Interactive Cards)
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        const faqCards = document.querySelectorAll('.faq-card');
-
-        faqQuestions.forEach((question, index) => {
-            question.addEventListener('click', () => {
-                faqCards[index].classList.toggle('open');
-                const toggleIcon = question.querySelector('.faq-toggle i');
-                toggleIcon.classList.toggle('fa-plus-circle');
-                toggleIcon.classList.toggle('fa-minus-circle');
-            });
-        });
-
-        // Smooth Scrolling for "Lihat Layanan Kami" Button (Adjusted for newlinks)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
     </script>
-
 </body>
 </html>
