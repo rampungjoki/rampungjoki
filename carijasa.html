@@ -107,25 +107,6 @@
         .nav-links a:hover::after {
             width: 100%;
         }
-        
-        .cta-button {
-            background: var(--gradient);
-            color: white;
-            padding: 0.7rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: var(--soft-shadow);
-            text-decoration: none;
-            font-size: 0.95rem;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--hard-shadow);
-        }
 
         .hamburger {
             display: none;
@@ -194,7 +175,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             position: relative;
-            display: inline-block;
+            width: 100%;
         }
 
         .page-title::after {
@@ -266,6 +247,9 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .card:hover {
@@ -287,6 +271,8 @@
             margin: 0.5rem 0;
             font-weight: 700;
             color: var(--secondary);
+            text-align: center;
+            width: 100%;
         }
 
         .card .category-badge {
@@ -296,6 +282,7 @@
             font-size: 0.8rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
 
         .card .level {
@@ -304,6 +291,7 @@
             opacity: 0.7;
             margin-bottom: 1rem;
             font-style: italic;
+            text-align: center;
         }
 
         .card .deskripsi {
@@ -312,12 +300,14 @@
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
             line-height: 1.6;
+            text-align: center;
         }
 
         .btn-group {
             display: flex;
             gap: 0.8rem;
             justify-content: center;
+            width: 100%;
         }
 
         .btn {
@@ -333,6 +323,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
+            text-align: center;
         }
 
         .btn.website {
@@ -356,6 +347,7 @@
             padding: 2rem;
             color: var(--dark);
             opacity: 0.7;
+            width: 100%;
         }
 
         /* Footer */
@@ -377,12 +369,14 @@
             margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: 10px;
+            text-align: center;
         }
         
         .footer-column h4::after {
             content: '';
             position: absolute;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             bottom: 0;
             width: 50px;
             height: 3px;
@@ -391,6 +385,7 @@
         
         .footer-column ul {
             list-style: none;
+            text-align: center;
         }
         
         .footer-column ul li {
@@ -406,13 +401,13 @@
         
         .footer-column ul li a:hover {
             color: white;
-            padding-left: 5px;
         }
         
         .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
+            justify-content: center;
         }
         
         .social-links a {
@@ -468,6 +463,7 @@
             
             .nav-links li {
                 margin: 1rem 0;
+                text-align: center;
             }
             
             .hamburger {
@@ -550,7 +546,7 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h4>Tentang Kami</h4>
-                <p>Rampungin.id adalah platform terdepan yang menghubungkan penyedia jasa profesional dengan klien yang membutuhkan.</p>
+                <p style="text-align: center;">Rampungin.id adalah platform terdepan yang menghubungkan penyedia jasa profesional dengan klien yang membutuhkan.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
